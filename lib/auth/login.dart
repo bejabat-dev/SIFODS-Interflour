@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:sifods_interflour/auth/forgot.dart';
 import 'package:sifods_interflour/auth/register.dart';
-import 'package:sifods_interflour/pages/dashboard.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 
 final styles = Styles();
 final utils = Tools();
 
-class Login extends StatelessWidget {
-  final formKey = GlobalKey();
+class Login extends StatefulWidget {
   Login({super.key});
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  final formKey = GlobalKey<FormState>();
+  final email = TextEditingController();
+  final password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +35,15 @@ class Login extends StatelessWidget {
                   child: styles.authText('Login'),
                 ),
                 TextFormField(
-                  decoration: styles.customInput(
-                      'Username or Email', const Icon(Icons.email)),
+                  controller: email,
+                  decoration:
+                      styles.customInput('Email', const Icon(Icons.email)),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
+                  controller: password,
                   decoration: styles.customInput(
                       'Password', const Icon(Icons.password)),
                 ),
@@ -48,7 +57,12 @@ class Login extends StatelessWidget {
                     width: double.infinity,
                     child: InkWell(
                       onTap: () {
-                        utils.NavigateAndClear(context, const Dashboard());
+                        if (formKey.currentState?.validate() ?? false) {
+                          networking.login(
+                              context,
+                              networking.userData(
+                                  null, email.text, password.text, null));
+                        }
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),

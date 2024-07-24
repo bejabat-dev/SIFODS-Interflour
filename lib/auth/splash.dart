@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sifods_interflour/auth/login.dart';
+import 'package:sifods_interflour/utils/networking.dart';
 import 'package:sifods_interflour/utils/tools.dart';
+import 'package:sifods_interflour/utils/userdata.dart';
 
 final tools = Tools();
+final userdata = Userdata();
+final network = Networking();
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -14,7 +18,17 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   void start() async {
     await Future.delayed(const Duration(seconds: 1));
-    if(mounted) tools.NavigateAndClear(context, Login());
+    await userdata.getPrefs();
+    if (Userdata.userPrefs != null) {
+      if (mounted) {
+        if (Userdata.userPrefs!.getBool('loggedin') == true) {
+          network.getUserData(
+              context, Userdata.userPrefs!.getString('email')!);
+        } else {
+          tools.NavigateAndClear(context, Login());
+        }
+      }
+    }
   }
 
   @override

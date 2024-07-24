@@ -13,7 +13,7 @@ class Tools {
             
             content: SizedBox(
               height: 100,
-              child: Column(
+              child: Column(mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   loadingIndicator,
                   const SizedBox(
@@ -37,10 +37,12 @@ class Tools {
                 onTap: () {
                   Navigator.pop(context);
                 },
-                child: const Text('Konfirmasi'),
+                child: Center(child: const Text('Konfirmasi')),
               )
             ],
-            content: Text(text),
+            content: SizedBox(
+              height: 80,
+              child: Center(child: Text(text))),
           );
         });
   }
