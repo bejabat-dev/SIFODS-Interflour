@@ -7,7 +7,7 @@ import 'package:sifods_interflour/utils/userdata.dart';
 class Networking {
 
 final utils = Tools();
-  final baseUrl = 'http://localhost:3000/api';
+  final baseUrl = 'http://192.168.1.2:3000/api';
   final dio = Dio();
 
   Map<String, dynamic> userData(
