@@ -14,6 +14,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const Splash(),
       theme: ThemeData(
+        cardColor: Colors.white,
         splashColor: const Color.fromARGB(255, 209, 209, 209),
         primaryColor: Colors.blue,
         indicatorColor: Colors.blue,
