@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sifods_interflour/auth/forgot.dart';
+import 'package:sifods_interflour/auth/login.dart';
 import 'package:sifods_interflour/pages/edit_profile.dart';
 import 'package:sifods_interflour/utils/userdata.dart';
 
@@ -122,7 +122,10 @@ class _ProfileState extends State<Profile> {
               elevation: 2,
               borderRadius: BorderRadius.circular(8),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  Userdata.userPrefs!.setBool('loggedin', false);
+                  utils.NavigateAndClear(context, Login());
+                },
                 child: const SizedBox(
                     width: double.infinity,
                     child: Padding(

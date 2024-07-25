@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sifods_interflour/auth/forgot.dart';
 import 'package:sifods_interflour/utils/styles.dart';
+import 'package:sifods_interflour/utils/tools.dart';
 
 class InputTruck extends StatefulWidget {
   const InputTruck({super.key});
@@ -10,6 +10,8 @@ class InputTruck extends StatefulWidget {
 }
 
 class _InputTruckState extends State<InputTruck> {
+
+final utils = Tools();
   final formKey = GlobalKey();
 
   final idKendaraan = TextEditingController();

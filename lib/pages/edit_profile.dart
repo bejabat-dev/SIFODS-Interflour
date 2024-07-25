@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:sifods_interflour/auth/forgot.dart';
 
-class EditProfile extends StatelessWidget {
+class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
 
+  @override
+  State<EditProfile> createState() => _EditProfileState();
+}
+
+class _EditProfileState extends State<EditProfile> {
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,6 +18,36 @@ class EditProfile extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
+            ClipOval(
+              child: Image.asset(
+                'assets/banner.png',
+                width: 100,
+                height: 100,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Form(
+                  key: formKey,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: TextFormField(
+                          decoration:
+                              styles.customInput('Full name', Icon(Icons.person)),
+                        ),
+                      ),Padding(
+                        padding: const EdgeInsets.only(bottom: 20.0),
+                        child: TextFormField(
+                          decoration:
+                              styles.customInput('Phone number', Icon(Icons.android)),
+                        ),
+                      ),
+                    ],
+                  )),
+            ),
             Material(
               borderRadius: BorderRadius.circular(8),
               elevation: 2,
@@ -20,7 +56,7 @@ class EditProfile extends StatelessWidget {
                 onTap: () {},
                 child: const SizedBox(
                   width: double.infinity,
-                  child:  Padding(
+                  child: Padding(
                     padding: EdgeInsets.all(10),
                     child: Center(
                       child: Text(

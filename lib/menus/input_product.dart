@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sifods_interflour/auth/forgot.dart';
 import 'package:sifods_interflour/utils/styles.dart';
+import 'package:sifods_interflour/utils/tools.dart';
 
 class InputProduct extends StatefulWidget {
   const InputProduct({super.key});
@@ -10,6 +10,8 @@ class InputProduct extends StatefulWidget {
 }
 
 class _InputContainerState extends State<InputProduct> {
+
+final utils = Tools();
   final formKey = GlobalKey();
 
   final idKendaraan = TextEditingController();

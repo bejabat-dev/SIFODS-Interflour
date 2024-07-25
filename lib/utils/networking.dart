@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:sifods_interflour/auth/forgot.dart';
 import 'package:sifods_interflour/pages/dashboard.dart';
+import 'package:sifods_interflour/utils/tools.dart';
 import 'package:sifods_interflour/utils/userdata.dart';
 
 class Networking {
+
+final utils = Tools();
   final baseUrl = 'http://localhost:3000/api';
   final dio = Dio();
 

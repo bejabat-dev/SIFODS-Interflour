@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sifods_interflour/utils/styles.dart';
-import 'package:sifods_interflour/utils/tools.dart';
 
 final styles = Styles();
-final utils = Tools();
 
 class Forgot extends StatelessWidget {
   final formKey = GlobalKey();
@@ -11,6 +9,7 @@ class Forgot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,

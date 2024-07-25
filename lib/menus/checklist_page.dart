@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sifods_interflour/auth/forgot.dart';
 import 'package:sifods_interflour/checklists/checklist_container.dart';
 import 'package:sifods_interflour/checklists/checklist_truck.dart';
 import 'package:sifods_interflour/checklists/checklist_update.dart';
 import 'package:sifods_interflour/utils/styles.dart';
+import 'package:sifods_interflour/utils/tools.dart';
 
 class ChecklistPage extends StatelessWidget {
   ChecklistPage({super.key});
@@ -16,6 +16,7 @@ class ChecklistPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final utils = Tools();
     final styles = Styles();
     return Scaffold(
       appBar: styles.customAppBar(context, 'Checklists'),
