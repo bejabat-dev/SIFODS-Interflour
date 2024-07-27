@@ -1,5 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:sifods_interflour/auth/register.dart';
 import 'package:sifods_interflour/utils/styles.dart';
+import 'package:sifods_interflour/utils/userdata.dart';
 
 class ChecklistTruck extends StatefulWidget {
   const ChecklistTruck({super.key});
@@ -9,7 +12,24 @@ class ChecklistTruck extends StatefulWidget {
 }
 
 class _ChecklistTruckState extends State<ChecklistTruck> {
+  final dio = Dio();
   final formKey = GlobalKey();
+
+  Future<void> getNopols() async {
+    try {
+      final res = await dio.get('${networking.baseUrl}/nopol',
+          data: {'iduser': Userdata.data!['id']});
+      if (res.statusCode == 201) {
+        if (mounted) {
+          utils.showConfirmDialog(context, 'Berhasil menambahkan ceklis');
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        utils.showErrorDialog(context, 'Terjadi kesalahan, periksa jaringan');
+      }
+    }
+  }
 
   final List<String> nopols = ['BP 6556 AD', 'A 666 X'];
   final List<String> checks = [
@@ -131,7 +151,7 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
                 );
               }),
           SliverPadding(
-            padding: const EdgeInsets.only(top: 8,bottom: 50),
+            padding: const EdgeInsets.only(top: 8, bottom: 50),
             sliver: SliverToBoxAdapter(
               child: Row(
                 children: [
@@ -145,11 +165,13 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
                         onTap: () {},
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Center(child: styles.coloredText('Post', Colors.white)),
+                          child: Center(
+                              child: styles.coloredText('Post', Colors.white)),
                         ),
                       ),
                     ),
-                  ),Expanded(child: Container()),
+                  ),
+                  Expanded(child: Container()),
                 ],
               ),
             ),

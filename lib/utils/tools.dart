@@ -1,19 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sifods_interflour/auth/register.dart';
+import 'package:sifods_interflour/pages/dashboard.dart';
 
 const loadingIndicator = CupertinoActivityIndicator();
 
 class Tools {
   void showLoadingDialog(BuildContext context, String text) {
     showDialog(
-      barrierDismissible: false,
+        barrierDismissible: false,
         context: context,
         builder: (context) {
           return AlertDialog(
-            
             content: SizedBox(
               height: 100,
-              child: Column(mainAxisAlignment: MainAxisAlignment.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   loadingIndicator,
                   const SizedBox(
@@ -40,9 +42,25 @@ class Tools {
                 child: Center(child: const Text('Konfirmasi')),
               )
             ],
-            content: SizedBox(
-              height: 80,
-              child: Center(child: Text(text))),
+            content: SizedBox(height: 80, child: Center(child: Text(text))),
+          );
+        });
+  }
+
+  void showConfirmDialog(BuildContext context, String text) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            actions: [
+              InkWell(
+                onTap: () {
+                  utils.NavigateAndClear(context, Dashboard());
+                },
+                child: Center(child: const Text('Konfirmasi')),
+              )
+            ],
+            content: SizedBox(height: 80, child: Center(child: Text(text))),
           );
         });
   }

@@ -106,8 +106,7 @@ class _ChecklistTruckState extends State<ChecklistUpdate> {
                         return styles.coloredText(item, Colors.white);
                       }).toList();
                     },
-                    value: selectedNopol,
-                    decoration: styles.dropdownDecoration(null, null),
+                    decoration: styles.dropdownDecoration('No. Container', null),
                     items: nopols.map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem(value: value, child: Text(value));
                     }).toList(),

@@ -12,7 +12,7 @@ class _ChecklistContainerState extends State<ChecklistContainer> {
   final styles = Styles();
   final formKey = GlobalKey();
 
-  final List<String> nopols = ['BP 6556 AD', 'A 666 X'];
+  final List<String> container = ['BP 6556 AD', 'A 666 X'];
   final List<String> internal = [
     'Bebas dari Sampah/Kotoran/Sisa produk lain',
     'Lantai bersih & kering (tidak basah,lembab/berminyak)',
@@ -113,14 +113,13 @@ class _ChecklistContainerState extends State<ChecklistContainer> {
                   DropdownButtonFormField<String>(
                       iconEnabledColor: Colors.white,
                       selectedItemBuilder: (context) {
-                        return nopols.map<Widget>((String item) {
+                        return container.map<Widget>((String item) {
                           return styles.coloredText(item, Colors.white);
                         }).toList();
                       },
-                      value: selectedNopol,
-                      decoration: styles.dropdownDecoration(null, null),
+                      decoration: styles.dropdownDecoration('No. Container', null),
                       items:
-                          nopols.map<DropdownMenuItem<String>>((String value) {
+                          container.map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem(
                             value: value, child: Text(value));
                       }).toList(),

@@ -12,9 +12,9 @@ const router = express.Router();
 app.use(express.json());
 
 router.get('/user', (req, res) => {
-    const {email} = req.body;
+    const { email } = req.body;
     const query = 'SELECT * FROM users WHERE email = ?';
-    db.query(query,[email], (error, result) => {
+    db.query(query, [email], (error, result) => {
         if (error) {
             return res.status(500).json({ error: 'Database query failed' });
         }
@@ -22,8 +22,6 @@ router.get('/user', (req, res) => {
     });
 });
 
-
-// Registration route
 router.post('/register', (req, res) => {
     const { nama, email, password, jabatan } = req.body;
     const query = 'INSERT INTO users (nama, email, password, jabatan) VALUES (?, ?, ?, ?)';
@@ -37,13 +35,11 @@ router.post('/register', (req, res) => {
             return res.status(400).json({ message: 'Email sudah digunakan' });
         }
 
-        // Hash the password
         bcrypt.hash(password, saltRounds, (err, hashedPassword) => {
             if (err) {
                 return res.status(500).json({ error: 'Password hashing failed' });
             }
 
-            // Insert the new user with hashed password
             db.query(query, [nama, email, hashedPassword, jabatan], (error, result) => {
                 if (error) {
                     return res.status(500).json({ error: 'Failed to register user' });
@@ -84,10 +80,23 @@ router.get('/login', (req, res) => {
     });
 });
 
+router.post('/add_truck', (req,res) => {
+    const { iduser, nopol, nama, ekspedisi, supir, jenis, telp, volume, jumlah } = req.body;
+    const query = 'INSERT INTO vehicles (iduser,nopol,nama,ekspedisi,supir,jenis,telp,volume,jumlah) VALUES(?,?,?,?,?,?,?,?,?)';
+    db.query(query,[iduser,nopol, nama, ekspedisi, supir, jenis, telp, volume, jumlah],(err,result)=>{
+        if(err){
+            return res.status(500).json({ error: 'Error' });
+        }
+        res.status(201).json({message:'Success'});
+    });
+});
+
+
+
 
 app.use('/api', router);
 
 const port = process.env.PORT || 3000;
-app.listen(port,'0.0.0.0', () => {
+app.listen(port, '0.0.0.0', () => {
     console.log(`Server is running on port ${port}`);
 });

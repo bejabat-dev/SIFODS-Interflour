@@ -53,7 +53,8 @@ class Styles {
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide.none),
-        labelText: label);
+        hintText: label,
+        hintStyle: TextStyle(color: Colors.white));
     return i;
   }
 
@@ -68,7 +69,7 @@ class Styles {
   Text buttonText(String text) {
     Text t = Text(
       text,
-      style: const TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
+      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
     );
     return t;
   }

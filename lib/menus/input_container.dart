@@ -69,17 +69,6 @@ final utils = Tools();
                 key: formKey,
                 child: Column(
                   children: [
-                    TextFormField(
-                      style: const TextStyle(fontSize: 15),
-                      controller: idKendaraan,
-                      decoration: styles.customFormDecoration('ID Container'),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          utils.showMessage(context, 'Fill all fields');
-                        }
-                        return null;
-                      },
-                    ),
                     const SizedBox(
                       height: 6,
                     ),

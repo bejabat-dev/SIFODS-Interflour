@@ -5,8 +5,7 @@ import 'package:sifods_interflour/utils/tools.dart';
 import 'package:sifods_interflour/utils/userdata.dart';
 
 class Networking {
-
-final utils = Tools();
+  final utils = Tools();
   final baseUrl = 'http://192.168.1.2:3000/api';
   final dio = Dio();
 
@@ -21,7 +20,7 @@ final utils = Tools();
     return map;
   }
 
-  void login(BuildContext context, Map<String, dynamic> data) async {
+  Future<void> login(BuildContext context, Map<String, dynamic> data) async {
     utils.showLoadingDialog(context, 'Sedang masuk');
     String email = data['email'];
     try {
@@ -48,7 +47,7 @@ final utils = Tools();
     }
   }
 
-  void register(BuildContext context, Map<String, dynamic> data) async {
+  Future<void> register(BuildContext context, Map<String, dynamic> data) async {
     utils.showLoadingDialog(context, 'Mendaftarkan akun');
     String email = data['email'];
     try {
@@ -71,7 +70,7 @@ final utils = Tools();
     }
   }
 
-  void getUserData(BuildContext context, String email) async {
+  Future<void> getUserData(BuildContext context, String email) async {
     try {
       final res = await dio.get('$baseUrl/user', data: {'email': email});
       if (res.statusCode == 201) {
@@ -89,6 +88,26 @@ final utils = Tools();
           debugPrint(e.toString());
           utils.showErrorDialog(context, 'Email tidak ditemukan');
         }
+      }
+    }
+  }
+
+  Future<void> uploadTruck(
+      BuildContext context, Map<String, dynamic> data) async {
+    utils.showLoadingDialog(context, 'Menyimpan data kendaraan');
+    try {
+      final res = await dio.post('$baseUrl/add_truck', data: data);
+      if (res.statusCode == 201) {
+        if (context.mounted) {
+          Navigator.pop(context);
+          utils.showConfirmDialog(context, 'Berhasil menambahkan kendaraan');
+        }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        Navigator.pop(context);
+        utils.showErrorDialog(
+            context, 'Terjadi kesalahan, periksa internet anda.');
       }
     }
   }
