@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sifods_interflour/auth/register.dart';
-import 'package:sifods_interflour/auth/splash.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/userdata.dart';
 
@@ -183,7 +182,7 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
                       child: InkWell(
                         onTap: () {
                           if (selected) {
-                            networking.addChecklistTruck(context, booleans);
+                            networking.addChecklistTruck(context, booleans,{});
                           }
                         },
                         child: Padding(
