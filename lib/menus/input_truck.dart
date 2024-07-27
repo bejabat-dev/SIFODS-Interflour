@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sifods_interflour/auth/register.dart';
-import 'package:sifods_interflour/auth/splash.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 import 'package:sifods_interflour/utils/userdata.dart';
@@ -36,7 +35,7 @@ class _InputTruckState extends State<InputTruck> {
 
   Map<String, dynamic> data() {
     Map<String, dynamic> map = {
-      'iduser':Userdata.data!['id'],
+      'id_user': Userdata.data!['id'],
       'nopol': nopol.text,
       'nama': namaKendaraan.text,
       'ekspedisi': ekspedisi.text,
@@ -49,7 +48,21 @@ class _InputTruckState extends State<InputTruck> {
     return map;
   }
 
+  Map<String, dynamic> log() {
+    Map<String, dynamic> map = {
+      'id_user': Userdata.data!['id'],
+      'type': 'vehicle',
+      'value': nopol.text,
+    };
+    return map;
+  }
+
   String? jenisKendaraan;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -182,6 +195,7 @@ class _InputTruckState extends State<InputTruck> {
                       TextFormField(
                         style: const TextStyle(fontSize: 15),
                         controller: noTelp,
+                        keyboardType: TextInputType.number,
                         decoration:
                             styles.customFormDecoration('No. Telpon/HP'),
                         validator: (value) {
@@ -212,6 +226,7 @@ class _InputTruckState extends State<InputTruck> {
                       TextFormField(
                         style: const TextStyle(fontSize: 15),
                         controller: jumlahKendaraan,
+                        keyboardType: TextInputType.number,
                         decoration:
                             styles.customFormDecoration('Jumlah kendaraan'),
                         validator: (value) {
@@ -234,7 +249,7 @@ class _InputTruckState extends State<InputTruck> {
                                 onTap: () {
                                   if (formKey.currentState?.validate() ??
                                       false) {
-                                    networking.uploadTruck(context, data());
+                                    networking.uploadTruck(context, data(),log());
                                   }
                                 },
                                 child: Padding(

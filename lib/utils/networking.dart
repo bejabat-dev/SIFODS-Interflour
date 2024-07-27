@@ -92,12 +92,13 @@ class Networking {
     }
   }
 
-  Future<void> uploadTruck(
-      BuildContext context, Map<String, dynamic> data) async {
+  Future<void> uploadTruck(BuildContext context, Map<String, dynamic> data,
+      Map<String, dynamic> logData) async {
     utils.showLoadingDialog(context, 'Menyimpan data kendaraan');
     try {
       final res = await dio.post('$baseUrl/add_truck', data: data);
       if (res.statusCode == 201) {
+        addLog(logData);
         if (context.mounted) {
           Navigator.pop(context);
           utils.showConfirmDialog(context, 'Berhasil menambahkan kendaraan');
@@ -109,6 +110,114 @@ class Networking {
         utils.showErrorDialog(
             context, 'Terjadi kesalahan, periksa internet anda.');
       }
+    }
+  }
+
+  Future<void> uploadContainer(
+      BuildContext context, Map<String, dynamic> data) async {
+    utils.showLoadingDialog(context, 'Menyimpan data container');
+    try {
+      final res = await dio.post('$baseUrl/add_container', data: data);
+      if (res.statusCode == 201) {
+        if (context.mounted) {
+          Navigator.pop(context);
+          utils.showConfirmDialog(context, 'Berhasil menambahkan container');
+        }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        Navigator.pop(context);
+        utils.showErrorDialog(
+            context, 'Terjadi kesalahan, periksa internet anda.');
+      }
+    }
+  }
+
+  Future<void> uploadProduct(
+      BuildContext context, Map<String, dynamic> data) async {
+    utils.showLoadingDialog(context, 'Menyimpan data product');
+    try {
+      final res = await dio.post('$baseUrl/add_product', data: data);
+      if (res.statusCode == 201) {
+        if (context.mounted) {
+          Navigator.pop(context);
+          utils.showConfirmDialog(context, 'Berhasil menambahkan product');
+        }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        Navigator.pop(context);
+        utils.showErrorDialog(
+            context, 'Terjadi kesalahan, periksa internet anda.');
+      }
+    }
+  }
+
+  Future<dynamic> getNopols() async {
+    try {
+      final res = await dio
+          .get('$baseUrl/nopol', data: {'id_user': Userdata.data!['id']});
+      if (res.statusCode == 201) {
+        debugPrint(res.data.toString());
+        return res.data;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      return null;
+    }
+  }
+
+  Future<dynamic> getContainer() async {
+    try {
+      final res = await dio
+          .get('$baseUrl/container', data: {'id_user': Userdata.data!['id']});
+      if (res.statusCode == 201) {
+        debugPrint(res.data.toString());
+        return res.data;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      return null;
+    }
+  }
+
+  Future<void> addLog(Map<String, dynamic> data) async {
+    try {
+      final res = await dio.post('$baseUrl/log', data: data);
+      if (res.statusCode == 201) {
+        debugPrint('Log added');
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<dynamic> getLogs() async {
+    try {
+      final res = await dio
+          .get('$baseUrl/logs', data: {'id_user': Userdata.data!['id']});
+      if (res.statusCode == 201) {
+        debugPrint('Log added');
+        return res.data;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      return null;
+    }
+  }
+
+  Future<void> addChecklistTruck(BuildContext context,Map<String,dynamic> data,Map<String,dynamic> logData) async {
+    try {
+      final res = await dio.post('$baseUrl/checklist/truck',
+          data: data);
+      if (res.statusCode == 201) {
+        addLog(data);
+        if (context.mounted) {
+          utils.showConfirmDialog(context, 'Berhasil menambahkan checklist');
+        }
+      }
+    } catch (e) {
+      debugPrint(e.toString());
     }
   }
 }

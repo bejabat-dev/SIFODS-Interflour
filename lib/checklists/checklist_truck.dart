@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sifods_interflour/auth/register.dart';
+import 'package:sifods_interflour/auth/splash.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/userdata.dart';
 
@@ -15,23 +17,6 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
   final dio = Dio();
   final formKey = GlobalKey();
 
-  Future<void> getNopols() async {
-    try {
-      final res = await dio.get('${networking.baseUrl}/nopol',
-          data: {'iduser': Userdata.data!['id']});
-      if (res.statusCode == 201) {
-        if (mounted) {
-          utils.showConfirmDialog(context, 'Berhasil menambahkan ceklis');
-        }
-      }
-    } catch (e) {
-      if (mounted) {
-        utils.showErrorDialog(context, 'Terjadi kesalahan, periksa jaringan');
-      }
-    }
-  }
-
-  final List<String> nopols = ['BP 6556 AD', 'A 666 X'];
   final List<String> checks = [
     'Bebas dari Sampah/Kotoran/Sisa produk lain',
     'Lantai bersih & kering (tidak basah,lembab/berminyak)',
@@ -44,7 +29,9 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
     'Bebas dari bau menyengat/tajam/kotoran/apek'
   ];
 
-  Map<String, bool> booleans = {
+  Map<String, dynamic> booleans = {
+    'id_user': Userdata.data!['id'],
+    'nopol': 'asdsad',
     'box0': false,
     'box1': false,
     'box2': false,
@@ -55,12 +42,39 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
     'box7': false,
     'box8': false,
   };
+  bool selected = false;
 
-  String selectedNopol = 'BP 6556 AD';
+  String? selectedNopol;
+
+  Widget indicatorWidget = const Row(
+    children: [
+      CupertinoActivityIndicator(),
+      SizedBox(
+        width: 5,
+      ),
+      Text('Loading vehicles')
+    ],
+  );
+
+  List<String> nopols = [];
+
+  Future<void> getNopols() async {
+    List<dynamic>? data = await networking.getNopols();
+    if (data != null) {
+      for (var map in data) {
+        setState(() {
+          nopols.add(map['nopol']);
+        });
+      }
+    } else {
+      indicatorWidget = const Text('Please add vehicle first');
+    }
+  }
 
   @override
   void initState() {
     super.initState();
+    getNopols();
   }
 
   @override
@@ -110,21 +124,26 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
                 const SizedBox(
                   height: 8,
                 ),
-                DropdownButtonFormField<String>(
-                    iconEnabledColor: Colors.white,
-                    selectedItemBuilder: (context) {
-                      return nopols.map<Widget>((String item) {
-                        return styles.coloredText(item, Colors.white);
-                      }).toList();
-                    },
-                    value: selectedNopol,
-                    decoration: styles.dropdownDecoration(null, null),
-                    items: nopols.map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem(value: value, child: Text(value));
-                    }).toList(),
-                    onChanged: (value) {
-                      selectedNopol = value!;
-                    }),
+                nopols.isNotEmpty
+                    ? DropdownButtonFormField<String>(
+                        iconEnabledColor: Colors.white,
+                        selectedItemBuilder: (context) {
+                          return nopols.map<Widget>((String item) {
+                            return styles.coloredText(item, Colors.white);
+                          }).toList();
+                        },
+                        decoration:
+                            styles.dropdownDecoration('No. Polisi', null),
+                        items: nopols
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem(
+                              value: value, child: Text(value));
+                        }).toList(),
+                        onChanged: (value) {
+                          selectedNopol = value!;
+                          selected = true;
+                        })
+                    : indicatorWidget,
                 const SizedBox(
                   height: 8,
                 ),
@@ -162,7 +181,11 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
                     child: SizedBox(
                       width: 150,
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          if (selected) {
+                            networking.addChecklistTruck(context, booleans);
+                          }
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Center(

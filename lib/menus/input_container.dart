@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:sifods_interflour/auth/register.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/tools.dart';
+import 'package:sifods_interflour/utils/userdata.dart';
 
 class InputContainer extends StatefulWidget {
   const InputContainer({super.key});
@@ -10,19 +13,26 @@ class InputContainer extends StatefulWidget {
 }
 
 class _InputContainerState extends State<InputContainer> {
+  final utils = Tools();
+  final formKey = GlobalKey<FormState>();
 
-final utils = Tools();
-  final formKey = GlobalKey();
-
-  final idKendaraan = TextEditingController();
-  final namaKendaraan = TextEditingController();
-  final ekspedisi = TextEditingController();
-  final namaSupir = TextEditingController();
-  final noTelp = TextEditingController();
-  final volumeMuatan = TextEditingController();
-  final jumlahKendaraan = TextEditingController();
+  final noContainer = TextEditingController();
+  final namaContainer = TextEditingController();
+  final noSeal = TextEditingController();
 
   final List<String> listKendaraan = ['Truck'];
+
+  
+
+  Map<String, dynamic> data() {
+    Map<String, dynamic> data = {
+      'id_user': Userdata.data!['id'],
+      'nomor': int.parse(noContainer.text),
+      'nama': namaContainer.text,
+      'seal': int.parse(noSeal.text),
+    };
+    return data;
+  }
 
   String jenisKendaraan = 'Truck';
 
@@ -74,11 +84,11 @@ final utils = Tools();
                     ),
                     TextFormField(
                       style: const TextStyle(fontSize: 15),
-                      controller: namaKendaraan,
+                      controller: noContainer,
                       decoration: styles.customFormDecoration('No. Container'),
                       validator: (value) {
                         if (value!.isEmpty) {
-                          utils.showMessage(context, 'Fill all fields');
+                          return 'Masukkan no. container';
                         }
                         return null;
                       },
@@ -88,11 +98,11 @@ final utils = Tools();
                     ),
                     TextFormField(
                       style: const TextStyle(fontSize: 15),
-                      controller: ekspedisi,
+                      controller: namaContainer,
                       decoration: styles.customFormDecoration('Nama Container'),
                       validator: (value) {
                         if (value!.isEmpty) {
-                          utils.showMessage(context, 'Fill all fields');
+                          return 'Masukkan nama container';
                         }
                         return null;
                       },
@@ -102,11 +112,11 @@ final utils = Tools();
                     ),
                     TextFormField(
                       style: const TextStyle(fontSize: 15),
-                      controller: namaSupir,
+                      controller: noSeal,
                       decoration: styles.customFormDecoration('No. Seal'),
                       validator: (value) {
                         if (value!.isEmpty) {
-                          utils.showMessage(context, 'Fill all fields');
+                          return 'Masukkan no. seal';
                         }
                         return null;
                       },
@@ -114,7 +124,6 @@ final utils = Tools();
                     const SizedBox(
                       height: 15,
                     ),
-                    
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -122,7 +131,11 @@ final utils = Tools();
                             borderRadius: BorderRadius.circular(8),
                             color: Colors.blue,
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                if (formKey.currentState?.validate() ?? false) {
+                                  networking.uploadContainer(context, data());
+                                }
+                              },
                               child: Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(24, 8, 24, 8),
@@ -136,7 +149,9 @@ final utils = Tools();
                             borderRadius: BorderRadius.circular(8),
                             color: Colors.blue,
                             child: InkWell(
-                              onTap: () {Navigator.pop(context);},
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
                               child: Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(24, 8, 24, 8),
@@ -151,7 +166,9 @@ final utils = Tools();
                             borderRadius: BorderRadius.circular(8),
                             color: Colors.blue,
                             child: InkWell(
-                              onTap: () {Navigator.pop(context);},
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
                               child: Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(24, 8, 24, 8),

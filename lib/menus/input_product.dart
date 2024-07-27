@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sifods_interflour/auth/register.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 
@@ -10,21 +11,19 @@ class InputProduct extends StatefulWidget {
 }
 
 class _InputContainerState extends State<InputProduct> {
+  final utils = Tools();
+  final formKey = GlobalKey<FormState>();
 
-final utils = Tools();
-  final formKey = GlobalKey();
+  final kode = TextEditingController();
+  final nama = TextEditingController();
 
-  final idKendaraan = TextEditingController();
-  final namaKendaraan = TextEditingController();
-  final ekspedisi = TextEditingController();
-  final namaSupir = TextEditingController();
-  final noTelp = TextEditingController();
-  final volumeMuatan = TextEditingController();
-  final jumlahKendaraan = TextEditingController();
-
-  final List<String> listKendaraan = ['Truck'];
-
-  String jenisKendaraan = 'Truck';
+  Map<String, dynamic> data() {
+    Map<String, dynamic> data = {
+      'kode': kode.text,
+      'nama': nama.text,
+    };
+    return data;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,11 +70,10 @@ final utils = Tools();
                   children: [
                     TextFormField(
                       style: const TextStyle(fontSize: 15),
-                      controller: idKendaraan,
                       decoration: styles.customFormDecoration('ID Barang'),
                       validator: (value) {
                         if (value!.isEmpty) {
-                          utils.showMessage(context, 'Fill all fields');
+                          return 'ID tidak boleh kosong';
                         }
                         return null;
                       },
@@ -85,11 +83,11 @@ final utils = Tools();
                     ),
                     TextFormField(
                       style: const TextStyle(fontSize: 15),
-                      controller: namaKendaraan,
+                      controller: nama,
                       decoration: styles.customFormDecoration('Kode Barang'),
                       validator: (value) {
                         if (value!.isEmpty) {
-                          utils.showMessage(context, 'Fill all fields');
+                          return 'Masukkan kode barang';
                         }
                         return null;
                       },
@@ -99,20 +97,18 @@ final utils = Tools();
                     ),
                     TextFormField(
                       style: const TextStyle(fontSize: 15),
-                      controller: ekspedisi,
+                      controller: kode,
                       decoration: styles.customFormDecoration('Nama Barang'),
                       validator: (value) {
                         if (value!.isEmpty) {
-                          utils.showMessage(context, 'Fill all fields');
+                          return 'Masukkan nama barang';
                         }
                         return null;
                       },
                     ),
-                    
                     const SizedBox(
                       height: 15,
                     ),
-                    
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -120,7 +116,11 @@ final utils = Tools();
                             borderRadius: BorderRadius.circular(8),
                             color: Colors.blue,
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                if (formKey.currentState?.validate() ?? false) {
+                                  networking.uploadProduct(context, data());
+                                }
+                              },
                               child: Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(24, 8, 24, 8),
@@ -134,7 +134,9 @@ final utils = Tools();
                             borderRadius: BorderRadius.circular(8),
                             color: Colors.blue,
                             child: InkWell(
-                              onTap: () {Navigator.pop(context);},
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
                               child: Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(24, 8, 24, 8),
@@ -149,7 +151,9 @@ final utils = Tools();
                             borderRadius: BorderRadius.circular(8),
                             color: Colors.blue,
                             child: InkWell(
-                              onTap: () {Navigator.pop(context);},
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
                               child: Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(24, 8, 24, 8),

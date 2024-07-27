@@ -4,23 +4,39 @@ import 'package:sifods_interflour/menus/checklist_page.dart';
 import 'package:sifods_interflour/menus/input_container.dart';
 import 'package:sifods_interflour/menus/input_product.dart';
 import 'package:sifods_interflour/menus/input_truck.dart';
+import 'package:sifods_interflour/pages/log.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 
 class Home extends StatelessWidget {
   Home({super.key});
   final List<Map<String, dynamic>> menus = [
     {'name': 'Truck', 'icon': 'assets/truck.png', 'route': const InputTruck()},
-    {'name': 'Container', 'icon': 'assets/truck.png', 'route': const InputContainer()},
-    {'name': 'Product', 'icon': 'assets/truck.png', 'route': const InputProduct()},
+    {
+      'name': 'Container',
+      'icon': 'assets/truck.png',
+      'route': const InputContainer()
+    },
+    {
+      'name': 'Product',
+      'icon': 'assets/truck.png',
+      'route': const InputProduct()
+    },
     {'name': 'Checklist', 'icon': 'assets/truck.png', 'route': ChecklistPage()},
-    {'name': 'Corporate', 'icon': 'assets/truck.png', 'route': const InputTruck()},
-    {'name': 'Contact', 'icon': 'assets/truck.png', 'route': const InputTruck()},
+    {
+      'name': 'Corporate',
+      'icon': 'assets/truck.png',
+      'route': const InputTruck()
+    },
+    {
+      'name': 'Contact',
+      'icon': 'assets/truck.png',
+      'route': const InputTruck()
+    },
   ];
 
   @override
   Widget build(BuildContext context) {
-
-final utils = Tools();
+    final utils = Tools();
     return Scaffold(
       body: Column(
         children: [
@@ -36,7 +52,10 @@ final utils = Tools();
                   children: [
                     Padding(
                       padding: EdgeInsets.only(right: 8),
-                      child: Icon(Icons.place,color: Color.fromARGB(255, 86, 86, 86),),
+                      child: Icon(
+                        Icons.place,
+                        color: Color.fromARGB(255, 86, 86, 86),
+                      ),
                     ),
                     Expanded(child: Text('Kecamatan Bengkong\nKota Batam')),
                     Text('12:30'),
@@ -74,7 +93,7 @@ final utils = Tools();
                         utils.Navigate(context, menus[i]['route']);
                       },
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 8,bottom: 8),
+                        padding: const EdgeInsets.only(top: 8, bottom: 8),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -83,7 +102,6 @@ final utils = Tools();
                               width: 50,
                               height: 50,
                             ),
-                            
                             styles.menuText(menus[i]['name'])
                           ],
                         ),
@@ -102,11 +120,7 @@ final utils = Tools();
                 )),
           ),
           Expanded(
-            child: ListView.builder(
-                itemCount: 4,
-                itemBuilder: (context, i) {
-                  return const Text('data');
-                }),
+            child: LogWidget(),
           )
         ],
       ),

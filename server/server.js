@@ -81,9 +81,9 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/add_truck', (req,res) => {
-    const { iduser, nopol, nama, ekspedisi, supir, jenis, telp, volume, jumlah } = req.body;
-    const query = 'INSERT INTO vehicles (iduser,nopol,nama,ekspedisi,supir,jenis,telp,volume,jumlah) VALUES(?,?,?,?,?,?,?,?,?)';
-    db.query(query,[iduser,nopol, nama, ekspedisi, supir, jenis, telp, volume, jumlah],(err,result)=>{
+    const { id_user, nopol, nama, ekspedisi, supir, jenis, telp, volume, jumlah } = req.body;
+    const query = 'INSERT INTO vehicles (id_user,nopol,nama,ekspedisi,supir,jenis,telp,volume,jumlah) VALUES(?,?,?,?,?,?,?,?,?)';
+    db.query(query,[id_user,nopol, nama, ekspedisi, supir, jenis, telp, volume, jumlah],(err,result)=>{
         if(err){
             return res.status(500).json({ error: 'Error' });
         }
@@ -91,8 +91,71 @@ router.post('/add_truck', (req,res) => {
     });
 });
 
+router.post('/add_container', (req,res) => {
+    const { id_user,nomor,nama,seal } = req.body;
+    const query = 'INSERT INTO container (id_user,nomor,nama,seal) VALUES(?,?,?,?)';
+    db.query(query,[id_user,nomor,nama,seal],(err,result)=>{
+        if(err){
+            return res.status(500).json({ error: 'Error' });
+        }
+        res.status(201).json({message:'Success'});
+    });
+});
 
+router.post('/add_product', (req,res) => {
+    const { id_user,kode,nama } = req.body;
+    const query = 'INSERT INTO container (id_user,kode,nama) VALUES(?,?,?)';
+    db.query(query,[id_user,kode,nama],(err,result)=>{
+        if(err){
+            return res.status(500).json({ error: 'Error' });
+        }
+        res.status(201).json({message:'Success'});
+    });
+});
 
+router.get('/nopol', (req,res) => {
+    const { id_user } = req.body;
+    const query = 'SELECT nopol FROM vehicles WHERE id_user = ?';
+    db.query(query,[id_user],(err,results)=>{
+        if(err){
+            return res.status(500).json({ error: 'Error' });
+        }
+        res.status(201).json(results);
+    });
+});
+
+router.post('/log', (req,res) => {
+    const { id_user,type,value } = req.body;
+    const query = 'INSERT INTO log (id_user,type,value) VALUES(?,?,?)';
+    db.query(query,[id_user,type,value],(err,result)=>{
+        if(err){
+            return res.status(500).json({ error: 'Error' });
+        }
+        res.status(201).json({message:'Success'});
+    });
+});
+
+router.get('/logs', (req,res) => {
+    const { id_user } = req.body;
+    const query = 'SELECT * FROM log WHERE id_user = ?';
+    db.query(query,[id_user],(err,result)=>{
+        if(err){
+            return res.status(500).json({ error: 'Error' });
+        }
+        res.status(201).json(result);
+    });
+});
+
+router.post('/checklist/truck', (req,res) => {
+    const { id_user,nopol,box0,box1,box2,box3,box4,box5,box6,box7,box8 } = req.body;
+    const query = 'INSERT INTO checklist_truck (id_user,nopol,box0,box1,box2,box3,box4,box5,box6,box7,box8) VALUES(?,?,?,?,?,?,?,?,?,?,?)';
+    db.query(query,[id_user,nopol,box0,box1,box2,box3,box4,box5,box6,box7,box8],(err,result)=>{
+        if(err){
+            return res.status(500).json({ error: 'Error' });
+        }
+        res.status(201).json({message:'Success'});
+    });
+});
 
 app.use('/api', router);
 

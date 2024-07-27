@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:sifods_interflour/auth/register.dart';
 import 'package:sifods_interflour/pages/dashboard.dart';
 
@@ -45,6 +46,13 @@ class Tools {
             content: SizedBox(height: 80, child: Center(child: Text(text))),
           );
         });
+  }
+
+  String formattedTime(String timestampString) {
+    final DateTime timestamp = DateTime.parse(timestampString);
+    final String formattedTimestamp =
+        DateFormat('yyyy-MM-dd HH:mm:ss').format(timestamp);
+    return formattedTimestamp;
   }
 
   void showConfirmDialog(BuildContext context, String text) {
