@@ -40,7 +40,7 @@ class Tools {
                 onTap: () {
                   Navigator.pop(context);
                 },
-                child: Center(child: const Text('Konfirmasi')),
+                child: const Center(child: Text('Konfirmasi')),
               )
             ],
             content: SizedBox(height: 80, child: Center(child: Text(text))),
@@ -63,9 +63,9 @@ class Tools {
             actions: [
               InkWell(
                 onTap: () {
-                  utils.NavigateAndClear(context, Dashboard());
+                  utils.NavigateAndClear(context, const Dashboard());
                 },
-                child: Center(child: const Text('Konfirmasi')),
+                child: const Center(child: Text('Konfirmasi')),
               )
             ],
             content: SizedBox(height: 80, child: Center(child: Text(text))),

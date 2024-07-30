@@ -25,7 +25,7 @@ class _SplashState extends State<Splash> {
           network.getUserData(
               context, Userdata.userPrefs!.getString('email')!);
         } else {
-          tools.NavigateAndClear(context, Login());
+          tools.NavigateAndClear(context, const Login());
         }
       }
     }

@@ -119,7 +119,7 @@ class Home extends StatelessWidget {
                   textAlign: TextAlign.start,
                 )),
           ),
-          Expanded(
+          const Expanded(
             child: LogWidget(),
           )
         ],

@@ -36,13 +36,13 @@ class _EditProfileState extends State<EditProfile> {
                         padding: const EdgeInsets.only(bottom: 8.0),
                         child: TextFormField(
                           decoration:
-                              styles.customInput('Full name', Icon(Icons.person)),
+                              styles.customInput('Full name', const Icon(Icons.person)),
                         ),
                       ),Padding(
                         padding: const EdgeInsets.only(bottom: 20.0),
                         child: TextFormField(
                           decoration:
-                              styles.customInput('Phone number', Icon(Icons.android)),
+                              styles.customInput('Phone number', const Icon(Icons.android)),
                         ),
                       ),
                     ],

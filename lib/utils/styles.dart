@@ -54,7 +54,7 @@ class Styles {
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide.none),
         hintText: label,
-        hintStyle: TextStyle(color: Colors.white));
+        hintStyle: const TextStyle(color: Colors.white));
     return i;
   }
 

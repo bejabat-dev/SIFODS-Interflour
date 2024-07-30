@@ -50,7 +50,7 @@ class _LogWidgetState extends State<LogWidget> {
                 String date =
                     utils.formattedTime(logData![i]['tanggal'].toString());
                 return Padding(
-                  padding: EdgeInsets.fromLTRB(8, 4, 8, 0),
+                  padding: const EdgeInsets.fromLTRB(8, 4, 8, 0),
                   child: Material(
                       elevation: 2,
                       borderRadius: BorderRadius.circular(8),
@@ -58,7 +58,7 @@ class _LogWidgetState extends State<LogWidget> {
                       child: InkWell(
                         onTap: (){},
                         child: Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             children: [
                               Expanded(

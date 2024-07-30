@@ -35,7 +35,7 @@ class MainApp extends StatelessWidget {
           dialogBackgroundColor: Colors.white,
           appBarTheme: const AppBarTheme(
               backgroundColor: Colors.blue,
-              titleTextStyle: TextStyle(color: Colors.white, fontSize: 18),
+              titleTextStyle: TextStyle(color: Colors.white, fontSize: 18,fontWeight: FontWeight.bold),
               iconTheme: IconThemeData(size: 18, color: Colors.white)),
           scaffoldBackgroundColor: Colors.white),
     );

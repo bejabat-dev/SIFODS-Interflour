@@ -28,7 +28,7 @@ class _ProfileState extends State<Profile> {
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.account_circle,
                             size: 85,
                           ),
@@ -52,7 +52,7 @@ class _ProfileState extends State<Profile> {
                                 children: [
                                   InkWell(
                                       onTap: () {
-                                        utils.Navigate(context, EditProfile());
+                                        utils.Navigate(context, const EditProfile());
                                       }, child: const Text('Edit')),
                                   const Icon(Icons.edit)
                                 ],
@@ -61,12 +61,12 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                   )
-                : CupertinoActivityIndicator(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+                : const CupertinoActivityIndicator(),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
               child: SizedBox(
                   width: double.infinity,
-                  child: const Text(
+                  child: Text(
                     'Settings',
                     style: TextStyle(
                         fontSize: 17, color: Color.fromARGB(255, 14, 118, 202)),
@@ -82,13 +82,13 @@ class _ProfileState extends State<Profile> {
                   children: [
                     InkWell(
                       onTap: () {},
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
+                      child: const Padding(
+                        padding: EdgeInsets.all(16.0),
                         child: Row(
                           children: [
                             Icon(Icons.password),
                             Padding(
-                              padding: const EdgeInsets.only(left: 16),
+                              padding: EdgeInsets.only(left: 16),
                               child: Text('Change password'),
                             )
                           ],
@@ -97,13 +97,13 @@ class _ProfileState extends State<Profile> {
                     ),
                     InkWell(
                       onTap: () {},
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
+                      child: const Padding(
+                        padding: EdgeInsets.all(16.0),
                         child: Row(
                           children: [
                             Icon(Icons.warning),
                             Padding(
-                              padding: const EdgeInsets.only(left: 16),
+                              padding: EdgeInsets.only(left: 16),
                               child: Text('About'),
                             )
                           ],
@@ -124,7 +124,7 @@ class _ProfileState extends State<Profile> {
               child: InkWell(
                 onTap: () {
                   Userdata.userPrefs!.setBool('loggedin', false);
-                  utils.NavigateAndClear(context, Login());
+                  utils.NavigateAndClear(context, const Login());
                 },
                 child: const SizedBox(
                     width: double.infinity,

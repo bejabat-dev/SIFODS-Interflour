@@ -78,7 +78,7 @@ class Networking {
 
         Userdata.userPrefs!.setBool('loggedin', true);
         if (context.mounted) {
-          utils.NavigateAndClear(context, Dashboard());
+          utils.NavigateAndClear(context, const Dashboard());
         }
       }
     } catch (e) {
