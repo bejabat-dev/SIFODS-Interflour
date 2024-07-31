@@ -14,7 +14,7 @@ class ChecklistTruck extends StatefulWidget {
 
 class _ChecklistTruckState extends State<ChecklistTruck> {
   final dio = Dio();
-  final formKey = GlobalKey();
+  final formKey = GlobalKey<FormState>();
 
   final List<String> checks = [
     'Bebas dari Sampah/Kotoran/Sisa produk lain',
@@ -41,7 +41,6 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
     'box7': false,
     'box8': false,
   };
-  bool selected = false;
 
   String? selectedNopol;
 
@@ -123,26 +122,35 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
                 const SizedBox(
                   height: 8,
                 ),
-                nopols.isNotEmpty
-                    ? DropdownButtonFormField<String>(
-                        iconEnabledColor: Colors.white,
-                        selectedItemBuilder: (context) {
-                          return nopols.map<Widget>((String item) {
-                            return styles.coloredText(item, Colors.white);
-                          }).toList();
-                        },
-                        decoration:
-                            styles.dropdownDecoration('No. Polisi', null),
-                        items: nopols
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem(
-                              value: value, child: Text(value));
-                        }).toList(),
-                        onChanged: (value) {
-                          selectedNopol = value!;
-                          selected = true;
-                        })
-                    : indicatorWidget,
+                Form(
+                  key: formKey,
+                  child: nopols.isNotEmpty
+                      ? DropdownButtonFormField<String>(
+                          iconEnabledColor: Colors.white,
+                          selectedItemBuilder: (context) {
+                            return nopols.map<Widget>((String item) {
+                              return styles.coloredText(item, Colors.white);
+                            }).toList();
+                          },
+                          decoration:
+                              styles.dropdownDecoration('No. Polisi', null),
+                          items: nopols
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem(
+                                value: value, child: Text(value));
+                          }).toList(),
+                          onChanged: (value) {
+                            selectedNopol = value!;
+                          },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Pilih no polisi';
+                            }
+                            return null;
+                          },
+                        )
+                      : indicatorWidget,
+                ),
                 const SizedBox(
                   height: 8,
                 ),
@@ -181,8 +189,8 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
                       width: 150,
                       child: InkWell(
                         onTap: () {
-                          if (selected) {
-                            networking.addChecklistTruck(context, booleans,{});
+                          if (formKey.currentState?.validate() ?? false) {
+                            networking.addChecklistTruck(context, booleans, {});
                           }
                         },
                         child: Padding(

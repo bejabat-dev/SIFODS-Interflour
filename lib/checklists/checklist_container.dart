@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sifods_interflour/auth/register.dart';
 import 'package:sifods_interflour/utils/styles.dart';
+import 'package:sifods_interflour/utils/userdata.dart';
 
 class ChecklistContainer extends StatefulWidget {
   const ChecklistContainer({super.key});
@@ -11,8 +13,9 @@ class ChecklistContainer extends StatefulWidget {
 class _ChecklistContainerState extends State<ChecklistContainer> {
   final styles = Styles();
   final formKey = GlobalKey();
+  final catatan = TextEditingController();
 
-  final List<String> container = ['BP 6556 AD', 'A 666 X'];
+  final List<String> container = ['sd'];
   final List<String> internal = [
     'Bebas dari Sampah/Kotoran/Sisa produk lain',
     'Lantai bersih & kering (tidak basah,lembab/berminyak)',
@@ -47,14 +50,26 @@ class _ChecklistContainerState extends State<ChecklistContainer> {
     'box8': false,
   };
   Map<String, bool> booleansEksternal = {
-    'box0': false,
-    'box1': false,
-    'box2': false,
-    'box3': false,
-    'box4': false,
-    'box5': false,
-    'box6': false,
+    'eks0': false,
+    'eks1': false,
+    'eks2': false,
+    'eks3': false,
+    'eks4': false,
+    'eks5': false,
+    'eks6': false,
   };
+
+  Future<void> uploadChecklist()async{
+    Map<String,dynamic> data = {
+      'id_user':Userdata.data!['id'],
+      'nopol':selectedNopol
+    };
+
+    data.addAll(booleans);
+    data.addAll(booleansEksternal);
+    data['catatan'] = catatan.text;
+    await networking.addChecklistContainer(context, data, {});
+  }
 
   String selectedNopol = 'BP 6556 AD';
 
@@ -171,10 +186,10 @@ class _ChecklistContainerState extends State<ChecklistContainer> {
                       children: [
                         Expanded(child: Text(eksternal[i])),
                         Checkbox(
-                            value: booleansEksternal['box$i'],
+                            value: booleansEksternal['eks$i'],
                             onChanged: (value) {
                               setState(() {
-                                booleansEksternal['box$i'] = value!;
+                                booleansEksternal['eks$i'] = value!;
                               });
                             })
                       ],
@@ -189,6 +204,7 @@ class _ChecklistContainerState extends State<ChecklistContainer> {
               height: 8,
             ),
                   TextField(
+                    controller: catatan,
                     maxLines: 3,
                     style: const TextStyle(fontSize: 14),
                     decoration: InputDecoration(
@@ -207,7 +223,9 @@ class _ChecklistContainerState extends State<ChecklistContainer> {
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(8),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        uploadChecklist();
+                      },
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(40, 8, 40, 8),
                         child: styles.coloredText('Post', Colors.white),

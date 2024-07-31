@@ -206,17 +206,43 @@ class Networking {
     }
   }
 
-  Future<void> addChecklistTruck(BuildContext context,Map<String,dynamic> data,Map<String,dynamic> logData) async {
+  Future<void> addChecklistTruck(BuildContext context,
+      Map<String, dynamic> data, Map<String, dynamic> logData) async {
+    utils.showLoadingDialog(context, 'Posting checklists');
     try {
-      final res = await dio.post('$baseUrl/checklist/truck',
-          data: data);
+      final res = await dio.post('$baseUrl/checklist/truck', data: data);
       if (res.statusCode == 201) {
         addLog(data);
         if (context.mounted) {
-          utils.showConfirmDialog(context, 'Berhasil menambahkan checklist');
+          Navigator.pop(context);
+          utils.showConfirmDialog(context, 'Checklists successfully added.');
         }
       }
     } catch (e) {
+      if (context.mounted) {
+        Navigator.pop(context);
+        utils.showErrorDialog(context, 'Network error');
+      }
+      debugPrint(e.toString());
+    }
+  }
+  Future<void> addChecklistContainer(BuildContext context,
+      Map<String, dynamic> data, Map<String, dynamic> logData) async {
+    utils.showLoadingDialog(context, 'Posting checklists');
+    try {
+      final res = await dio.post('$baseUrl/checklist/container', data: data);
+      if (res.statusCode == 201) {
+        addLog(data);
+        if (context.mounted) {
+          Navigator.pop(context);
+          utils.showConfirmDialog(context, 'Checklists successfully added.');
+        }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        Navigator.pop(context);
+        utils.showErrorDialog(context, 'Network error');
+      }
       debugPrint(e.toString());
     }
   }
