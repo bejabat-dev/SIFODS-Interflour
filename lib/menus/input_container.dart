@@ -19,6 +19,15 @@ class _InputContainerState extends State<InputContainer> {
   final namaContainer = TextEditingController();
   final noSeal = TextEditingController();
 
+  Map<String, dynamic> log() {
+    Map<String, dynamic> map = {
+      'id_user': Userdata.data!['id'],
+      'type': 'Added container',
+      'value': noContainer.text,
+    };
+    return map;
+  }
+
   final List<String> listKendaraan = ['Truck'];
 
   
@@ -26,9 +35,9 @@ class _InputContainerState extends State<InputContainer> {
   Map<String, dynamic> data() {
     Map<String, dynamic> data = {
       'id_user': Userdata.data!['id'],
-      'nomor': int.parse(noContainer.text),
+      'nomor': noContainer.text,
       'nama': namaContainer.text,
-      'seal': int.parse(noSeal.text),
+      'seal': noSeal.text
     };
     return data;
   }
@@ -132,7 +141,7 @@ class _InputContainerState extends State<InputContainer> {
                             child: InkWell(
                               onTap: () {
                                 if (formKey.currentState?.validate() ?? false) {
-                                  networking.uploadContainer(context, data());
+                                  networking.uploadContainer(context, data(),log());
                                 }
                               },
                               child: Padding(

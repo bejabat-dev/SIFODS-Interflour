@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sifods_interflour/auth/register.dart';
 import 'package:sifods_interflour/utils/styles.dart';
+import 'package:sifods_interflour/utils/userdata.dart';
 
 class ChecklistUpdate extends StatefulWidget {
   const ChecklistUpdate({super.key});
@@ -24,7 +26,7 @@ class _ChecklistTruckState extends State<ChecklistUpdate> {
     'Segel terpasang dengan baik',
   ];
 
-  Map<String, bool> booleans = {
+  Map<String, dynamic> booleans = {
     'box0': false,
     'box1': false,
     'box2': false,
@@ -39,6 +41,26 @@ class _ChecklistTruckState extends State<ChecklistUpdate> {
     'No. Segel ',
     'Qty ',
   ];
+  Map<String, dynamic> log() {
+    Map<String, dynamic> map = {
+      'id_user': Userdata.data!['id'],
+      'type': 'Updated container checklists',
+      'value': selectedNopol,
+    };
+    return map;
+  }
+
+  void updateChecklist()async{
+    Map<String,dynamic> data = {};
+    data['id_user']=Userdata.data!['id'];
+    data['nopol']= selectedNopol;
+    data.addAll(booleans);
+    data['box4']=controller0.text;
+    data['box5']=controller1.text;
+    data['box6']=controller2.text;
+    data['box7']=controller3.text;
+    await networking.updateChecklistContainer(context, data, {});
+  }
 
   @override
   void initState() {
@@ -193,7 +215,9 @@ class _ChecklistTruckState extends State<ChecklistUpdate> {
                     child: SizedBox(
                       width: 180,
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          updateChecklist();
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Center(

@@ -59,6 +59,15 @@ class _ChecklistContainerState extends State<ChecklistContainer> {
     'eks6': false,
   };
 
+  Map<String, dynamic> log() {
+    Map<String, dynamic> map = {
+      'id_user': Userdata.data!['id'],
+      'type': 'Added container checklists',
+      'value': selectedNopol,
+    };
+    return map;
+  }
+
   Future<void> uploadChecklist()async{
     Map<String,dynamic> data = {
       'id_user':Userdata.data!['id'],
@@ -68,7 +77,7 @@ class _ChecklistContainerState extends State<ChecklistContainer> {
     data.addAll(booleans);
     data.addAll(booleansEksternal);
     data['catatan'] = catatan.text;
-    await networking.addChecklistContainer(context, data, {});
+    await networking.addChecklistContainer(context, data, log());
   }
 
   String selectedNopol = 'BP 6556 AD';

@@ -114,11 +114,12 @@ class Networking {
   }
 
   Future<void> uploadContainer(
-      BuildContext context, Map<String, dynamic> data) async {
+      BuildContext context, Map<String, dynamic> data, Map<String, dynamic> logData) async {
     utils.showLoadingDialog(context, 'Menyimpan data container');
     try {
       final res = await dio.post('$baseUrl/add_container', data: data);
       if (res.statusCode == 201) {
+        addLog(logData);
         if (context.mounted) {
           Navigator.pop(context);
           utils.showConfirmDialog(context, 'Berhasil menambahkan container');
@@ -236,6 +237,27 @@ class Networking {
         if (context.mounted) {
           Navigator.pop(context);
           utils.showConfirmDialog(context, 'Checklists successfully added.');
+        }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        Navigator.pop(context);
+        utils.showErrorDialog(context, 'Network error');
+      }
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> updateChecklistContainer(BuildContext context,
+      Map<String, dynamic> data, Map<String, dynamic> logData) async {
+    utils.showLoadingDialog(context, 'Posting checklists');
+    try {
+      final res = await dio.post('$baseUrl/update/container', data: data);
+      if (res.statusCode == 201) {
+        addLog(data);
+        if (context.mounted) {
+          Navigator.pop(context);
+          utils.showConfirmDialog(context, 'Checklists successfully updated.');
         }
       }
     } catch (e) {

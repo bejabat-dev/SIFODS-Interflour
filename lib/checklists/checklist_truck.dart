@@ -56,6 +56,15 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
 
   List<String> nopols = [];
 
+  Map<String, dynamic> log() {
+    Map<String, dynamic> map = {
+      'id_user': Userdata.data!['id'],
+      'type': 'Added truck checklists',
+      'value': selectedNopol,
+    };
+    return map;
+  }
+
   Future<void> getNopols() async {
     List<dynamic>? data = await networking.getNopols();
     if (data != null) {
@@ -190,7 +199,7 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
                       child: InkWell(
                         onTap: () {
                           if (formKey.currentState?.validate() ?? false) {
-                            networking.addChecklistTruck(context, booleans, {});
+                            networking.addChecklistTruck(context, booleans, log());
                           }
                         },
                         child: Padding(
