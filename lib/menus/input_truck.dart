@@ -51,7 +51,7 @@ class _InputTruckState extends State<InputTruck> {
   Map<String, dynamic> log() {
     Map<String, dynamic> map = {
       'id_user': Userdata.data!['id'],
-      'type': 'Added container',
+      'type': 'Added truck',
       'value': nopol.text,
     };
     return map;
