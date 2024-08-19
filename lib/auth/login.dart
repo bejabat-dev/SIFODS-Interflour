@@ -43,6 +43,7 @@ class _LoginState extends State<Login> {
                   height: 10,
                 ),
                 TextFormField(
+                  obscureText: true,
                   controller: password,
                   decoration: styles.customInput(
                       'Password', const Icon(Icons.password)),

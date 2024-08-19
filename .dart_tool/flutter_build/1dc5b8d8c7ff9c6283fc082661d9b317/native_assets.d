@@ -1,1 +1,0 @@
- /home/mendew/Projects/SIFODS-Interflour/.dart_tool/flutter_build/1dc5b8d8c7ff9c6283fc082661d9b317/native_assets.yaml: 
