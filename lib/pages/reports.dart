@@ -16,10 +16,10 @@ class _LogWidgetState extends State<Reports> {
 
   List<dynamic> searchData = [];
 
-  void search(){
+  void search() {
     String query = controller.text.toLowerCase();
     setState(() {
-      searchData = logData!.where((item){
+      searchData = logData!.where((item) {
         return item['value'].toLowerCase().contains(query);
       }).toList();
     });
@@ -38,11 +38,13 @@ class _LogWidgetState extends State<Reports> {
   void getLogs() async {
     final res = await networking.getLogs();
     if (res != null) {
-      setState(() {
-        logData = res;
-        searchData = logData!;
-        debugPrint(res.toString());
-      });
+      if (mounted) {
+        setState(() {
+          logData = res;
+          searchData = logData!;
+          debugPrint(res.toString());
+        });
+      }
     } else {
       loadingIndicator = const Center(child: Text('Log empty'));
     }
@@ -72,7 +74,6 @@ class _LogWidgetState extends State<Reports> {
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
                       borderSide: BorderSide.none)),
-              
             ),
           ),
           Expanded(
@@ -80,8 +81,8 @@ class _LogWidgetState extends State<Reports> {
                 ? ListView.builder(
                     itemCount: searchData.length,
                     itemBuilder: (context, i) {
-                      String date =
-                          utils.formattedTime(searchData[i]['tanggal'].toString());
+                      String date = utils
+                          .formattedTime(searchData[i]['tanggal'].toString());
                       return Padding(
                         padding: const EdgeInsets.fromLTRB(8, 4, 8, 0),
                         child: Material(

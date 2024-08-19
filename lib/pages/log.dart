@@ -25,10 +25,12 @@ class _LogWidgetState extends State<LogWidget> {
   void getLogs() async {
     final res = await networking.getLogs();
     if (res != null) {
-      setState(() {
-        logData = res;
-        debugPrint(res.toString());
-      });
+      if (mounted) {
+        setState(() {
+          logData = res;
+          debugPrint(res.toString());
+        });
+      }
     } else {
       loadingIndicator = const Center(child: Text('Log empty'));
     }
@@ -56,7 +58,7 @@ class _LogWidgetState extends State<LogWidget> {
                       borderRadius: BorderRadius.circular(8),
                       color: Colors.white,
                       child: InkWell(
-                        onTap: (){},
+                        onTap: () {},
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
