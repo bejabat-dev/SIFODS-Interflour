@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sifods_interflour/auth/register.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 
@@ -118,8 +117,7 @@ class _InputContainerState extends State<InputProduct> {
                             child: InkWell(
                               onTap: () {
                                 if (formKey.currentState?.validate() ?? false) {
-                                  networking.uploadProduct(context, data());
-                                }
+                             }
                               },
                               child: Padding(
                                 padding:

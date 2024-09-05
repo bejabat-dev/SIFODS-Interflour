@@ -16,7 +16,7 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final formKey = GlobalKey<FormState>();
-
+  
   final nama = TextEditingController();
   final email = TextEditingController();
   final password = TextEditingController();
@@ -149,10 +149,7 @@ class _RegisterState extends State<Register> {
                     child: InkWell(
                       onTap: () {
                         if (formKey.currentState?.validate() ?? false) {
-                          networking.register(
-                              context,
-                              networking.userData(nama.text, email.text,
-                                  password.text, selectedJabatan));
+                   
                         }
                       },
                       child: Padding(

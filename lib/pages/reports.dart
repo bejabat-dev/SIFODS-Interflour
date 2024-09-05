@@ -35,25 +35,9 @@ class _LogWidgetState extends State<Reports> {
     ],
   );
 
-  void getLogs() async {
-    final res = await networking.getLogs();
-    if (res != null) {
-      if (mounted) {
-        setState(() {
-          logData = res;
-          searchData = logData!;
-          debugPrint(res.toString());
-        });
-      }
-    } else {
-      loadingIndicator = const Center(child: Text('Log empty'));
-    }
-  }
-
   @override
   void initState() {
     super.initState();
-    getLogs();
     controller.addListener(search);
   }
 

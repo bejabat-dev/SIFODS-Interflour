@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sifods_interflour/auth/register.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/userdata.dart';
 
@@ -77,7 +76,7 @@ class _ChecklistContainerState extends State<ChecklistContainer> {
     data.addAll(booleans);
     data.addAll(booleansEksternal);
     data['catatan'] = catatan.text;
-    await networking.addChecklistContainer(context, data, log());
+   // await networking.addChecklistContainer(context, data, log());
   }
 
   String selectedNopol = 'BP 6556 AD';

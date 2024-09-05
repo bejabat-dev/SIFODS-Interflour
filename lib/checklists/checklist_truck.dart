@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sifods_interflour/auth/register.dart';
+import 'package:sifods_interflour/model_truck.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/userdata.dart';
 
@@ -42,6 +42,8 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
     'box8': false,
   };
 
+  ModelTruck bools = ModelTruck(idUser: Userdata.data!['id']);
+
   String? selectedNopol;
 
   Widget indicatorWidget = const Row(
@@ -65,23 +67,10 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
     return map;
   }
 
-  Future<void> getNopols() async {
-    List<dynamic>? data = await networking.getNopols();
-    if (data != null) {
-      for (var map in data) {
-        setState(() {
-          nopols.add(map['nopol']);
-        });
-      }
-    } else {
-      indicatorWidget = const Text('Please add vehicle first');
-    }
-  }
 
   @override
   void initState() {
     super.initState();
-    getNopols();
   }
 
   @override
@@ -149,7 +138,8 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
                                 value: value, child: Text(value));
                           }).toList(),
                           onChanged: (value) {
-                            selectedNopol = value!;
+                            bools.nopol = value!;
+                            selectedNopol = value;
                           },
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -199,8 +189,7 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
                       child: InkWell(
                         onTap: () {
                           if (formKey.currentState?.validate() ?? false) {
-                            networking.addChecklistTruck(context, booleans, log());
-                          }
+                        }
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),

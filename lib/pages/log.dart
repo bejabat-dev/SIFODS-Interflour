@@ -22,24 +22,10 @@ class _LogWidgetState extends State<LogWidget> {
     ],
   );
 
-  void getLogs() async {
-    final res = await networking.getLogs();
-    if (res != null) {
-      if (mounted) {
-        setState(() {
-          logData = res;
-          debugPrint(res.toString());
-        });
-      }
-    } else {
-      loadingIndicator = const Center(child: Text('Log empty'));
-    }
-  }
 
   @override
   void initState() {
     super.initState();
-    getLogs();
   }
 
   @override

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sifods_interflour/auth/register.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 import 'package:sifods_interflour/utils/userdata.dart';
@@ -249,8 +248,7 @@ class _InputTruckState extends State<InputTruck> {
                                 onTap: () {
                                   if (formKey.currentState?.validate() ??
                                       false) {
-                                    networking.uploadTruck(context, data(),log());
-                                  }
+                                }
                                 },
                                 child: Padding(
                                   padding:

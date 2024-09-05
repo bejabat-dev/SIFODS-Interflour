@@ -22,8 +22,6 @@ class _SplashState extends State<Splash> {
     if (Userdata.userPrefs != null) {
       if (mounted) {
         if (Userdata.userPrefs!.getBool('loggedin') == true) {
-          network.getUserData(
-              context, Userdata.userPrefs!.getString('email')!);
         } else {
           tools.NavigateAndClear(context, const Login());
         }

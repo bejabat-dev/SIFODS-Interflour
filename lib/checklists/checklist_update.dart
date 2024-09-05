@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sifods_interflour/auth/register.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/userdata.dart';
 
@@ -59,7 +58,7 @@ class _ChecklistTruckState extends State<ChecklistUpdate> {
     data['box5']=controller1.text;
     data['box6']=controller2.text;
     data['box7']=controller3.text;
-    await networking.updateChecklistContainer(context, data, {});
+  //  await networking.updateChecklistContainer(context, data, {});
   }
 
   @override

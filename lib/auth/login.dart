@@ -59,11 +59,7 @@ class _LoginState extends State<Login> {
                     child: InkWell(
                       onTap: () {
                         if (formKey.currentState?.validate() ?? false) {
-                          networking.login(
-                              context,
-                              networking.userData(
-                                  null, email.text, password.text, null));
-                        }
+          }
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
