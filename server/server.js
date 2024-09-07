@@ -25,9 +25,9 @@ router.get("/user", (req, res) => {
 });
 
 router.post("/register", (req, res) => {
-  const { nama, email, password, jabatan,nomor_hp } = req.body;
+  const { nama, email, password, jabatan, nomor_hp, photo } = req.body;
   const query =
-    "INSERT INTO users (nama, email, password, jabatan) VALUES (?, ?, ?, ?)";
+    "INSERT INTO users (nama, email, password, jabatan, nomor_hp, photo) VALUES (?, ?, ?, ?, ?, ?)";
   const checkEmail = "SELECT email FROM users WHERE email = ?";
 
   db.query(checkEmail, [email], (error, result) => {
@@ -47,13 +47,13 @@ router.post("/register", (req, res) => {
 
       db.query(
         query,
-        [nama, email, hashedPassword, jabatan],
-        (error, result) => {
+        [nama, email, hashedPassword, jabatan, nomor_hp, photo],
+        (error,result) => {
           if (error) {
             console.error(error);
             return res.status(500).json({ error: "Failed to register user" });
           }
-          res.status(201).json({ message: "User registered successfully" });
+          res.status(201).json(result);
         }
       );
     });
@@ -86,7 +86,7 @@ router.get("/login", (req, res) => {
       }
 
       // Successful login
-      res.status(201).json({ message: "Login successful" });
+      res.status(201).json(user);
     });
   });
 });

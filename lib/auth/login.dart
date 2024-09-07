@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sifods_interflour/auth/forgot.dart';
 import 'package:sifods_interflour/auth/register.dart';
+import 'package:sifods_interflour/models/user.dart';
+import 'package:sifods_interflour/utils/networking.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 
@@ -15,6 +17,13 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  void login() {
+    if (formKey.currentState?.validate() ?? false) {
+      final user = User(email: email.text, password: password.text);
+      Networking().login(context, user);
+    }
+  }
+
   final formKey = GlobalKey<FormState>();
   final email = TextEditingController();
   final password = TextEditingController();
@@ -58,8 +67,7 @@ class _LoginState extends State<Login> {
                     width: double.infinity,
                     child: InkWell(
                       onTap: () {
-                        if (formKey.currentState?.validate() ?? false) {
-          }
+                        login();
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),

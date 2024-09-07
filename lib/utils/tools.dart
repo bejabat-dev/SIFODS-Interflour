@@ -9,7 +9,6 @@ const loadingIndicator = CupertinoActivityIndicator();
 class Tools {
   void showLoadingDialog(BuildContext context, String text) {
     showDialog(
-        barrierDismissible: false,
         context: context,
         builder: (context) {
           return AlertDialog(

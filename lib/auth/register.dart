@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sifods_interflour/models/user.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/networking.dart';
 import 'package:sifods_interflour/utils/tools.dart';
@@ -16,14 +17,24 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final formKey = GlobalKey<FormState>();
-  
+
   final nama = TextEditingController();
   final email = TextEditingController();
   final password = TextEditingController();
   final repassword = TextEditingController();
 
-  String selectedJabatan = 'Manager';
+  void register() {
+    if (formKey.currentState?.validate() ?? false) {
+      final user = User(
+          email: email.text,
+          nama: nama.text,
+          jabatan: selectedJabatan,
+          password: password.text);
+      Networking().register(context, user);
+    }
+  }
 
+  String selectedJabatan = 'Manager';
   List<String> jabatan = ['Manager', 'Assistant Manager', 'Staff', 'Operator'];
 
   @override
@@ -57,10 +68,10 @@ class _RegisterState extends State<Register> {
                   controller: nama,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Nama tidak boleh kosong';
+                      return 'Invalid name';
                     }
                     if (value.length < 4) {
-                      return 'Nama harus melebihi 4 karakter';
+                      return 'Nama must be more than 4 characters';
                     }
                     return null;
                   },
@@ -74,10 +85,10 @@ class _RegisterState extends State<Register> {
                   controller: email,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Email tidak boleh kosong';
+                      return 'Invalid email';
                     }
                     if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                      return 'Email tidak valid';
+                      return 'Email not valid';
                     }
                     return null;
                   },
@@ -114,10 +125,11 @@ class _RegisterState extends State<Register> {
                   height: 10,
                 ),
                 TextFormField(
+                  obscureText: true,
                   controller: password,
                   validator: (value) {
-                    if (value == null||value.length < 6) {
-                      return 'Kata sandi harus melebihi 5 karakter';
+                    if (value == null || value.length < 6) {
+                      return 'Password must be more than 6 characters';
                     }
                     return null;
                   },
@@ -128,10 +140,11 @@ class _RegisterState extends State<Register> {
                   height: 10,
                 ),
                 TextFormField(
+                  obscureText: true,
                   controller: repassword,
                   validator: (value) {
-                    if (value!=password.text) {
-                      return 'Kata sandi tidak sama';
+                    if (value != password.text) {
+                      return "Password doesn't match";
                     }
                     return null;
                   },
@@ -148,9 +161,7 @@ class _RegisterState extends State<Register> {
                     width: double.infinity,
                     child: InkWell(
                       onTap: () {
-                        if (formKey.currentState?.validate() ?? false) {
-                   
-                        }
+                        register();
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
