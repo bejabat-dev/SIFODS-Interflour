@@ -74,6 +74,12 @@
       "languageVersion": "3.1"
     },
     {
+      "name": "flutter_riverpod",
+      "rootUri": "file:///home/mendew/.pub-cache/hosted/pub.dev/flutter_riverpod-2.5.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///home/mendew/Files/Flutter/flutter/packages/flutter_test",
       "packageUri": "lib/",
@@ -176,6 +182,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "riverpod",
+      "rootUri": "file:///home/mendew/.pub-cache/hosted/pub.dev/riverpod-2.5.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "shared_preferences",
       "rootUri": "file:///home/mendew/.pub-cache/hosted/pub.dev/shared_preferences-2.3.2",
       "packageUri": "lib/",
@@ -234,6 +246,12 @@
       "rootUri": "file:///home/mendew/.pub-cache/hosted/pub.dev/stack_trace-1.11.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
+    },
+    {
+      "name": "state_notifier",
+      "rootUri": "file:///home/mendew/.pub-cache/hosted/pub.dev/state_notifier-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "stream_channel",
@@ -296,7 +314,7 @@
       "languageVersion": "3.4"
     }
   ],
-  "generated": "2024-09-03T23:12:38.921032Z",
+  "generated": "2024-09-07T16:37:03.622548Z",
   "generator": "pub",
   "generatorVersion": "3.5.0",
   "flutterRoot": "file:///home/mendew/Files/Flutter/flutter",
