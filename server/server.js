@@ -60,7 +60,6 @@ router.post("/register", (req, res) => {
   });
 });
 
-// Login route
 router.get("/login", (req, res) => {
   const { email, password } = req.body;
   const checkEmail = "SELECT * FROM users WHERE email = ?";
@@ -76,7 +75,6 @@ router.get("/login", (req, res) => {
 
     const user = result[0];
 
-    // Compare the provided password with the hashed password
     bcrypt.compare(password, user.password, (err, match) => {
       if (err) {
         return res.status(500).json({ error: "Password comparison failed" });

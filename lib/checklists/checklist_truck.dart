@@ -38,6 +38,8 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
     'box8': false,
   };
 
+  
+
   String? selectedNopol;
 
   Widget indicatorWidget = const Row(

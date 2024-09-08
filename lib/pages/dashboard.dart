@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sifods_interflour/pages/home.dart';
 import 'package:sifods_interflour/pages/profile.dart';
-import 'package:sifods_interflour/pages/reports.dart';
+import 'package:sifods_interflour/riverpod/message.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -19,7 +19,7 @@ class _DashboardState extends State<Dashboard> {
   }
 
   List<String> titles = ['SIFODS', 'Reports', 'Profile'];
-  List<Widget> widgets = [Home(), const Reports(), const Profile()];
+  List<Widget> widgets = [Home(), const Example(), const Profile()];
 
   @override
   Widget build(BuildContext context) {

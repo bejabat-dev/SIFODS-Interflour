@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/models/user.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class UserNotifier extends StateNotifier<UserPod> {
   UserNotifier() : super(UserPod(state: UserStates.loading));
   void load() async {
     try {
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 1));
       state = UserPod(
           data: User(email: 'noob@gmail.com'), state: UserStates.loaded);
     } on Exception catch (e) {
@@ -35,7 +36,20 @@ class Example extends ConsumerWidget {
     final userPod = ref.watch(userProvider);
     ref.read(userProvider.notifier).load();
     return Scaffold(
-      body: userPod.state == UserStates.loaded ? Text('data') : Text('data'),
+      body: userPod.state == UserStates.loaded
+          ? const Center(child: Text('data'))
+          : userPod.state == UserStates.error
+              ? const Center(child: Text('Error'))
+              : const Center(
+                  child: Column(
+                  children: [
+                    Text('Memuat'),
+                    SizedBox(
+                      height: 4,
+                    ),
+                    CupertinoActivityIndicator(),
+                  ],
+                )),
     );
   }
 }
