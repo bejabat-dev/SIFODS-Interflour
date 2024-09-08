@@ -14,16 +14,16 @@ class ModelTruck {
 
   ModelTruck(
       {required this.idUser,
-      this.nopol,
-      this.box0,
-      this.box1,
-      this.box2,
-      this.box3,
-      this.box4,
-      this.box5,
-      this.box6,
-      this.box7,
-      this.box8,
+      required this.nopol,
+      required this.box0,
+      required this.box1,
+      required this.box2,
+      required this.box3,
+      required this.box4,
+      required this.box5,
+      required this.box6,
+      required this.box7,
+      required this.box8,
       this.status});
 
   Map<String, dynamic> toMap() {

@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sifods_interflour/models/add_truck.dart';
+import 'package:sifods_interflour/riverpod/userpod.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 
-class InputTruck extends StatefulWidget {
+class InputTruck extends ConsumerStatefulWidget {
   const InputTruck({super.key});
 
   @override
-  State<InputTruck> createState() => _InputTruckState();
+  InputTruckState createState() => InputTruckState();
 }
 
-class _InputTruckState extends State<InputTruck> {
+class InputTruckState extends ConsumerState<InputTruck> {
   final utils = Tools();
   final formKey = GlobalKey<FormState>();
 
@@ -30,6 +33,20 @@ class _InputTruckState extends State<InputTruck> {
     'Pick Up',
     'Wing Box'
   ];
+
+  AddTruck getTruck() {
+    final userId = ref.read(userProvider).user!.id!;
+    return AddTruck(
+        id_user: userId,
+        nopol: nopol.text,
+        nama: namaKendaraan.text,
+        ekspedisi: ekspedisi.text,
+        supir: namaSupir.text,
+        jenis: jenisKendaraan,
+        telp: noTelp.text,
+        volume: volumeMuatan.text,
+        jumlah: jumlahKendaraan.text);
+  }
 
   String? jenisKendaraan;
 
@@ -222,8 +239,7 @@ class _InputTruckState extends State<InputTruck> {
                               child: InkWell(
                                 onTap: () {
                                   if (formKey.currentState?.validate() ??
-                                      false) {
-                                }
+                                      false) {}
                                 },
                                 child: Padding(
                                   padding:

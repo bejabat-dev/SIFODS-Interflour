@@ -14,14 +14,14 @@ class AddTruck {
   AddTruck(
       {this.id,
       required this.id_user,
-      this.nopol,
-      this.nama,
-      this.ekspedisi,
-      this.supir,
-      this.jenis,
-      this.telp,
-      this.volume,
-      this.jumlah,
+      required this.nopol,
+      required this.nama,
+      required this.ekspedisi,
+      required this.supir,
+      required this.jenis,
+      required this.telp,
+      required this.volume,
+      required this.jumlah,
       this.status});
 
   factory AddTruck.fromJson(Map<String, dynamic> data) {
@@ -32,6 +32,7 @@ class AddTruck {
       ekspedisi: data['ekspedisi'],
       supir: data['supir'],
       jenis: data['jenis'],
+      nopol: data['nopol'],
       telp: data['telp'],
       volume: data['volume'],
       jumlah: data['jumlah'],
@@ -50,7 +51,8 @@ class AddTruck {
       'telp': telp,
       'volume': volume,
       'jumlah': jumlah,
-      'status': status
+      'status': status,
+      'nopol': nopol
     };
   }
 }
