@@ -26,6 +26,18 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
     'Bebas dari bau menyengat/tajam/kotoran/apek'
   ];
 
+  Map<String, bool> booleans = {
+    'box0': false,
+    'box1': false,
+    'box2': false,
+    'box3': false,
+    'box4': false,
+    'box5': false,
+    'box6': false,
+    'box7': false,
+    'box8': false,
+  };
+
   String? selectedNopol;
 
   Widget indicatorWidget = const Row(
@@ -39,7 +51,6 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
   );
 
   List<String> nopols = [];
-
 
   @override
   void initState() {
@@ -131,10 +142,20 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
           SliverList.builder(
               itemCount: checks.length,
               itemBuilder: (context, i) {
+                var data = checks[i];
                 return Padding(
                   padding: const EdgeInsets.fromLTRB(8, 8, 0, 8),
                   child: Row(
-                    children: [],
+                    children: [
+                      Expanded(child: Text(data)),
+                      Checkbox(
+                          value: booleans['box$i'],
+                          onChanged: (value) {
+                            setState(() {
+                              booleans['box$i'] = value!;
+                            });
+                          })
+                    ],
                   ),
                 );
               }),
@@ -151,8 +172,7 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
                       width: 150,
                       child: InkWell(
                         onTap: () {
-                          if (formKey.currentState?.validate() ?? false) {
-                        }
+                          if (formKey.currentState?.validate() ?? false) {}
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
