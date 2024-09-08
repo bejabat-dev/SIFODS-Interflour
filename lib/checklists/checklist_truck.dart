@@ -1,16 +1,19 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sifods_interflour/models/model_truck.dart';
+import 'package:sifods_interflour/riverpod/userpod.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 
-class ChecklistTruck extends StatefulWidget {
+class ChecklistTruck extends ConsumerStatefulWidget {
   const ChecklistTruck({super.key});
 
   @override
-  State<ChecklistTruck> createState() => _ChecklistTruckState();
+  ChecklistTruckState createState() => ChecklistTruckState();
 }
 
-class _ChecklistTruckState extends State<ChecklistTruck> {
+class ChecklistTruckState extends ConsumerState<ChecklistTruck> {
   final dio = Dio();
   final formKey = GlobalKey<FormState>();
 
@@ -38,9 +41,24 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
     'box8': false,
   };
 
-  
-
   String? selectedNopol;
+
+  ModelTruck getModelTruck() {
+    final userId = ref.read(userProvider).user!.id!;
+    return ModelTruck(
+      idUser: userId,
+      nopol: selectedNopol,
+      box0: booleans['box0'],
+      box1: booleans['box1'],
+      box2: booleans['box2'],
+      box3: booleans['box3'],
+      box4: booleans['box4'],
+      box5: booleans['box5'],
+      box6: booleans['box6'],
+      box7: booleans['box7'],
+      box8: booleans['box8'],
+    );
+  }
 
   Widget indicatorWidget = const Row(
     children: [

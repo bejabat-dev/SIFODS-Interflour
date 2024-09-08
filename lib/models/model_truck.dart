@@ -1,5 +1,5 @@
 class ModelTruck {
-  String idUser;
+  int idUser;
   String? nopol;
   bool? box0;
   bool? box1;
@@ -10,20 +10,21 @@ class ModelTruck {
   bool? box6;
   bool? box7;
   bool? box8;
+  String? status;
 
-  ModelTruck({
-    required this.idUser,
-    this.nopol,
-    this.box0,
-    this.box1,
-    this.box2,
-    this.box3,
-    this.box4,
-    this.box5,
-    this.box6,
-    this.box7,
-    this.box8,
-  });
+  ModelTruck(
+      {required this.idUser,
+      this.nopol,
+      this.box0,
+      this.box1,
+      this.box2,
+      this.box3,
+      this.box4,
+      this.box5,
+      this.box6,
+      this.box7,
+      this.box8,
+      this.status});
 
   Map<String, dynamic> toMap() {
     return {
@@ -38,22 +39,23 @@ class ModelTruck {
       'box6': box6,
       'box7': box7,
       'box8': box8,
+      'status': status
     };
   }
 
   factory ModelTruck.fromMap(Map<String, dynamic> map) {
     return ModelTruck(
-      idUser: map['id_user'],
-      nopol: map['nopol'],
-      box0: map['box0'],
-      box1: map['box1'],
-      box2: map['box2'],
-      box3: map['box3'],
-      box4: map['box4'],
-      box5: map['box5'],
-      box6: map['box6'],
-      box7: map['box7'],
-      box8: map['box8'],
-    );
+        idUser: map['id_user'],
+        nopol: map['nopol'],
+        box0: map['box0'],
+        box1: map['box1'],
+        box2: map['box2'],
+        box3: map['box3'],
+        box4: map['box4'],
+        box5: map['box5'],
+        box6: map['box6'],
+        box7: map['box7'],
+        box8: map['box8'],
+        status: map['status']);
   }
 }

@@ -48,12 +48,19 @@ router.post("/register", (req, res) => {
       db.query(
         query,
         [nama, email, hashedPassword, jabatan, nomor_hp, photo],
-        (error,result) => {
+        (error, result) => {
           if (error) {
             console.error(error);
             return res.status(500).json({ error: "Failed to register user" });
           }
-          res.status(201).json(result);
+          const nextResult = "SELECT * FROM users WHERE email = ?";
+          db.query(nextResult, [email], (err2, res2) => {
+            if (err2) {
+              console.error(err2);
+              return res.status(500).json("Error fetching data");
+            }
+            res.status(201).json(res2[0]);
+          });
         }
       );
     });
@@ -82,7 +89,7 @@ router.get("/login", (req, res) => {
       if (!match) {
         return res.status(401).json({ message: "Kata sandi salah" });
       }
-      
+
       res.status(201).json(user);
     });
   });

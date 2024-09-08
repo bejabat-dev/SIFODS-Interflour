@@ -47,6 +47,7 @@ class _ChecklistContainerState extends State<ChecklistContainer> {
     'box7': false,
     'box8': false,
   };
+  
   Map<String, bool> booleansEksternal = {
     'eks0': false,
     'eks1': false,
@@ -118,9 +119,10 @@ class _ChecklistContainerState extends State<ChecklistContainer> {
                           return styles.coloredText(item, Colors.white);
                         }).toList();
                       },
-                      decoration: styles.dropdownDecoration('No. Container', null),
-                      items:
-                          container.map<DropdownMenuItem<String>>((String value) {
+                      decoration:
+                          styles.dropdownDecoration('No. Container', null),
+                      items: container
+                          .map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem(
                             value: value, child: Text(value));
                       }).toList(),
@@ -167,7 +169,8 @@ class _ChecklistContainerState extends State<ChecklistContainer> {
             SliverList.builder(
                 itemCount: eksternal.length,
                 itemBuilder: (context, i) {
-                  return Padding(padding: const EdgeInsets.fromLTRB(8, 8, 0, 8),
+                  return Padding(
+                    padding: const EdgeInsets.fromLTRB(8, 8, 0, 8),
                     child: Row(
                       children: [
                         Expanded(child: Text(eksternal[i])),
@@ -182,13 +185,12 @@ class _ChecklistContainerState extends State<ChecklistContainer> {
                     ),
                   );
                 }),
-            
             SliverToBoxAdapter(
               child: Column(
                 children: [
                   const SizedBox(
-              height: 8,
-            ),
+                    height: 8,
+                  ),
                   TextField(
                     controller: catatan,
                     maxLines: 3,
@@ -209,14 +211,16 @@ class _ChecklistContainerState extends State<ChecklistContainer> {
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(8),
                     child: InkWell(
-                      onTap: () {
-                      },
+                      onTap: () {},
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(40, 8, 40, 8),
                         child: styles.coloredText('Post', Colors.white),
                       ),
                     ),
-                  ),const SizedBox(height: 50,)
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  )
                 ],
               ),
             )

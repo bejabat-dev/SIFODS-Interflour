@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/models/user.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/networking.dart';
@@ -8,14 +9,14 @@ final styles = Styles();
 final utils = Tools();
 final networking = Networking();
 
-class Register extends StatefulWidget {
+class Register extends ConsumerStatefulWidget {
   const Register({super.key});
 
   @override
-  State<Register> createState() => _RegisterState();
+  RegisterState createState() => RegisterState();
 }
 
-class _RegisterState extends State<Register> {
+class RegisterState extends ConsumerState<Register> {
   final formKey = GlobalKey<FormState>();
 
   final nama = TextEditingController();
@@ -30,8 +31,9 @@ class _RegisterState extends State<Register> {
           email: email.text,
           nama: nama.text,
           jabatan: selectedJabatan,
+          nomor_hp: nomor_hp.text,
           password: password.text);
-      Networking().register(context, user);
+      Networking().register(context, user, ref);
     }
   }
 
@@ -81,7 +83,8 @@ class _RegisterState extends State<Register> {
                 ),
                 const SizedBox(
                   height: 10,
-                ), TextFormField(
+                ),
+                TextFormField(
                   keyboardType: TextInputType.phone,
                   controller: nomor_hp,
                   validator: (value) {
@@ -93,8 +96,8 @@ class _RegisterState extends State<Register> {
                     }
                     return null;
                   },
-                  decoration:
-                      styles.customInput('Nomor HP', const Icon(Icons.phone_android)),
+                  decoration: styles.customInput(
+                      'Nomor HP', const Icon(Icons.phone_android)),
                 ),
                 const SizedBox(
                   height: 10,

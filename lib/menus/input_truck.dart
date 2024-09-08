@@ -31,14 +31,6 @@ class _InputTruckState extends State<InputTruck> {
     'Wing Box'
   ];
 
-  Map<String, dynamic> log() {
-    Map<String, dynamic> map = {
-      'type': 'Added truck',
-      'value': nopol.text,
-    };
-    return map;
-  }
-
   String? jenisKendaraan;
 
   @override

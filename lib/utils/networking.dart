@@ -11,13 +11,15 @@ class Networking {
   final dio = Dio();
   final baseUrl = 'http://192.168.1.6:3000/sifods';
 
-  Future<void> register(BuildContext context, User user) async {
+  Future<void> register(BuildContext context, User user, WidgetRef ref) async {
+    final userpod = ref.read(userProvider.notifier);
     tools.showLoadingDialog(context, 'Registering account');
     try {
       final res = await dio.post('$baseUrl/register', data: user.toJson());
       if (res.statusCode == 201) {
         if (context.mounted) {
           debugPrint(res.data.toString());
+          userpod.state = UserState.success(User.fromJson(res.data));
           Navigator.pop(context);
           Tools().NavigateAndClear(context, const Dashboard());
         }
@@ -26,6 +28,9 @@ class Networking {
       if (context.mounted) {
         debugPrint(e.toString());
         Navigator.pop(context);
+        if (e.toString().contains('400')) {
+          Tools().showErrorDialog(context, 'Email sudan digunakan');
+        }
       }
     }
   }
