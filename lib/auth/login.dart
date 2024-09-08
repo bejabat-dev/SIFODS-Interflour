@@ -13,10 +13,10 @@ final utils = Tools();
 class Login extends ConsumerWidget {
   Login({super.key});
 
-  void login(BuildContext context,WidgetRef ref) {
+  void login(BuildContext context, WidgetRef ref) {
     if (formKey.currentState?.validate() ?? false) {
       final user = User(email: email.text, password: password.text);
-      Networking().login(context, user,ref);
+      Networking().login(context, user, ref);
     }
   }
 
@@ -63,7 +63,7 @@ class Login extends ConsumerWidget {
                     width: double.infinity,
                     child: InkWell(
                       onTap: () {
-                        login(context,ref);
+                        login(context, ref);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),

@@ -19,6 +19,7 @@ class _RegisterState extends State<Register> {
   final formKey = GlobalKey<FormState>();
 
   final nama = TextEditingController();
+  final nomor_hp = TextEditingController();
   final email = TextEditingController();
   final password = TextEditingController();
   final repassword = TextEditingController();
@@ -77,6 +78,23 @@ class _RegisterState extends State<Register> {
                   },
                   decoration:
                       styles.customInput('Full name', const Icon(Icons.person)),
+                ),
+                const SizedBox(
+                  height: 10,
+                ), TextFormField(
+                  keyboardType: TextInputType.phone,
+                  controller: nomor_hp,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Invalid phone number';
+                    }
+                    if (value.length < 4) {
+                      return 'Phone number must be more than 4 characters';
+                    }
+                    return null;
+                  },
+                  decoration:
+                      styles.customInput('Nomor HP', const Icon(Icons.phone_android)),
                 ),
                 const SizedBox(
                   height: 10,
