@@ -28,20 +28,27 @@ class _DashboardState extends State<Dashboard> {
         title: Text(appBarTitle),
       ),
       body: widgets.elementAt(index),
-      bottomNavigationBar: BottomNavigationBar(
-          onTap: (value) {
-            setState(() {
-              selectIndex(value);
-            });
-          },
-          currentIndex: index,
-          selectedItemColor: Colors.blue,
-          unselectedItemColor: const Color.fromARGB(255, 73, 73, 73),
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Reports'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Account')
-          ]),
+      bottomNavigationBar: Theme(
+        data: ThemeData(
+        
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent),
+        child: BottomNavigationBar(
+            onTap: (value) {
+              setState(() {
+                selectIndex(value);
+              });
+            },
+            currentIndex: index,
+            selectedItemColor: Colors.blue,
+            unselectedItemColor: const Color.fromARGB(255, 73, 73, 73),
+            items: const [
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+              BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Reports'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.person), label: 'Account')
+            ]),
+      ),
     );
   }
 }
