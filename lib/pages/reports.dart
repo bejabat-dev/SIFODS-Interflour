@@ -10,20 +10,10 @@ class Reports extends StatefulWidget {
 }
 
 class _LogWidgetState extends State<Reports> {
-  List<dynamic>? logData;
 
   final controller = TextEditingController();
 
   List<dynamic> searchData = [];
-
-  void search() {
-    String query = controller.text.toLowerCase();
-    setState(() {
-      searchData = logData!.where((item) {
-        return item['value'].toLowerCase().contains(query);
-      }).toList();
-    });
-  }
 
   Widget loadingIndicator = const Column(
     children: [
@@ -38,7 +28,6 @@ class _LogWidgetState extends State<Reports> {
   @override
   void initState() {
     super.initState();
-    controller.addListener(search);
   }
 
   @override

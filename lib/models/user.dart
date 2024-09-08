@@ -4,7 +4,7 @@ class User {
   final String? jabatan;
   final String? password;
   final String? nomor_hp;
-  final String? foto;
+  final String? photo;
 
   User(
       {this.nama,
@@ -12,26 +12,26 @@ class User {
       this.jabatan,
       this.password,
       this.nomor_hp,
-      this.foto});
+      this.photo});
 
-  factory User.toJson(Map<String, String> data) {
+  factory User.fromJson(Map<String, dynamic> data) {
     return User(
         password: data['password'],
         nama: data['nama'] ?? '',
         email: data['email'] ?? '',
         jabatan: data['jabatan'] ?? '',
-        foto: data['foto'] ?? '',
+        photo: data['photo'] ?? '',
         nomor_hp: data['nomor_hp'] ?? '');
   }
 
-  Map<String, String> toMap() {
+  Map<String, dynamic> toJson() {
     return {
       'password': password ?? '',
       'nama': nama ?? '',
       'email': email,
       'jabatan': jabatan ?? '',
       'nomor_hp': nomor_hp ?? '',
-      'foto': foto ?? ''
+      'photo': photo ?? ''
     };
   }
 }

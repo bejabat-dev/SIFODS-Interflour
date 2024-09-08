@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/tools.dart';
-import 'package:sifods_interflour/utils/userdata.dart';
 
 class InputContainer extends StatefulWidget {
   const InputContainer({super.key});
@@ -18,28 +17,7 @@ class _InputContainerState extends State<InputContainer> {
   final namaContainer = TextEditingController();
   final noSeal = TextEditingController();
 
-  Map<String, dynamic> log() {
-    Map<String, dynamic> map = {
-      'id_user': Userdata.data!['id'],
-      'type': 'Added container',
-      'value': noContainer.text,
-    };
-    return map;
-  }
-
   final List<String> listKendaraan = ['Truck'];
-
-  
-
-  Map<String, dynamic> data() {
-    Map<String, dynamic> data = {
-      'id_user': Userdata.data!['id'],
-      'nomor': noContainer.text,
-      'nama': namaContainer.text,
-      'seal': noSeal.text
-    };
-    return data;
-  }
 
   String jenisKendaraan = 'Truck';
 

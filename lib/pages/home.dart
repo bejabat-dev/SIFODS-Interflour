@@ -4,7 +4,6 @@ import 'package:sifods_interflour/menus/checklist_page.dart';
 import 'package:sifods_interflour/menus/input_container.dart';
 import 'package:sifods_interflour/menus/input_product.dart';
 import 'package:sifods_interflour/menus/input_truck.dart';
-import 'package:sifods_interflour/pages/log.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 
 class Home extends StatelessWidget {
@@ -119,9 +118,6 @@ class Home extends StatelessWidget {
                   textAlign: TextAlign.start,
                 )),
           ),
-          const Expanded(
-            child: LogWidget(),
-          )
         ],
       ),
     );

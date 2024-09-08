@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/auth/forgot.dart';
 import 'package:sifods_interflour/auth/register.dart';
 import 'package:sifods_interflour/models/user.dart';
@@ -9,18 +10,13 @@ import 'package:sifods_interflour/utils/tools.dart';
 final styles = Styles();
 final utils = Tools();
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Login extends ConsumerWidget {
+  Login({super.key});
 
-  @override
-  State<Login> createState() => _LoginState();
-}
-
-class _LoginState extends State<Login> {
-  void login() {
+  void login(BuildContext context,WidgetRef ref) {
     if (formKey.currentState?.validate() ?? false) {
       final user = User(email: email.text, password: password.text);
-      Networking().login(context, user);
+      Networking().login(context, user,ref);
     }
   }
 
@@ -29,7 +25,7 @@ class _LoginState extends State<Login> {
   final password = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Form(
           key: formKey,
@@ -67,7 +63,7 @@ class _LoginState extends State<Login> {
                     width: double.infinity,
                     child: InkWell(
                       onTap: () {
-                        login();
+                        login(context,ref);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),

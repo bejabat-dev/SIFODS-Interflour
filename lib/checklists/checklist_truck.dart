@@ -1,9 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sifods_interflour/models/model_truck.dart';
 import 'package:sifods_interflour/utils/styles.dart';
-import 'package:sifods_interflour/utils/userdata.dart';
 
 class ChecklistTruck extends StatefulWidget {
   const ChecklistTruck({super.key});
@@ -28,22 +26,6 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
     'Bebas dari bau menyengat/tajam/kotoran/apek'
   ];
 
-  Map<String, dynamic> booleans = {
-    'id_user': Userdata.data!['id'],
-    'nopol': 'asdsad',
-    'box0': false,
-    'box1': false,
-    'box2': false,
-    'box3': false,
-    'box4': false,
-    'box5': false,
-    'box6': false,
-    'box7': false,
-    'box8': false,
-  };
-
-  ModelTruck bools = ModelTruck(idUser: Userdata.data!['id']);
-
   String? selectedNopol;
 
   Widget indicatorWidget = const Row(
@@ -57,15 +39,6 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
   );
 
   List<String> nopols = [];
-
-  Map<String, dynamic> log() {
-    Map<String, dynamic> map = {
-      'id_user': Userdata.data!['id'],
-      'type': 'Added truck checklists',
-      'value': selectedNopol,
-    };
-    return map;
-  }
 
 
   @override
@@ -138,7 +111,6 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
                                 value: value, child: Text(value));
                           }).toList(),
                           onChanged: (value) {
-                            bools.nopol = value!;
                             selectedNopol = value;
                           },
                           validator: (value) {
@@ -162,16 +134,7 @@ class _ChecklistTruckState extends State<ChecklistTruck> {
                 return Padding(
                   padding: const EdgeInsets.fromLTRB(8, 8, 0, 8),
                   child: Row(
-                    children: [
-                      Expanded(child: Text(checks[i])),
-                      Checkbox(
-                          value: booleans['box$i'],
-                          onChanged: (value) {
-                            setState(() {
-                              booleans['box$i'] = value!;
-                            });
-                          })
-                    ],
+                    children: [],
                   ),
                 );
               }),

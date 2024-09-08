@@ -1,31 +1,38 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/models/user.dart';
 
-enum UserStates { loading, loaded, error }
+class UserState {
+  final User? user;
+  final bool isLoading;
+  final String? error;
 
-class UserStateData {
-  final UserStates state;
-  final dynamic data;
+  UserState({
+    this.user,
+    this.isLoading = false,
+    this.error,
+  });
 
-  UserStateData({required this.state, required this.data});
+  factory UserState.loading() {
+    return UserState(
+      isLoading: true,
+    );
+  }
 
-  UserStateData copyWith({UserStates? state, User? data}) {
-    return UserStateData(
-        state: state ?? this.state, data: data ?? this.data);
+  factory UserState.success(User user) {
+    return UserState(
+      user: user,
+      isLoading: false,
+    );
+  }
+
+  factory UserState.error() {
+    return UserState(
+      isLoading: false,
+      error: 'Gagal memuat data',
+    );
   }
 }
 
-class MessagesStateNotifier extends StateNotifier<UserStateData> {
-  MessagesStateNotifier()
-      : super(UserStateData(
-            state: UserStates.loaded, data: 'No data'));
-
-  void getUserData() async {
-
-  }
-}
-
-final userProvider =
-    StateNotifierProvider<MessagesStateNotifier, UserStateData>((ref) {
-  return MessagesStateNotifier();
+final userProvider = StateProvider<UserState>((ref) {
+  return UserState();
 });

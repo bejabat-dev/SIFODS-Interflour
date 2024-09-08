@@ -84,8 +84,7 @@ router.get("/login", (req, res) => {
       if (!match) {
         return res.status(401).json({ message: "Kata sandi salah" });
       }
-
-      // Successful login
+      
       res.status(201).json(user);
     });
   });

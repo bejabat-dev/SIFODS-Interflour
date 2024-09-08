@@ -1,67 +1,69 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/auth/login.dart';
 import 'package:sifods_interflour/pages/edit_profile.dart';
-import 'package:sifods_interflour/utils/userdata.dart';
+import 'package:sifods_interflour/riverpod/userpod.dart';
 
-class Profile extends StatefulWidget {
+class Profile extends ConsumerWidget {
   const Profile({super.key});
 
   @override
-  State<Profile> createState() => _ProfileState();
-}
-
-class _ProfileState extends State<Profile> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final userPod = ref.watch(userProvider);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            Userdata.data != null
-                ? Material(
-                    color: Colors.white,
-                    elevation: 2,
-                    borderRadius: BorderRadius.circular(8),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          const Icon(
-                            Icons.account_circle,
-                            size: 85,
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 8),
-                              child: Column(
+            Material(
+              color: Colors.white,
+              elevation: 2,
+              borderRadius: BorderRadius.circular(8),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.account_circle,
+                      size: 85,
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: userPod.isLoading == false &&
+                                userPod.error == null
+                            ? Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(Userdata.data!['nama']),
-                                  Text(Userdata.data!['email']),
-                                  Text(Userdata.data!['jabatan']),
+                                  Text(userPod.user!.nama!),
+                                  Text(userPod.user!.email),
+                                  Text(userPod.user!.jabatan!),
+                                  Text(userPod.user!.nomor_hp!)
                                 ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                              height: 100,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  InkWell(
-                                      onTap: () {
-                                        utils.Navigate(context, const EditProfile());
-                                      }, child: const Text('Edit')),
-                                  const Icon(Icons.edit)
-                                ],
-                              ))
-                        ],
+                              )
+                            : userPod.isLoading
+                                ? const CupertinoActivityIndicator()
+                                : const Text('Gagal memuat data'),
                       ),
                     ),
-                  )
-                : const CupertinoActivityIndicator(),
+                    SizedBox(
+                        height: 100,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            InkWell(
+                                onTap: () {
+                                  utils.Navigate(context, const EditProfile());
+                                },
+                                child: const Text('Edit')),
+                            const Icon(Icons.edit)
+                          ],
+                        ))
+                  ],
+                ),
+              ),
+            ),
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: SizedBox(
@@ -123,8 +125,7 @@ class _ProfileState extends State<Profile> {
               borderRadius: BorderRadius.circular(8),
               child: InkWell(
                 onTap: () {
-                  Userdata.userPrefs!.setBool('loggedin', false);
-                  utils.NavigateAndClear(context, const Login());
+                  utils.NavigateAndClear(context, Login());
                 },
                 child: const SizedBox(
                     width: double.infinity,

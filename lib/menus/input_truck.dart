@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/tools.dart';
-import 'package:sifods_interflour/utils/userdata.dart';
 
 class InputTruck extends StatefulWidget {
   const InputTruck({super.key});
@@ -32,24 +31,8 @@ class _InputTruckState extends State<InputTruck> {
     'Wing Box'
   ];
 
-  Map<String, dynamic> data() {
-    Map<String, dynamic> map = {
-      'id_user': Userdata.data!['id'],
-      'nopol': nopol.text,
-      'nama': namaKendaraan.text,
-      'ekspedisi': ekspedisi.text,
-      'supir': namaSupir.text,
-      'jenis': jenisKendaraan,
-      'telp': noTelp.text,
-      'volume': volumeMuatan.text,
-      'jumlah': int.parse(jumlahKendaraan.text)
-    };
-    return map;
-  }
-
   Map<String, dynamic> log() {
     Map<String, dynamic> map = {
-      'id_user': Userdata.data!['id'],
       'type': 'Added truck',
       'value': nopol.text,
     };

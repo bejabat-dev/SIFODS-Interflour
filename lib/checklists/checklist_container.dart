@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sifods_interflour/utils/styles.dart';
-import 'package:sifods_interflour/utils/userdata.dart';
 
 class ChecklistContainer extends StatefulWidget {
   const ChecklistContainer({super.key});
@@ -57,27 +56,6 @@ class _ChecklistContainerState extends State<ChecklistContainer> {
     'eks5': false,
     'eks6': false,
   };
-
-  Map<String, dynamic> log() {
-    Map<String, dynamic> map = {
-      'id_user': Userdata.data!['id'],
-      'type': 'Added container checklists',
-      'value': selectedNopol,
-    };
-    return map;
-  }
-
-  Future<void> uploadChecklist()async{
-    Map<String,dynamic> data = {
-      'id_user':Userdata.data!['id'],
-      'nopol':selectedNopol
-    };
-
-    data.addAll(booleans);
-    data.addAll(booleansEksternal);
-    data['catatan'] = catatan.text;
-   // await networking.addChecklistContainer(context, data, log());
-  }
 
   String selectedNopol = 'BP 6556 AD';
 
@@ -232,7 +210,6 @@ class _ChecklistContainerState extends State<ChecklistContainer> {
                     borderRadius: BorderRadius.circular(8),
                     child: InkWell(
                       onTap: () {
-                        uploadChecklist();
                       },
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(40, 8, 40, 8),
