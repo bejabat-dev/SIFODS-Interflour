@@ -1,19 +1,25 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sifods_interflour/auth/register.dart';
+import 'package:sifods_interflour/utils/helper.dart';
+import 'package:sifods_interflour/utils/networking/vehicles.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 
-class ChecklistContainer extends StatefulWidget {
+class ChecklistContainer extends ConsumerStatefulWidget {
   const ChecklistContainer({super.key});
 
   @override
-  State<ChecklistContainer> createState() => _ChecklistContainerState();
+  ConsumerState<ChecklistContainer> createState() => _ChecklistContainerState();
 }
 
-class _ChecklistContainerState extends State<ChecklistContainer> {
+class _ChecklistContainerState extends ConsumerState<ChecklistContainer> {
   final styles = Styles();
   final formKey = GlobalKey();
   final catatan = TextEditingController();
 
-  final List<String> container = ['sd'];
+  final List<String> container = [];
+  String selectedContainer = '';
   final List<String> internal = [
     'Bebas dari Sampah/Kotoran/Sisa produk lain',
     'Lantai bersih & kering (tidak basah,lembab/berminyak)',
@@ -47,7 +53,7 @@ class _ChecklistContainerState extends State<ChecklistContainer> {
     'box7': false,
     'box8': false,
   };
-  
+
   Map<String, bool> booleansEksternal = {
     'eks0': false,
     'eks1': false,
@@ -58,11 +64,34 @@ class _ChecklistContainerState extends State<ChecklistContainer> {
     'eks6': false,
   };
 
-  String selectedNopol = 'BP 6556 AD';
+  Map<String, dynamic> containerData() {
+    Map<String, dynamic> data = {};
+    data['id_user'] = Helper.user.id!;
+    data['nomor'] = selectedContainer;
+    data.addAll(booleans);
+    data.addAll(booleansEksternal);
+    return data;
+  }
+
+  void save() async {
+    Vehicles().saveChecklistContainer(context, containerData());
+  }
+
+  void load() async {
+    container.clear();
+    final data = await Vehicles().getContainer(ref);
+    if (data.isNotEmpty) {
+      for (var i in data) {
+        container.add(i['nomor']);
+      }
+      setState(() {});
+    }
+  }
 
   @override
   void initState() {
     super.initState();
+    load();
   }
 
   @override
@@ -112,23 +141,27 @@ class _ChecklistContainerState extends State<ChecklistContainer> {
                   const SizedBox(
                     height: 8,
                   ),
-                  DropdownButtonFormField<String>(
-                      iconEnabledColor: Colors.white,
-                      selectedItemBuilder: (context) {
-                        return container.map<Widget>((String item) {
-                          return styles.coloredText(item, Colors.white);
-                        }).toList();
-                      },
-                      decoration:
-                          styles.dropdownDecoration('No. Container', null),
-                      items: container
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem(
-                            value: value, child: Text(value));
-                      }).toList(),
-                      onChanged: (value) {
-                        selectedNopol = value!;
-                      }),
+                  container.isNotEmpty
+                      ? DropdownButtonFormField<String>(
+                          iconEnabledColor: Colors.white,
+                          selectedItemBuilder: (context) {
+                            return container.map<Widget>((String item) {
+                              return styles.coloredText(item, Colors.white);
+                            }).toList();
+                          },
+                          decoration:
+                              styles.dropdownDecoration('No. Container', null),
+                          items: container
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem(
+                                value: value, child: Text(value));
+                          }).toList(),
+                          onChanged: (value) {
+                            selectedContainer = value!;
+                          })
+                      : container.isEmpty
+                          ? Text('No data')
+                          : CupertinoActivityIndicator(),
                   const SizedBox(
                     height: 16,
                   ),
@@ -198,7 +231,7 @@ class _ChecklistContainerState extends State<ChecklistContainer> {
                     decoration: InputDecoration(
                         fillColor: Colors.white,
                         filled: true,
-                        hintText: 'Catatan',
+                        hintText: 'Note',
                         hintStyle: const TextStyle(fontSize: 14),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
@@ -211,7 +244,13 @@ class _ChecklistContainerState extends State<ChecklistContainer> {
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(8),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        if (selectedContainer.isEmpty) {
+                          utils.showMessage(context, 'Please select container');
+                        } else {
+                          save();
+                        }
+                      },
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(40, 8, 40, 8),
                         child: styles.coloredText('Post', Colors.white),

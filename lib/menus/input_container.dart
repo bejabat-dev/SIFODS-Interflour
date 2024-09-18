@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sifods_interflour/models/add_container.dart';
+import 'package:sifods_interflour/utils/helper.dart';
+import 'package:sifods_interflour/utils/networking/vehicles.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 
@@ -17,9 +20,17 @@ class _InputContainerState extends State<InputContainer> {
   final namaContainer = TextEditingController();
   final noSeal = TextEditingController();
 
-  final List<String> listKendaraan = ['Truck'];
+  AddContainer getContainer() {
+    return AddContainer(
+        id_user: Helper.user.id!,
+        nomor: noContainer.text,
+        nama: namaContainer.text,
+        seal: noSeal.text);
+  }
 
-  String jenisKendaraan = 'Truck';
+  void save() async {
+    Vehicles().addContainer(context, getContainer());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +128,7 @@ class _InputContainerState extends State<InputContainer> {
                             color: Colors.blue,
                             child: InkWell(
                               onTap: () {
-                          
+                                save();
                               },
                               child: Padding(
                                 padding:

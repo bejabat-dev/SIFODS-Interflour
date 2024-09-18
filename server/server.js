@@ -35,7 +35,7 @@ router.get("/logs", (req, res) => {
 router.post("/checklist/container", (req, res) => {
   const {
     id_user,
-    nopol,
+    nomor,
     box0,
     box1,
     box2,
@@ -55,13 +55,13 @@ router.post("/checklist/container", (req, res) => {
     catatan,
   } = req.body;
   const query =
-    "INSERT INTO checklist_container (id_user,nopol,box0,box1,box2,box3,box4,box5,box6,box7,box8,eks0,eks1,eks2,eks3,eks4,eks5,eks6,catatan) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    "INSERT INTO checklist_container (id_user,nomor,box0,box1,box2,box3,box4,box5,box6,box7,box8,eks0,eks1,eks2,eks3,eks4,eks5,eks6,catatan) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
   db.query(
     query,
     [
       id_user,
-      nopol,
+      nomor,
       box0,
       box1,
       box2,

@@ -168,7 +168,7 @@ class ChecklistTruckState extends ConsumerState<ChecklistTruck> {
                           },
                         )
                       : nopols.isEmpty
-                          ? Text('Tidak ada data')
+                          ? const Text('No data')
                           : indicatorWidget,
                 ),
                 const SizedBox(

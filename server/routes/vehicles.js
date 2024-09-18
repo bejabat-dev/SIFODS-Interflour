@@ -7,6 +7,19 @@ router.get("/nopol", (req, res) => {
   const query = "SELECT nopol FROM vehicles WHERE id_user = ?";
   db.query(query, [id_user], (err, results) => {
     if (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Error" });
+    }
+    res.status(201).json(results);
+  });
+});
+
+router.get("/container", (req, res) => {
+  const { id_user } = req.body;
+  const query = "SELECT nomor FROM container WHERE id_user = ?";
+  db.query(query, [id_user], (err, results) => {
+    if (err) {
+      console.error(err);
       return res.status(500).json({ error: "Error" });
     }
     res.status(201).json(results);
@@ -46,6 +59,7 @@ router.post("/add_container", (req, res) => {
     "INSERT INTO container (id_user,nomor,nama,seal) VALUES(?,?,?,?)";
   db.query(query, [id_user, nomor, nama, seal], (err, result) => {
     if (err) {
+      console.error(err);
       return res.status(500).json({ error: "Error" });
     }
     res.status(201).json({ message: "Success" });
