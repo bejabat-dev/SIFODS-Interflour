@@ -43,7 +43,7 @@ class _ChecklistTruckState extends State<ChecklistUpdate> {
   ];
 
   void load() async {
-    final data = await Vehicles().getContainer();
+    final data = await Vehicles().getContainerToUpdate();
     if (data.isNotEmpty) {
       for (var i in data) {
         nomor.add(i['nomor']);
