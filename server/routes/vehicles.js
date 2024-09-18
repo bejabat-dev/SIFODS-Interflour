@@ -25,6 +25,17 @@ router.get("/container", (req, res) => {
     res.status(201).json(results);
   });
 });
+router.get("/update_container", (req, res) => {
+  const { id_user } = req.body;
+  const query = "SELECT nomor FROM container WHERE id_user = ? AND status = 'new'";
+  db.query(query, [id_user], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Error" });
+    }
+    res.status(201).json(results);
+  });
+});
 
 router.post("/add_truck", (req, res) => {
   const {

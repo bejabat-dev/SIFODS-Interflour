@@ -79,7 +79,7 @@ class _ChecklistContainerState extends ConsumerState<ChecklistContainer> {
 
   void load() async {
     container.clear();
-    final data = await Vehicles().getContainer(ref);
+    final data = await Vehicles().getContainer();
     if (data.isNotEmpty) {
       for (var i in data) {
         container.add(i['nomor']);
@@ -160,8 +160,8 @@ class _ChecklistContainerState extends ConsumerState<ChecklistContainer> {
                             selectedContainer = value!;
                           })
                       : container.isEmpty
-                          ? Text('No data')
-                          : CupertinoActivityIndicator(),
+                          ? const Text('No data')
+                          : const CupertinoActivityIndicator(),
                   const SizedBox(
                     height: 16,
                   ),

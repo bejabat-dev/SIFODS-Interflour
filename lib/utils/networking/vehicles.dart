@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sifods_interflour/auth/register.dart';
 import 'package:sifods_interflour/models/add_container.dart';
@@ -15,7 +14,7 @@ class Vehicles {
     return prefs;
   }
 
-  Future<List<dynamic>> getNopol(WidgetRef ref) async {
+  Future<List<dynamic>> getNopol( ) async {
     var prefs = await getPrefs();
 
     final res =
@@ -24,7 +23,16 @@ class Vehicles {
     return res.data;
   }
 
-  Future<List<dynamic>> getContainer(WidgetRef ref) async {
+  Future<List<dynamic>> getContainerToUpdate() async {
+    var prefs = await getPrefs();
+
+    final res = await dio.get('$baseUrl/update_container',
+        data: {'id_user': prefs.getInt('id')});
+    debugPrint(res.data.toString());
+    return res.data;
+  }
+
+  Future<List<dynamic>> getContainer() async {
     var prefs = await getPrefs();
 
     final res = await dio

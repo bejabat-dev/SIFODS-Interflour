@@ -77,7 +77,7 @@ class ChecklistTruckState extends ConsumerState<ChecklistTruck> {
   List<String> nopols = [];
 
   void load() async {
-    var data = await Vehicles().getNopol(ref);
+    var data = await Vehicles().getNopol();
     if (data.isNotEmpty) {
       nopols.clear();
       for (var i in data) {

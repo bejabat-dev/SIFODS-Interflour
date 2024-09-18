@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sifods_interflour/utils/networking/vehicles.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 
 class ChecklistUpdate extends StatefulWidget {
@@ -16,7 +18,7 @@ class _ChecklistTruckState extends State<ChecklistUpdate> {
   final controller2 = TextEditingController();
   final controller3 = TextEditingController();
 
-  final List<String> nopols = ['BP 6556 AD', 'A 666 X'];
+  final List<String> nomor = [];
   final List<String> checks = [
     'Dilakukan spraying inspektisida',
     'Menggunakan corrugated paper & terpasang dengan baik (jika diperlukan)',
@@ -40,9 +42,20 @@ class _ChecklistTruckState extends State<ChecklistUpdate> {
     'Qty ',
   ];
 
+  void load() async {
+    final data = await Vehicles().getContainer();
+    if (data.isNotEmpty) {
+      for (var i in data) {
+        nomor.add(i['nomor']);
+      }
+      setState(() {});
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+    load();
   }
 
   @override
@@ -99,20 +112,27 @@ class _ChecklistTruckState extends State<ChecklistUpdate> {
                 const SizedBox(
                   height: 8,
                 ),
-                DropdownButtonFormField<String>(
-                    iconEnabledColor: Colors.white,
-                    selectedItemBuilder: (context) {
-                      return nopols.map<Widget>((String item) {
-                        return styles.coloredText(item, Colors.white);
-                      }).toList();
-                    },
-                    decoration: styles.dropdownDecoration('No. Container', null),
-                    items: nopols.map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem(value: value, child: Text(value));
-                    }).toList(),
-                    onChanged: (value) {
-                      selectedNopol = value!;
-                    }),
+                nomor.isNotEmpty
+                    ? DropdownButtonFormField<String>(
+                        iconEnabledColor: Colors.white,
+                        selectedItemBuilder: (context) {
+                          return nomor.map<Widget>((String item) {
+                            return styles.coloredText(item, Colors.white);
+                          }).toList();
+                        },
+                        decoration:
+                            styles.dropdownDecoration('No. Container', null),
+                        items:
+                            nomor.map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem(
+                              value: value, child: Text(value));
+                        }).toList(),
+                        onChanged: (value) {
+                          selectedNopol = value!;
+                        })
+                    : nomor.isEmpty
+                        ? const Text('No data')
+                        : const CupertinoActivityIndicator(),
                 const SizedBox(
                   height: 8,
                 ),
@@ -169,11 +189,10 @@ class _ChecklistTruckState extends State<ChecklistUpdate> {
                                   contentPadding:
                                       EdgeInsets.fromLTRB(12, 0, 12, 0),
                                   filled: true,
-                                  fillColor:
-                                      Color.fromARGB(255, 240, 240, 240),
+                                  fillColor: Color.fromARGB(255, 240, 240, 240),
                                   border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(12)),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(12)),
                                       borderSide: BorderSide.none)),
                             )),
                       )
@@ -193,8 +212,7 @@ class _ChecklistTruckState extends State<ChecklistUpdate> {
                     child: SizedBox(
                       width: 180,
                       child: InkWell(
-                        onTap: () {
-                        },
+                        onTap: () {},
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Center(
