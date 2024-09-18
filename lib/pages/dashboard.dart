@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/pages/home.dart';
 import 'package:sifods_interflour/pages/profile.dart';
-import 'package:sifods_interflour/riverpod/message.dart';
+import 'package:sifods_interflour/pages/reports.dart';
 
 class Dashboard extends ConsumerStatefulWidget {
   const Dashboard({super.key});
@@ -20,7 +20,7 @@ class _DashboardState extends ConsumerState<Dashboard> {
   }
 
   List<String> titles = ['SIFODS', 'Reports', 'Profile'];
-  List<Widget> widgets = [Home(), const Example(), const Profile()];
+  List<Widget> widgets = [Home(), const Reports(), const Profile()];
 
   @override
   void initState() {

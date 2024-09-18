@@ -33,6 +33,43 @@ class Home extends StatelessWidget {
     },
   ];
 
+  Widget logWidget(BuildContext context) {
+    var controller = DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false
+            ,
+            centerTitle: true,
+            backgroundColor: Colors.white,
+            title: Container(
+              color: Colors.white,
+              child: const TabBar(
+                  labelColor: Colors.blue,
+                  indicatorColor: Colors.blue,
+                  dividerColor: Colors.white,
+                  tabs: [
+                    Tab(
+                      text: 'Vehicles',
+                    ),
+                    Tab(
+                      text: 'Containers',
+                    )
+                  ]),
+            ),
+          ),
+          body: TabBarView(children: [
+            ListView.builder(
+              itemBuilder: (context, index) {
+                return Text('data');
+              },
+            ),
+            Text('data2')
+          ]),
+        ));
+    return controller;
+  }
+
   @override
   Widget build(BuildContext context) {
     final utils = Tools();
@@ -110,7 +147,7 @@ class Home extends StatelessWidget {
                 }),
           ),
           const Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.fromLTRB(8, 16, 8, 0),
             child: SizedBox(
                 width: double.infinity,
                 child: Text(
@@ -118,6 +155,7 @@ class Home extends StatelessWidget {
                   textAlign: TextAlign.start,
                 )),
           ),
+          Expanded(child: logWidget(context))
         ],
       ),
     );

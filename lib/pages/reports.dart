@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sifods_interflour/auth/register.dart';
+import 'package:sifods_interflour/pages/home.dart';
 
 class Reports extends StatefulWidget {
   const Reports({super.key});
@@ -10,7 +11,6 @@ class Reports extends StatefulWidget {
 }
 
 class _LogWidgetState extends State<Reports> {
-
   final controller = TextEditingController();
 
   List<dynamic> searchData = [];
@@ -36,7 +36,7 @@ class _LogWidgetState extends State<Reports> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
             child: TextField(
               controller: controller,
               decoration: InputDecoration(
@@ -49,48 +49,7 @@ class _LogWidgetState extends State<Reports> {
                       borderSide: BorderSide.none)),
             ),
           ),
-          Expanded(
-            child: searchData.isNotEmpty
-                ? ListView.builder(
-                    itemCount: searchData.length,
-                    itemBuilder: (context, i) {
-                      String date = utils
-                          .formattedTime(searchData[i]['tanggal'].toString());
-                      return Padding(
-                        padding: const EdgeInsets.fromLTRB(8, 4, 8, 0),
-                        child: Material(
-                            elevation: 2,
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.white,
-                            child: InkWell(
-                              onTap: () {},
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(searchData[i]['type']),
-                                          Text(searchData[i]['value'])
-                                        ],
-                                      ),
-                                    ),
-                                    Column(
-                                      children: [
-                                        Text(date),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                            )),
-                      );
-                    })
-                : loadingIndicator,
-          ),
+          Expanded(child: Home().logWidget(context))
         ],
       ),
     );

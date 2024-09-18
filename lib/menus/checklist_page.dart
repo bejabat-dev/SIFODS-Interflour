@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sifods_interflour/checklists/checklist_container.dart';
 import 'package:sifods_interflour/checklists/checklist_truck.dart';
 import 'package:sifods_interflour/checklists/checklist_update.dart';
+import 'package:sifods_interflour/pages/home.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 
@@ -9,9 +10,21 @@ class ChecklistPage extends StatelessWidget {
   ChecklistPage({super.key});
 
   final List<Map<String, dynamic>> menus = [
-    {'name': 'Truck', 'icon': 'assets/truck.png', 'route': const ChecklistTruck()},
-    {'name': 'Container', 'icon': 'assets/truck.png', 'route': const ChecklistContainer()},
-    {'name': 'Update', 'icon': 'assets/truck.png', 'route': const ChecklistUpdate()},
+    {
+      'name': 'Truck',
+      'icon': 'assets/truck.png',
+      'route': const ChecklistTruck()
+    },
+    {
+      'name': 'Container',
+      'icon': 'assets/truck.png',
+      'route': const ChecklistContainer()
+    },
+    {
+      'name': 'Update',
+      'icon': 'assets/truck.png',
+      'route': const ChecklistUpdate()
+    },
   ];
 
   @override
@@ -53,11 +66,11 @@ class ChecklistPage extends StatelessWidget {
                     color: Colors.white,
                     elevation: 2,
                     child: InkWell(
-                      onTap: (){
+                      onTap: () {
                         utils.Navigate(context, menus[i]['route']);
                       },
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 8,bottom: 8),
+                        padding: const EdgeInsets.only(top: 8, bottom: 8),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -80,10 +93,11 @@ class ChecklistPage extends StatelessWidget {
           const SizedBox(
             width: double.infinity,
             child: Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
               child: Text('Log'),
             ),
-          )
+          ),
+          Expanded(child: Home().logWidget(context))
         ],
       ),
     );
