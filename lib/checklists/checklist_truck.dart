@@ -3,9 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/models/model_truck.dart';
-import 'package:sifods_interflour/riverpod/userpod.dart';
 import 'package:sifods_interflour/utils/helper.dart';
-import 'package:sifods_interflour/utils/networking.dart';
 import 'package:sifods_interflour/utils/networking/vehicles.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 
