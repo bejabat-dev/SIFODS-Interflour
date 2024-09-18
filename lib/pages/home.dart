@@ -61,10 +61,10 @@ class Home extends StatelessWidget {
           body: TabBarView(children: [
             ListView.builder(
               itemBuilder: (context, index) {
-                return Text('data');
+                return const Text('data');
               },
             ),
-            Text('data2')
+            const Text('data2')
           ]),
         ));
     return controller;
