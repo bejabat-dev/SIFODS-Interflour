@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/models/model_truck.dart';
 import 'package:sifods_interflour/riverpod/userpod.dart';
+import 'package:sifods_interflour/utils/helper.dart';
+import 'package:sifods_interflour/utils/networking.dart';
+import 'package:sifods_interflour/utils/networking/vehicles.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 
 class ChecklistTruck extends ConsumerStatefulWidget {
@@ -44,9 +47,8 @@ class ChecklistTruckState extends ConsumerState<ChecklistTruck> {
   String? selectedNopol;
 
   ModelTruck getModelTruck() {
-    final userId = ref.read(userProvider).user!.id!;
     return ModelTruck(
-      idUser: userId,
+      idUser: Helper.user.id!,
       nopol: selectedNopol,
       box0: booleans['box0'],
       box1: booleans['box1'],
@@ -58,6 +60,10 @@ class ChecklistTruckState extends ConsumerState<ChecklistTruck> {
       box7: booleans['box7'],
       box8: booleans['box8'],
     );
+  }
+
+  void saveTruck() async {
+    await Vehicles().saveChecklistTruck(context, getModelTruck());
   }
 
   Widget indicatorWidget = const Row(
@@ -72,9 +78,21 @@ class ChecklistTruckState extends ConsumerState<ChecklistTruck> {
 
   List<String> nopols = [];
 
+  void load() async {
+    var data = await Vehicles().getNopol(ref);
+    if (data.isNotEmpty) {
+      nopols.clear();
+      for (var i in data) {
+        nopols.add(i['nopol']);
+      }
+      setState(() {});
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+    load();
   }
 
   @override
@@ -151,7 +169,9 @@ class ChecklistTruckState extends ConsumerState<ChecklistTruck> {
                             return null;
                           },
                         )
-                      : indicatorWidget,
+                      : nopols.isEmpty
+                          ? Text('Tidak ada data')
+                          : indicatorWidget,
                 ),
                 const SizedBox(
                   height: 8,
@@ -192,7 +212,9 @@ class ChecklistTruckState extends ConsumerState<ChecklistTruck> {
                       width: 150,
                       child: InkWell(
                         onTap: () {
-                          if (formKey.currentState?.validate() ?? false) {}
+                          if (formKey.currentState?.validate() ?? false) {
+                            saveTruck();
+                          }
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),

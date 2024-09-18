@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/pages/home.dart';
 import 'package:sifods_interflour/pages/profile.dart';
 import 'package:sifods_interflour/riverpod/message.dart';
 
-class Dashboard extends StatefulWidget {
+class Dashboard extends ConsumerStatefulWidget {
   const Dashboard({super.key});
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  ConsumerState<Dashboard> createState() => _DashboardState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _DashboardState extends ConsumerState<Dashboard> {
   int index = 0;
   String appBarTitle = 'SIFODS';
   void selectIndex(int i) {
@@ -22,6 +23,11 @@ class _DashboardState extends State<Dashboard> {
   List<Widget> widgets = [Home(), const Example(), const Profile()];
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -30,10 +36,10 @@ class _DashboardState extends State<Dashboard> {
       body: widgets.elementAt(index),
       bottomNavigationBar: Theme(
         data: ThemeData(
-        
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent),
         child: BottomNavigationBar(
+            backgroundColor: Colors.white,
             onTap: (value) {
               setState(() {
                 selectIndex(value);

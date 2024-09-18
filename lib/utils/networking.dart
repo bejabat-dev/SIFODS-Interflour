@@ -1,15 +1,18 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sifods_interflour/models/user.dart';
 import 'package:sifods_interflour/pages/dashboard.dart';
 import 'package:sifods_interflour/riverpod/userpod.dart';
+import 'package:sifods_interflour/utils/helper.dart';
 import 'package:sifods_interflour/utils/tools.dart';
+
+const baseUrl = 'http://192.168.1.6:3000/sifods';
 
 class Networking {
   final tools = Tools();
   final dio = Dio();
-  final baseUrl = 'http://192.168.1.6:3000/sifods';
 
   Future<void> register(BuildContext context, User user, WidgetRef ref) async {
     final userpod = ref.read(userProvider.notifier);
@@ -20,6 +23,10 @@ class Networking {
         if (context.mounted) {
           debugPrint(res.data.toString());
           userpod.state = UserState.success(User.fromJson(res.data));
+
+          saveUser(res.data['id'], user.email, user.password!);
+
+          Helper.user = User.fromJson(res.data);
           Navigator.pop(context);
           Tools().NavigateAndClear(context, const Dashboard());
         }
@@ -44,6 +51,8 @@ class Networking {
         if (context.mounted) {
           debugPrint(res.data.toString());
           userpod.state = UserState.success(User.fromJson(res.data));
+          Helper.user = User.fromJson(res.data);
+          saveUser(res.data['id'], user.email, user.password!);
           Tools().NavigateAndClear(context, const Dashboard());
         }
       }
@@ -58,5 +67,11 @@ class Networking {
     }
   }
 
-  
+  void saveUser(int id, String email, String password) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool('loggedin', true);
+    prefs.setString('email', email);
+    prefs.setString('password', password);
+    prefs.setInt('id', id);
+  }
 }

@@ -1,23 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sifods_interflour/auth/login.dart';
+import 'package:sifods_interflour/models/user.dart';
 import 'package:sifods_interflour/utils/networking.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 
 final tools = Tools();
 final network = Networking();
 
-class Splash extends StatefulWidget {
+class Splash extends ConsumerStatefulWidget {
   const Splash({super.key});
 
   @override
-  State<Splash> createState() => _SplashState();
+  ConsumerState<Splash> createState() => _SplashState();
 }
 
-class _SplashState extends State<Splash> {
+class _SplashState extends ConsumerState<Splash> {
   void start() async {
+    final prefs = await SharedPreferences.getInstance();
+    var login = prefs.getBool('loggedin');
+    String email = prefs.getString('email')!;
+    String password = prefs.getString('password')!;
+    User user = User(email: email, password: password);
+
     await Future.delayed(const Duration(seconds: 1));
-    if (mounted) {
-      Tools().NavigateAndClear(context, Login());
+    if (login != null && login == true) {
+      if (mounted) {
+        Networking().login(context, user, ref);
+      }
+    } else {
+      if (mounted) {
+        Tools().NavigateAndClear(context, Login());
+      }
     }
   }
 

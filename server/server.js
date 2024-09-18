@@ -111,6 +111,7 @@ router.post("/checklist/truck", (req, res) => {
     [id_user, nopol, box0, box1, box2, box3, box4, box5, box6, box7, box8],
     (err, result) => {
       if (err) {
+        console.error(err);
         return res.status(500).json({ error: "Error" });
       }
       res.status(201).json({ message: "Success" });
@@ -138,7 +139,6 @@ router.post("/update/container", (req, res) => {
 
 router.use(vehicles);
 router.use(auth);
-
 
 app.use("/sifods", router);
 

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sifods_interflour/auth/register.dart';
 import 'package:sifods_interflour/pages/dashboard.dart';
 
@@ -86,5 +87,10 @@ class Tools {
   void NavigateAndClear(BuildContext context, Widget widget) {
     Navigator.pushAndRemoveUntil(context,
         MaterialPageRoute(builder: (context) => widget), (route) => false);
+  }
+
+    Future<SharedPreferences> getPrefs() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs;
   }
 }
