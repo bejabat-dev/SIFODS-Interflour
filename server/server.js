@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const db = require("./db");
 const bcrypt = require("bcrypt");
+const vehicles = require("./routes/vehicles")
 const saltRounds = 10;
 
 dotenv.config();
@@ -144,17 +145,6 @@ router.post("/add_product", (req, res) => {
   });
 });
 
-router.get("/nopol", (req, res) => {
-  const { id_user } = req.body;
-  const query = "SELECT nopol FROM vehicles WHERE id_user = ?";
-  db.query(query, [id_user], (err, results) => {
-    if (err) {
-      return res.status(500).json({ error: "Error" });
-    }
-    res.status(201).json(results);
-  });
-});
-
 router.post("/log", (req, res) => {
   const { id_user, type, value } = req.body;
   const query = "INSERT INTO log (id_user,type,value) VALUES(?,?,?)";
@@ -280,6 +270,8 @@ router.post("/update/container", (req, res) => {
     }
   );
 });
+
+router.use(vehicles);
 
 app.use("/sifods", router);
 
