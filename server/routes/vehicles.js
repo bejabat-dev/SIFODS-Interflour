@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/nopol", (req, res) => {
   const { id_user } = req.body;
-  const query = "SELECT nopol FROM vehicles WHERE id_user = ?";
+  const query = "SELECT nopol FROM vehicles WHERE id_user = ? AND status = 'new'";
   db.query(query, [id_user], (err, results) => {
     if (err) {
       console.error(err);

@@ -6,7 +6,6 @@ import 'package:sifods_interflour/auth/register.dart';
 import 'package:sifods_interflour/models/add_container.dart';
 import 'package:sifods_interflour/models/add_vehicle.dart';
 import 'package:sifods_interflour/models/model_vehicle.dart';
-import 'package:sifods_interflour/riverpod/vehiclespod.dart';
 import 'package:sifods_interflour/utils/networking.dart';
 
 class Vehicles {
@@ -69,7 +68,7 @@ class Vehicles {
       final res = await dio.post('$baseUrl/add_truck', data: data.toJson());
       if (res.statusCode == 201) {
         if (context.mounted) {
-          ref.refresh(getVehicleLogsProvider);
+          //ref.refresh(getlogs);
           Navigator.pop(context);
           Navigator.pop(context);
         }

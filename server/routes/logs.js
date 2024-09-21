@@ -2,9 +2,9 @@ const express = require("express");
 const db = require("../db");
 const router = express.Router();
 
-router.get("/logs/vehicles", (req, res) => {
+router.get("/logs", (req, res) => {
   const { id_user } = req.body;
-  const query = "SELECT * FROM vehicles WHERE id_user = ?";
+  const query = "SELECT * FROM logs WHERE id_user = ?";
   db.query(query, [id_user], (err, result) => {
     if (err) {
       console.error(err);
@@ -13,5 +13,7 @@ router.get("/logs/vehicles", (req, res) => {
     res.status(201).json( result );
   });
 });
+
+
 
 module.exports = router;
