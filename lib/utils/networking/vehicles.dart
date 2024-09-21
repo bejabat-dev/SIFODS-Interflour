@@ -1,9 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sifods_interflour/auth/register.dart';
 import 'package:sifods_interflour/models/add_container.dart';
+import 'package:sifods_interflour/models/add_vehicle.dart';
 import 'package:sifods_interflour/models/model_vehicle.dart';
+import 'package:sifods_interflour/riverpod/vehiclespod.dart';
 import 'package:sifods_interflour/utils/networking.dart';
 
 class Vehicles {
@@ -14,7 +17,7 @@ class Vehicles {
     return prefs;
   }
 
-  Future<List<dynamic>> getNopol( ) async {
+  Future<List<dynamic>> getNopol() async {
     var prefs = await getPrefs();
 
     final res =
@@ -47,6 +50,26 @@ class Vehicles {
       final res = await dio.post('$baseUrl/add_container', data: data.toMap());
       if (res.statusCode == 201) {
         if (context.mounted) {
+          Navigator.pop(context);
+          Navigator.pop(context);
+        }
+      }
+    } on Exception catch (e) {
+      if (context.mounted) {
+        Navigator.pop(context);
+        utils.showErrorDialog(context, e.toString());
+      }
+    }
+  }
+
+  Future<void> addTruck(
+      BuildContext context, AddTruck data, WidgetRef ref) async {
+    utils.showLoadingDialog(context, 'Saving data');
+    try {
+      final res = await dio.post('$baseUrl/add_truck', data: data.toJson());
+      if (res.statusCode == 201) {
+        if (context.mounted) {
+          ref.refresh(getVehicleLogsProvider);
           Navigator.pop(context);
           Navigator.pop(context);
         }

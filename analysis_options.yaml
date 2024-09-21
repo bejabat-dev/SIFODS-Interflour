@@ -1,4 +1,7 @@
 analyzer:
   errors:
     non_constant_identifier_names: ignore
+    unused_result: ignore
+  plugins:
+    - custom_lint
 include: package:flutter_lints/flutter.yaml

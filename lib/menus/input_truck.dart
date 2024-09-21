@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/models/add_vehicle.dart';
 import 'package:sifods_interflour/riverpod/userpod.dart';
+import 'package:sifods_interflour/utils/networking/vehicles.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 
@@ -45,10 +46,14 @@ class InputTruckState extends ConsumerState<InputTruck> {
         jenis: jenisKendaraan,
         telp: noTelp.text,
         volume: volumeMuatan.text,
-        jumlah: jumlahKendaraan.text);
+        jumlah: int.parse(jumlahKendaraan.text));
   }
 
   String? jenisKendaraan;
+
+  void save()async{
+    Vehicles().addTruck(context, getTruck(), ref);
+  }
 
   @override
   void initState() {
@@ -239,7 +244,9 @@ class InputTruckState extends ConsumerState<InputTruck> {
                               child: InkWell(
                                 onTap: () {
                                   if (formKey.currentState?.validate() ??
-                                      false) {}
+                                      false) {
+                                        save();
+                                      }
                                 },
                                 child: Padding(
                                   padding:

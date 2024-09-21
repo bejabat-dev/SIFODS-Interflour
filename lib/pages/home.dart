@@ -5,8 +5,6 @@ import 'package:sifods_interflour/menus/checklist_page.dart';
 import 'package:sifods_interflour/menus/input_container.dart';
 import 'package:sifods_interflour/menus/input_product.dart';
 import 'package:sifods_interflour/menus/input_truck.dart';
-import 'package:sifods_interflour/riverpod/vehiclespod.dart';
-import 'package:sifods_interflour/utils/helper.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 import 'package:sifods_interflour/widgets/log_vehicles.dart';
 
@@ -43,10 +41,10 @@ class _HomeState extends ConsumerState<Home> {
     },
   ];
 
+  
   @override
   void initState() {
     super.initState();
-    VehiclesPod().getLogs(Helper.user.id!, ref);
   }
 
   @override
@@ -134,7 +132,7 @@ class _HomeState extends ConsumerState<Home> {
                   textAlign: TextAlign.start,
                 )),
           ),
-          const Expanded(child: LogVehicles())
+         const Expanded(child: LogVehicles())
         ],
       ),
     );

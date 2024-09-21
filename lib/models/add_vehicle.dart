@@ -8,23 +8,24 @@ class AddTruck {
   final String? jenis;
   final String? telp;
   final String? volume;
-  final String? jumlah;
+  final int? jumlah;
   final String? status;
   final DateTime? created;
 
-  AddTruck(
-      {this.id,
-      required this.id_user,
-      required this.nopol,
-      required this.nama,
-      required this.ekspedisi,
-      required this.supir,
-      required this.jenis,
-      required this.telp,
-      required this.volume,
-      required this.jumlah,
-      this.created,
-      this.status});
+  AddTruck({
+    this.id,
+    required this.id_user,
+    required this.nopol,
+    required this.nama,
+    required this.ekspedisi,
+    required this.supir,
+    required this.jenis,
+    required this.telp,
+    required this.volume,
+    required this.jumlah,
+    this.status,
+    this.created,
+  });
 
   factory AddTruck.fromJson(Map<String, dynamic> data) {
     return AddTruck(

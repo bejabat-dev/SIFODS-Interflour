@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const db = require("./db");
 const vehicles = require("./routes/vehicles");
 const auth = require("./routes/auth");
+const logs = require("./routes/logs");
 dotenv.config();
 
 const app = express();
@@ -116,6 +117,7 @@ router.post("/update/container", (req, res) => {
 });
 
 router.use(vehicles);
+router.use(logs);
 router.use(auth);
 
 app.use("/sifods", router);

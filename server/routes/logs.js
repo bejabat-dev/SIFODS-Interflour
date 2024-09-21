@@ -10,7 +10,7 @@ router.get("/logs/vehicles", (req, res) => {
       console.error(err);
       return res.status(500).json({ message: "Database failed" });
     }
-    res.status(201).json({ result });
+    res.status(201).json( result );
   });
 });
 
