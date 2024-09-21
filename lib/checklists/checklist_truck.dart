@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sifods_interflour/models/model_truck.dart';
+import 'package:sifods_interflour/models/model_vehicle.dart';
 import 'package:sifods_interflour/utils/helper.dart';
 import 'package:sifods_interflour/utils/networking/vehicles.dart';
 import 'package:sifods_interflour/utils/styles.dart';
@@ -44,8 +44,8 @@ class ChecklistTruckState extends ConsumerState<ChecklistTruck> {
 
   String? selectedNopol;
 
-  ModelTruck getModelTruck() {
-    return ModelTruck(
+  ModelVehicle getModelTruck() {
+    return ModelVehicle(
       idUser: Helper.user.id!,
       nopol: selectedNopol,
       box0: booleans['box0'],

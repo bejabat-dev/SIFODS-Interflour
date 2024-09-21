@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sifods_interflour/pages/home.dart';
+import 'package:sifods_interflour/widgets/log_vehicles.dart';
 
 class Reports extends StatefulWidget {
   const Reports({super.key});
@@ -48,7 +48,7 @@ class _LogWidgetState extends State<Reports> {
                       borderSide: BorderSide.none)),
             ),
           ),
-          Expanded(child: Home().logWidget(context))
+          Expanded(child: LogVehicles())
         ],
       ),
     );

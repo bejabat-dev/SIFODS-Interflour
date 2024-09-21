@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sifods_interflour/auth/register.dart';
 import 'package:sifods_interflour/models/add_container.dart';
-import 'package:sifods_interflour/models/model_truck.dart';
+import 'package:sifods_interflour/models/model_vehicle.dart';
 import 'package:sifods_interflour/utils/networking.dart';
 
 class Vehicles {
@@ -60,7 +60,7 @@ class Vehicles {
   }
 
   Future<void> saveChecklistTruck(
-      BuildContext context, ModelTruck model) async {
+      BuildContext context, ModelVehicle model) async {
     utils.showLoadingDialog(context, 'Saving data');
     try {
       final res =

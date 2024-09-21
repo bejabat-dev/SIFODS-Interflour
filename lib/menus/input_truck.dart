@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sifods_interflour/models/add_truck.dart';
+import 'package:sifods_interflour/models/add_vehicle.dart';
 import 'package:sifods_interflour/riverpod/userpod.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/tools.dart';

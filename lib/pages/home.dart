@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/auth/forgot.dart';
 import 'package:sifods_interflour/menus/checklist_page.dart';
 import 'package:sifods_interflour/menus/input_container.dart';
 import 'package:sifods_interflour/menus/input_product.dart';
 import 'package:sifods_interflour/menus/input_truck.dart';
+import 'package:sifods_interflour/riverpod/vehiclespod.dart';
+import 'package:sifods_interflour/utils/helper.dart';
 import 'package:sifods_interflour/utils/tools.dart';
+import 'package:sifods_interflour/widgets/log_vehicles.dart';
 
-class Home extends StatelessWidget {
-  Home({super.key});
+class Home extends ConsumerStatefulWidget {
+  const Home({super.key});
+
+  @override
+  ConsumerState<Home> createState() => _HomeState();
+}
+
+class _HomeState extends ConsumerState<Home> {
   final List<Map<String, dynamic>> menus = [
     {'name': 'Truck', 'icon': 'assets/truck.png', 'route': const InputTruck()},
     {
@@ -33,41 +43,10 @@ class Home extends StatelessWidget {
     },
   ];
 
-  Widget logWidget(BuildContext context) {
-    var controller = DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar(
-            automaticallyImplyLeading: false
-            ,
-            centerTitle: true,
-            backgroundColor: Colors.white,
-            title: Container(
-              color: Colors.white,
-              child: const TabBar(
-                  labelColor: Colors.blue,
-                  indicatorColor: Colors.blue,
-                  dividerColor: Colors.white,
-                  tabs: [
-                    Tab(
-                      text: 'Vehicles',
-                    ),
-                    Tab(
-                      text: 'Containers',
-                    )
-                  ]),
-            ),
-          ),
-          body: TabBarView(children: [
-            ListView.builder(
-              itemBuilder: (context, index) {
-                return const Text('data');
-              },
-            ),
-            const Text('data2')
-          ]),
-        ));
-    return controller;
+  @override
+  void initState() {
+    super.initState();
+    VehiclesPod().getLogs(Helper.user.id!, ref);
   }
 
   @override
@@ -155,7 +134,7 @@ class Home extends StatelessWidget {
                   textAlign: TextAlign.start,
                 )),
           ),
-          Expanded(child: logWidget(context))
+          const Expanded(child: LogVehicles())
         ],
       ),
     );

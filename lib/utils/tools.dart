@@ -89,7 +89,7 @@ class Tools {
         MaterialPageRoute(builder: (context) => widget), (route) => false);
   }
 
-    Future<SharedPreferences> getPrefs() async {
+  Future<SharedPreferences> getPrefs() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs;
   }

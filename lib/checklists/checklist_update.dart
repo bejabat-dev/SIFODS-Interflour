@@ -116,20 +116,23 @@ class _ChecklistTruckState extends State<ChecklistUpdate> {
                     ? DropdownButtonFormField<String>(
                         iconEnabledColor: Colors.white,
                         selectedItemBuilder: (context) {
-                          return nomor.map<Widget>((String item) {
-                            return styles.coloredText(item, Colors.white);
-                          }).toList();
+                          return List<Widget>.generate(nomor.length, (index) {
+                            return styles.coloredText(
+                                nomor[index], Colors.white);
+                          });
                         },
                         decoration:
                             styles.dropdownDecoration('No. Container', null),
-                        items:
-                            nomor.map<DropdownMenuItem<String>>((String value) {
+                        items: List<DropdownMenuItem<String>>.generate(
+                            nomor.length, (index) {
                           return DropdownMenuItem(
-                              value: value, child: Text(value));
-                        }).toList(),
+                              value: '$index-${nomor[index]}',
+                              child: Text(nomor[index]));
+                        }),
                         onChanged: (value) {
-                          selectedNopol = value!;
-                        })
+                          selectedNopol = value!.split('-')[1];
+                        },
+                      )
                     : nomor.isEmpty
                         ? const Text('No data')
                         : const CupertinoActivityIndicator(),

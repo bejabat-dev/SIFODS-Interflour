@@ -10,28 +10,6 @@ const router = express.Router();
 
 app.use(express.json());
 
-router.post("/log", (req, res) => {
-  const { id_user, type, value } = req.body;
-  const query = "INSERT INTO log (id_user,type,value) VALUES(?,?,?)";
-  db.query(query, [id_user, type, value], (err, result) => {
-    if (err) {
-      return res.status(500).json({ error: "Error" });
-    }
-    res.status(201).json({ message: "Success" });
-  });
-});
-
-router.get("/logs", (req, res) => {
-  const { id_user } = req.body;
-  const query = "SELECT * FROM log WHERE id_user = ?";
-  db.query(query, [id_user], (err, result) => {
-    if (err) {
-      return res.status(500).json({ error: "Error" });
-    }
-    res.status(201).json(result);
-  });
-});
-
 router.post("/checklist/container", (req, res) => {
   const {
     id_user,

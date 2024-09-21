@@ -34,20 +34,21 @@ class Networking {
         debugPrint(e.toString());
         Navigator.pop(context);
         if (e.toString().contains('400')) {
-          Tools().showErrorDialog(context, 'Email sudan digunakan');
+          Tools().showErrorDialog(context, 'Email sudah digunakan');
         }
       }
     }
   }
 
   Future<void> login(BuildContext context, User user, WidgetRef ref) async {
+    final userNotifier = ref.read(userPod.notifier);
     try {
       tools.showLoadingDialog(context, 'Logging in');
       final res = await dio.get('$baseUrl/login', data: user.toJson());
       if (res.statusCode == 201) {
         if (context.mounted) {
           debugPrint(res.data.toString());
-
+          userNotifier.state = Userpod(user: User.fromJson(res.data));
           Helper.user = User.fromJson(res.data);
           saveUser(res.data['id'], user.email, user.password!);
           Tools().NavigateAndClear(context, const Dashboard());
