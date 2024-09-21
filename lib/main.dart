@@ -15,7 +15,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const Splash(),
       theme: ThemeData(
-        floatingActionButtonTheme: FloatingActionButtonThemeData(
+        floatingActionButtonTheme:const FloatingActionButtonThemeData(
           backgroundColor: Colors.blue,foregroundColor: Colors.white
         ),
           textSelectionTheme: const TextSelectionThemeData(
