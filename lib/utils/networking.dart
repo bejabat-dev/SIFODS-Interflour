@@ -8,24 +8,22 @@ import 'package:sifods_interflour/riverpod/userpod.dart';
 import 'package:sifods_interflour/utils/helper.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 
-const baseUrl = 'http://192.168.1.6:3000/sifods';
+const baseUrl = 'http://localhost:3000/sifods';
 
 class Networking {
   final tools = Tools();
   final dio = Dio();
 
   Future<void> register(BuildContext context, User user, WidgetRef ref) async {
-    final userpod = ref.read(userProvider.notifier);
+    final userNotifier = ref.read(userPod.notifier);
     tools.showLoadingDialog(context, 'Registering account');
     try {
       final res = await dio.post('$baseUrl/register', data: user.toJson());
       if (res.statusCode == 201) {
         if (context.mounted) {
           debugPrint(res.data.toString());
-          userpod.state = UserState.success(User.fromJson(res.data));
-
           saveUser(res.data['id'], user.email, user.password!);
-
+          userNotifier.state = Userpod(user: User.fromJson(res.data));
           Helper.user = User.fromJson(res.data);
           Navigator.pop(context);
           Tools().NavigateAndClear(context, const Dashboard());
@@ -43,14 +41,13 @@ class Networking {
   }
 
   Future<void> login(BuildContext context, User user, WidgetRef ref) async {
-    final userpod = ref.read(userProvider.notifier);
     try {
       tools.showLoadingDialog(context, 'Logging in');
       final res = await dio.get('$baseUrl/login', data: user.toJson());
       if (res.statusCode == 201) {
         if (context.mounted) {
           debugPrint(res.data.toString());
-          userpod.state = UserState.success(User.fromJson(res.data));
+
           Helper.user = User.fromJson(res.data);
           saveUser(res.data['id'], user.email, user.password!);
           Tools().NavigateAndClear(context, const Dashboard());

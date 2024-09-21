@@ -35,7 +35,7 @@ class InputTruckState extends ConsumerState<InputTruck> {
   ];
 
   AddTruck getTruck() {
-    final userId = ref.read(userProvider).user!.id!;
+    final userId = ref.read(userPod).user!.id!;
     return AddTruck(
         id_user: userId,
         nopol: nopol.text,

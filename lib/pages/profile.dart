@@ -10,7 +10,7 @@ class Profile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userPod = ref.watch(userProvider);
+    final user = ref.watch(userPod);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -31,18 +31,18 @@ class Profile extends ConsumerWidget {
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8),
-                        child: userPod.isLoading == false &&
-                                userPod.error == null
+                        child: 
+                        user.user !=null
                             ? Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(userPod.user!.nama!),
-                                  Text(userPod.user!.email),
-                                  Text(userPod.user!.jabatan!),
-                                  Text(userPod.user!.nomor_hp!)
+                                  Text(user.user!.nama!),
+                                  Text(user.user!.email),
+                                  Text(user.user!.jabatan!),
+                                  Text(user.user!.nomor_hp!)
                                 ],
                               )
-                            : userPod.isLoading
+                            : user.loading ==true
                                 ? const CupertinoActivityIndicator()
                                 : const Text('Gagal memuat data'),
                       ),
