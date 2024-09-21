@@ -1,3 +1,4 @@
+
 class AddTruck {
   final int? id;
   final int id_user;
@@ -11,6 +12,8 @@ class AddTruck {
   final int? jumlah;
   final String? status;
   final DateTime? created;
+
+
 
   AddTruck({
     this.id,

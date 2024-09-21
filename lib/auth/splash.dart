@@ -20,12 +20,13 @@ class _SplashState extends ConsumerState<Splash> {
   void start() async {
     final prefs = await SharedPreferences.getInstance();
     var login = prefs.getBool('loggedin');
-    String email = prefs.getString('email')!;
-    String password = prefs.getString('password')!;
-    User user = User(email: email, password: password);
 
     await Future.delayed(const Duration(seconds: 1));
     if (login != null && login == true) {
+      
+    String? email = prefs.getString('email');
+    String? password = prefs.getString('password');
+    User user = User(email: email!, password: password!);
       if (mounted) {
         Networking().login(context, user, ref);
       }

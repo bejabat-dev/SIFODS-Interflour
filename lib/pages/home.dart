@@ -124,7 +124,7 @@ class _HomeState extends ConsumerState<Home> {
                 }),
           ),
           const Padding(
-            padding: EdgeInsets.fromLTRB(8, 16, 8, 0),
+            padding: EdgeInsets.fromLTRB(8, 16, 8, 8),
             child: SizedBox(
                 width: double.infinity,
                 child: Text(

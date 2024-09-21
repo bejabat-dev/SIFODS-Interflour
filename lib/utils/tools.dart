@@ -93,4 +93,11 @@ class Tools {
     final prefs = await SharedPreferences.getInstance();
     return prefs;
   }
+
+    String formatDate(String dateString) {
+    DateTime dateTime = DateTime.parse(dateString);
+    final DateFormat formatter = DateFormat('dd-MMM-yyyy');
+    return formatter.format(dateTime);
+  }
 }
+
