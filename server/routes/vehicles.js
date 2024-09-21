@@ -4,13 +4,38 @@ const router = express.Router();
 
 router.get("/nopol", (req, res) => {
   const { id_user } = req.body;
-  const query = "SELECT nopol FROM vehicles WHERE id_user = ? AND status = 'new'";
+  const query =
+    "SELECT nopol FROM vehicles WHERE id_user = ? AND status = 'new'";
   db.query(query, [id_user], (err, results) => {
     if (err) {
       console.error(err);
       return res.status(500).json({ error: "Error" });
     }
     res.status(201).json(results);
+  });
+});
+
+router.get("/detail/truck", (req, res) => {
+  const { id } = req.body;
+  const query = "SELECT * FROM vehicles WHERE id = ?";
+  db.query(query, [id], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Error" });
+    }
+    res.status(201).json(results[0]);
+  });
+});
+
+router.get("/detail/container", (req, res) => {
+  const { id } = req.body;
+  const query = "SELECT * FROM container WHERE id = ?";
+  db.query(query, [id], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Error" });
+    }
+    res.status(201).json(results[0]);
   });
 });
 
