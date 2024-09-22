@@ -20,7 +20,7 @@ class _DashboardState extends ConsumerState<Dashboard> {
   }
 
   List<String> titles = ['SIFODS', 'Reports', 'Profile'];
-  List<Widget> widgets = [Home(), const Reports(), const Profile()];
+  List<Widget> widgets = [const Home(), const Reports(), const Profile()];
 
   @override
   void initState() {

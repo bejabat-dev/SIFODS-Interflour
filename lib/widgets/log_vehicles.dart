@@ -48,7 +48,7 @@ class LogVehicles extends ConsumerWidget {
                             Text(Tools().formatDate(data.tanggal)),
                           ],
                         ),
-                        Text(data.type_id.toString())
+                        Text(data.value)
                       ],
                     ),
                   ),

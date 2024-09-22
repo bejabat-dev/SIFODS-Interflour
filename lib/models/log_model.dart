@@ -9,6 +9,7 @@ class LogModel with _$LogModel {
       {required int id_user,
       required String type,
       required int type_id,
+      required String value,
       required String tanggal}) = _LogModel;
 
   factory LogModel.fromJson(Map<String, dynamic> json) =>

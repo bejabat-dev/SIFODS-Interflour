@@ -23,6 +23,7 @@ mixin _$LogModel {
   int get id_user => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   int get type_id => throw _privateConstructorUsedError;
+  String get value => throw _privateConstructorUsedError;
   String get tanggal => throw _privateConstructorUsedError;
 
   /// Serializes this LogModel to a JSON map.
@@ -40,7 +41,8 @@ abstract class $LogModelCopyWith<$Res> {
   factory $LogModelCopyWith(LogModel value, $Res Function(LogModel) then) =
       _$LogModelCopyWithImpl<$Res, LogModel>;
   @useResult
-  $Res call({int id_user, String type, int type_id, String tanggal});
+  $Res call(
+      {int id_user, String type, int type_id, String value, String tanggal});
 }
 
 /// @nodoc
@@ -61,6 +63,7 @@ class _$LogModelCopyWithImpl<$Res, $Val extends LogModel>
     Object? id_user = null,
     Object? type = null,
     Object? type_id = null,
+    Object? value = null,
     Object? tanggal = null,
   }) {
     return _then(_value.copyWith(
@@ -76,6 +79,10 @@ class _$LogModelCopyWithImpl<$Res, $Val extends LogModel>
           ? _value.type_id
           : type_id // ignore: cast_nullable_to_non_nullable
               as int,
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
       tanggal: null == tanggal
           ? _value.tanggal
           : tanggal // ignore: cast_nullable_to_non_nullable
@@ -92,7 +99,8 @@ abstract class _$$LogModelImplCopyWith<$Res>
       __$$LogModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id_user, String type, int type_id, String tanggal});
+  $Res call(
+      {int id_user, String type, int type_id, String value, String tanggal});
 }
 
 /// @nodoc
@@ -111,6 +119,7 @@ class __$$LogModelImplCopyWithImpl<$Res>
     Object? id_user = null,
     Object? type = null,
     Object? type_id = null,
+    Object? value = null,
     Object? tanggal = null,
   }) {
     return _then(_$LogModelImpl(
@@ -126,6 +135,10 @@ class __$$LogModelImplCopyWithImpl<$Res>
           ? _value.type_id
           : type_id // ignore: cast_nullable_to_non_nullable
               as int,
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
       tanggal: null == tanggal
           ? _value.tanggal
           : tanggal // ignore: cast_nullable_to_non_nullable
@@ -141,6 +154,7 @@ class _$LogModelImpl implements _LogModel {
       {required this.id_user,
       required this.type,
       required this.type_id,
+      required this.value,
       required this.tanggal});
 
   factory _$LogModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -153,11 +167,13 @@ class _$LogModelImpl implements _LogModel {
   @override
   final int type_id;
   @override
+  final String value;
+  @override
   final String tanggal;
 
   @override
   String toString() {
-    return 'LogModel(id_user: $id_user, type: $type, type_id: $type_id, tanggal: $tanggal)';
+    return 'LogModel(id_user: $id_user, type: $type, type_id: $type_id, value: $value, tanggal: $tanggal)';
   }
 
   @override
@@ -168,12 +184,14 @@ class _$LogModelImpl implements _LogModel {
             (identical(other.id_user, id_user) || other.id_user == id_user) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.type_id, type_id) || other.type_id == type_id) &&
+            (identical(other.value, value) || other.value == value) &&
             (identical(other.tanggal, tanggal) || other.tanggal == tanggal));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id_user, type, type_id, tanggal);
+  int get hashCode =>
+      Object.hash(runtimeType, id_user, type, type_id, value, tanggal);
 
   /// Create a copy of LogModel
   /// with the given fields replaced by the non-null parameter values.
@@ -196,6 +214,7 @@ abstract class _LogModel implements LogModel {
       {required final int id_user,
       required final String type,
       required final int type_id,
+      required final String value,
       required final String tanggal}) = _$LogModelImpl;
 
   factory _LogModel.fromJson(Map<String, dynamic> json) =
@@ -207,6 +226,8 @@ abstract class _LogModel implements LogModel {
   String get type;
   @override
   int get type_id;
+  @override
+  String get value;
   @override
   String get tanggal;
 

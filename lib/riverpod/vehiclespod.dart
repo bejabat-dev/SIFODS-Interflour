@@ -11,6 +11,14 @@ part 'vehiclespod.g.dart';
 
 final dio = Dio();
 
+List<LogModel> allData = [];
+List<LogModel> searchData = [];
+
+@riverpod
+Future<List<LogModel>> getSearch(GetSearchRef ref) async {
+  return searchData;
+}
+
 @riverpod
 Future<List<LogModel>> getLogs(GetLogsRef ref) async {
   try {
@@ -23,7 +31,7 @@ Future<List<LogModel>> getLogs(GetLogsRef ref) async {
     List<LogModel> trucks =
         data.map((truck) => LogModel.fromJson(truck)).toList();
     debugPrint('Trucks parsed: ${trucks.length}');
-
+    allData = trucks;
     return trucks;
   } catch (e) {
     debugPrint('Error fetching vehicle logs: $e');

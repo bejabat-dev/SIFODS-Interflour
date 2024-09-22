@@ -6,6 +6,20 @@ part of 'vehiclespod.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$getSearchHash() => r'e1ac9c0cb41e35d2e45563085b974c551d790670';
+
+/// See also [getSearch].
+@ProviderFor(getSearch)
+final getSearchProvider = AutoDisposeFutureProvider<List<LogModel>>.internal(
+  getSearch,
+  name: r'getSearchProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$getSearchHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef GetSearchRef = AutoDisposeFutureProviderRef<List<LogModel>>;
 String _$getLogsHash() => r'53f49cc5ef5bd57e80e1da4d8136dfb16525255d';
 
 /// See also [getLogs].

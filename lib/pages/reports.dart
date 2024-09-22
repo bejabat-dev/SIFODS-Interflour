@@ -1,18 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sifods_interflour/models/log_model.dart';
+import 'package:sifods_interflour/riverpod/vehiclespod.dart';
+import 'package:sifods_interflour/utils/tools.dart';
+import 'package:sifods_interflour/widgets/log_search.dart';
 import 'package:sifods_interflour/widgets/log_vehicles.dart';
 
-class Reports extends StatefulWidget {
+class Reports extends ConsumerStatefulWidget {
   const Reports({super.key});
 
   @override
-  State<Reports> createState() => _LogWidgetState();
+  ConsumerState<Reports> createState() => _LogWidgetState();
 }
 
-class _LogWidgetState extends State<Reports> {
+class _LogWidgetState extends ConsumerState<Reports> {
   final controller = TextEditingController();
 
-  List<dynamic> searchData = [];
+  bool isSearching = false;
 
   Widget loadingIndicator = const Column(
     children: [
@@ -24,9 +29,30 @@ class _LogWidgetState extends State<Reports> {
     ],
   );
 
+  void search() {
+    if (controller.text.isNotEmpty) {
+      setState(() {
+        isSearching = true;
+      });
+      searchData.clear();
+      for (var data in allData) {
+        if (data.value.toLowerCase().contains(controller.text.toLowerCase())) {
+          searchData.add(data);
+        }
+      }
+    } else {
+      setState(() {
+        isSearching = false;
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+    controller.addListener(() {
+      search();
+    });
   }
 
   @override
@@ -48,7 +74,10 @@ class _LogWidgetState extends State<Reports> {
                       borderSide: BorderSide.none)),
             ),
           ),
-          Expanded(child: LogVehicles())
+          Expanded(
+              child: isSearching == false
+                  ? const LogVehicles()
+                  : const LogSearch())
         ],
       ),
     );
