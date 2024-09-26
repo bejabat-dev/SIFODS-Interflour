@@ -48,7 +48,7 @@ Future<ModelContainer> getContainerChecklist(
     debugPrint('START');
     final res = await dio.get('$baseUrl/checklist/container', data: {'id': id});
     debugPrint('Response data: ${res.data}');
-    ModelContainer trucks = ModelContainer.fromJson(res.data);
+    ModelContainer trucks = ModelContainer.fromJson(res.data[0]);
     return trucks;
   } catch (e) {
     debugPrint('Error fetching vehicle logs: $e');
@@ -63,7 +63,7 @@ Future<ModelVehicle> getVehicleChecklist(
     debugPrint('START');
     final res = await dio.get('$baseUrl/checklist/vehicle', data: {'id': id});
     debugPrint('Response data: ${res.data}');
-    ModelVehicle trucks = ModelVehicle.fromJson(res.data);
+    ModelVehicle trucks = ModelVehicle.fromJson(res.data[0]);
     return trucks;
   } catch (e) {
     debugPrint('Error fetching vehicle logs: $e');

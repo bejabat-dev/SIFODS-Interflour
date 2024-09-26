@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sifods_interflour/models/model_update.dart';
 import 'package:sifods_interflour/networking/vehicles.dart';
+import 'package:sifods_interflour/utils/helper.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 
 class ChecklistUpdate extends StatefulWidget {
@@ -33,7 +35,23 @@ class _ChecklistTruckState extends State<ChecklistUpdate> {
     'box3': false,
   };
 
-  String selectedNopol = 'BP 6556 AD';
+  ModelUpdate getModel() {
+    return ModelUpdate(
+        id_user: Helper.user.id!,
+        nomor: selectedNomor,
+        box0: booleans['box0'],
+        box1: booleans['box1'],
+        box2: booleans['box2'],
+        box3: booleans['box3'],
+        box4: controller0.text,
+        box5: controller1.text,
+        box6: controller2.text,
+        box7: controller3.text,
+        id_vehicle: selectedUpdateID);
+  }
+
+  String selectedNomor = 'BP 6556 AD';
+  int selectedUpdateID = 0;
 
   final List<String> koloms = [
     'Dilakukan fumigasi* ',
@@ -135,7 +153,8 @@ class _ChecklistTruckState extends State<ChecklistUpdate> {
                               child: Text(nomor[index]));
                         }),
                         onChanged: (value) {
-                          selectedNopol = value!.split('-')[1];
+                          
+                          selectedNomor = value!.split('-')[1];
                         },
                       )
                     : nomor.isEmpty

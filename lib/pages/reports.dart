@@ -32,7 +32,8 @@ class _LogWidgetState extends ConsumerState<Reports> {
       setState(() {
         isSearching = true;
       });
-      searchData.clear();
+      searchData = [];
+
       for (var data in allData) {
         if (data.value.toLowerCase().contains(controller.text.toLowerCase())) {
           searchData.add(data);
@@ -71,6 +72,9 @@ class _LogWidgetState extends ConsumerState<Reports> {
                       borderRadius: BorderRadius.circular(8),
                       borderSide: BorderSide.none)),
             ),
+          ),
+          const SizedBox(
+            height: 8,
           ),
           Expanded(
               child: isSearching == false

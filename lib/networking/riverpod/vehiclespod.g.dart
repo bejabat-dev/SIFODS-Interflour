@@ -35,7 +35,7 @@ final getLogsProvider = AutoDisposeFutureProvider<List<LogModel>>.internal(
 
 typedef GetLogsRef = AutoDisposeFutureProviderRef<List<LogModel>>;
 String _$getContainerChecklistHash() =>
-    r'50e4b435a66c3bf236fbc2fecd9df9dc301f3995';
+    r'172fcca4ed66403e4b3f0284a94f28cce37dd32b';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -187,7 +187,7 @@ class _GetContainerChecklistProviderElement
 }
 
 String _$getVehicleChecklistHash() =>
-    r'f7893a8ef6753fc4278a8f06d96e276b1cec21c7';
+    r'1a2dbcc6f16c6a4b8e16c86c834418ef6dc9fb99';
 
 /// See also [getVehicleChecklist].
 @ProviderFor(getVehicleChecklist)

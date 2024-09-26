@@ -30,7 +30,11 @@ class _HomeState extends ConsumerState<Home> {
       'icon': 'assets/truck.png',
       'route': const InputProduct()
     },
-    {'name': 'Checklist', 'icon': 'assets/truck.png', 'route': InputChecklist()},
+    {
+      'name': 'Checklist',
+      'icon': 'assets/truck.png',
+      'route': InputChecklist()
+    },
     {
       'name': 'Corporate',
       'icon': 'assets/truck.png',
@@ -43,7 +47,6 @@ class _HomeState extends ConsumerState<Home> {
     },
   ];
 
-  
   @override
   void initState() {
     super.initState();
@@ -56,17 +59,17 @@ class _HomeState extends ConsumerState<Home> {
       body: Column(
         children: [
           const Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
             child: Material(
               elevation: 2,
               borderRadius: BorderRadius.all(Radius.circular(8)),
               color: Colors.white,
               child: Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(16.0),
                 child: Row(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(right: 8),
+                      padding: EdgeInsets.only(right: 12),
                       child: Icon(
                         Icons.place,
                         color: Color.fromARGB(255, 86, 86, 86),
@@ -80,7 +83,7 @@ class _HomeState extends ConsumerState<Home> {
             ),
           ),
           const Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.only(left: 8, bottom: 8),
             child: SizedBox(
                 width: double.infinity,
                 child: Text(
@@ -89,7 +92,7 @@ class _HomeState extends ConsumerState<Home> {
                 )),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 32, right: 32),
+            padding: const EdgeInsets.only(left: 40, right: 40),
             child: GridView.builder(
                 itemCount: menus.length,
                 shrinkWrap: true,
@@ -126,7 +129,7 @@ class _HomeState extends ConsumerState<Home> {
                 }),
           ),
           const Padding(
-            padding: EdgeInsets.fromLTRB(8, 16, 8, 8),
+            padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
             child: SizedBox(
                 width: double.infinity,
                 child: Text(
@@ -134,7 +137,7 @@ class _HomeState extends ConsumerState<Home> {
                   textAlign: TextAlign.start,
                 )),
           ),
-         const Expanded(child: LogVehicles())
+          const Expanded(child: LogVehicles())
         ],
       ),
     );

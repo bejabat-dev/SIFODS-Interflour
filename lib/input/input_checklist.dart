@@ -51,7 +51,7 @@ class InputChecklist extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 80, right: 80),
+            padding: const EdgeInsets.only(left: 100, right: 100),
             child: GridView.builder(
                 shrinkWrap: true,
                 itemCount: menus.length,
@@ -94,7 +94,7 @@ class InputChecklist extends StatelessWidget {
             width: double.infinity,
             child: Padding(
               padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
-              child: Text('Log'),
+              child: Text('Log activity'),
             ),
           ),
           const Expanded(child: LogVehicles())
