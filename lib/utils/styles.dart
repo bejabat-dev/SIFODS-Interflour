@@ -89,4 +89,11 @@ class Styles {
     );
     return t;
   }
+
+  Text mediumText(String text) {
+    return Text(
+      text,
+      style: const TextStyle(fontSize: 16),
+    );
+  }
 }

@@ -10,6 +10,27 @@ import 'package:sifods_interflour/utils/tools.dart';
 class LogVehicles extends ConsumerWidget {
   const LogVehicles({super.key});
 
+  String dataType(String type) {
+    var newType = '';
+    if (type == 'vehicle') {
+      newType = 'Added truck';
+    }
+    if (type == 'container') {
+      newType = 'Added container';
+    }
+    if (type == 'checklist_truck') {
+      newType = 'Added checklist truck';
+    }
+
+    if (type == 'checklist_container') {
+      newType = 'Added checklist container';
+    }
+    if (type == 'checklist_update') {
+      newType = 'Updated container';
+    }
+    return newType;
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final AsyncValue<List<LogModel>> logs = ref.watch(getLogsProvider);
@@ -29,8 +50,8 @@ class LogVehicles extends ConsumerWidget {
                 elevation: 1,
                 child: InkWell(
                   onTap: () {
-                    tools.Navigate(context, 
-                    LogDetails(id: data.type_id, type: data.type));
+                    tools.Navigate(
+                        context, LogDetails(id: data.type_id, type: data.type));
                   },
                   child: Padding(
                     padding:
@@ -40,7 +61,7 @@ class LogVehicles extends ConsumerWidget {
                       children: [
                         Row(
                           children: [
-                            Expanded(child: Text('Added ${data.type.replaceAll('_', ' ')}')),
+                            Expanded(child: Text(dataType(data.type))),
                             Text(Tools().formatDate(data.tanggal!)),
                           ],
                         ),
