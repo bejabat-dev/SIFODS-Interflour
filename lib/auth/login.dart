@@ -15,7 +15,7 @@ class Login extends ConsumerWidget {
 
   void login(BuildContext context, WidgetRef ref) {
     if (formKey.currentState?.validate() ?? false) {
-      final user = User(email: email.text, password: password.text);
+      final user = User(email: email.text, password: password.text, id: null, nama: '', jabatan: '', nomor_hp: '', photo: '');
       Networking().login(context, user, ref);
     }
   }

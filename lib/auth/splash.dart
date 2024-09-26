@@ -26,7 +26,7 @@ class _SplashState extends ConsumerState<Splash> {
       
     String? email = prefs.getString('email');
     String? password = prefs.getString('password');
-    User user = User(email: email!, password: password!);
+    User user = User(email: email!, password: password!, id: null, nama: '', jabatan: '', nomor_hp: '', photo: '');
       if (mounted) {
         Networking().login(context, user, ref);
       }

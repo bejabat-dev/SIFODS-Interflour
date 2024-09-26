@@ -32,7 +32,7 @@ class RegisterState extends ConsumerState<Register> {
           nama: nama.text,
           jabatan: selectedJabatan,
           nomor_hp: nomor_hp.text,
-          password: password.text);
+          password: password.text, id: null, photo: '');
       Networking().register(context, user, ref);
     }
   }
