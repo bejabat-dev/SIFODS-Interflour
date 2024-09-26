@@ -1,29 +1,19 @@
-class AddContainer {
-  final int id_user;
-  final String nomor;
-  final String nama;
-  final String seal;
 
-  AddContainer(
-      {required this.id_user,
-      required this.nomor,
-      required this.nama,
-      required this.seal});
 
-  factory AddContainer.fromMap(Map<String, dynamic> data) {
-    return AddContainer(
-        id_user: data['id_user'],
-        nomor: data['nomor'],
-        nama: data['nama'],
-        seal: data['seal']);
-  }
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id_user': id_user,
-      'nomor': nomor,
-      'nama': nama,
-      'seal': seal,
-    };
-  }
+part 'add_container.g.dart';
+part 'add_container.freezed.dart';
+
+@freezed
+class AddContainer with _$AddContainer {
+  const factory AddContainer({
+  required int id_user,
+  required String nomor,
+  required String nama,
+  required String seal,
+  }) = _AddContainer;
+
+  factory AddContainer.fromJson(Map<String, dynamic> json) =>
+      _$AddContainerFromJson(json);
 }

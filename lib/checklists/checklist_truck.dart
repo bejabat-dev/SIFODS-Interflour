@@ -56,7 +56,7 @@ class ChecklistTruckState extends ConsumerState<ChecklistTruck> {
       box5: booleans['box5'],
       box6: booleans['box6'],
       box7: booleans['box7'],
-      box8: booleans['box8'],
+      box8: booleans['box8'], status: 'new',
     );
   }
 

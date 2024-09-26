@@ -8,7 +8,7 @@ import 'package:sifods_interflour/riverpod/userpod.dart';
 import 'package:sifods_interflour/utils/helper.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 
-const baseUrl = 'http://192.168.1.6:3000/sifods';
+const baseUrl = 'http://127.0.0.1:3000/sifods';
 
 class Networking {
   final tools = Tools();

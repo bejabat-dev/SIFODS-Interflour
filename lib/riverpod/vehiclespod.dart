@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sifods_interflour/models/add_container.dart';
-import 'package:sifods_interflour/models/add_vehicle.dart';
+import 'package:sifods_interflour/models/add_truck.dart';
 import 'package:sifods_interflour/models/log_model.dart';
 import 'package:sifods_interflour/utils/helper.dart';
 import 'package:sifods_interflour/utils/networking.dart';
@@ -59,7 +59,7 @@ Future<AddContainer> getContainer(GetContainerRef ref, int id) async {
     debugPrint('START');
     final res = await dio.get('$baseUrl/detail/container', data: {'id': id});
     debugPrint('Response data: ${res.data}');
-    AddContainer containers = AddContainer.fromMap(res.data);
+    AddContainer containers = AddContainer.fromJson(res.data);
     return containers;
   } catch (e) {
     debugPrint('Error fetching vehicle logs: $e');

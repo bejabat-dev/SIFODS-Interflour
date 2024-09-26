@@ -20,7 +20,7 @@ final getSearchProvider = AutoDisposeFutureProvider<List<LogModel>>.internal(
 );
 
 typedef GetSearchRef = AutoDisposeFutureProviderRef<List<LogModel>>;
-String _$getLogsHash() => r'53f49cc5ef5bd57e80e1da4d8136dfb16525255d';
+String _$getLogsHash() => r'ad80eb571e8ed3dc8b2b737fafdbd24f87515731';
 
 /// See also [getLogs].
 @ProviderFor(getLogs)
@@ -182,7 +182,7 @@ class _GetTruckProviderElement
   int get id => (origin as GetTruckProvider).id;
 }
 
-String _$getContainerHash() => r'f662610eb9d1cf8ad12da079dfd4607d7b0c867a';
+String _$getContainerHash() => r'b17dc6fa9676d1cb695de0e620d3476a64ca9ab3';
 
 /// See also [getContainer].
 @ProviderFor(getContainer)

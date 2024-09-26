@@ -9,7 +9,7 @@
     },
     {
       "name": "_macros",
-      "rootUri": "file:///home/mendew/Files/Flutter/flutter/flutter/bin/cache/dart-sdk/pkg/_macros",
+      "rootUri": "file:///home/mendew/Files/Flutter/flutter/bin/cache/dart-sdk/pkg/_macros",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -207,7 +207,7 @@
     },
     {
       "name": "flutter",
-      "rootUri": "file:///home/mendew/Files/Flutter/flutter/flutter/packages/flutter",
+      "rootUri": "file:///home/mendew/Files/Flutter/flutter/packages/flutter",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
@@ -225,13 +225,13 @@
     },
     {
       "name": "flutter_test",
-      "rootUri": "file:///home/mendew/Files/Flutter/flutter/flutter/packages/flutter_test",
+      "rootUri": "file:///home/mendew/Files/Flutter/flutter/packages/flutter_test",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
     {
       "name": "flutter_web_plugins",
-      "rootUri": "file:///home/mendew/Files/Flutter/flutter/flutter/packages/flutter_web_plugins",
+      "rootUri": "file:///home/mendew/Files/Flutter/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -525,7 +525,7 @@
     },
     {
       "name": "sky_engine",
-      "rootUri": "file:///home/mendew/Files/Flutter/flutter/flutter/bin/cache/pkg/sky_engine",
+      "rootUri": "file:///home/mendew/Files/Flutter/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -633,7 +633,7 @@
     },
     {
       "name": "web",
-      "rootUri": "file:///home/mendew/.pub-cache/hosted/pub.dev/web-1.0.0",
+      "rootUri": "file:///home/mendew/.pub-cache/hosted/pub.dev/web-1.1.0",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -668,10 +668,10 @@
       "languageVersion": "3.4"
     }
   ],
-  "generated": "2024-09-21T14:36:43.898359Z",
+  "generated": "2024-09-25T06:28:36.750561Z",
   "generator": "pub",
   "generatorVersion": "3.5.3",
-  "flutterRoot": "file:///home/mendew/Files/Flutter/flutter/flutter",
+  "flutterRoot": "file:///home/mendew/Files/Flutter/flutter",
   "flutterVersion": "3.24.3",
   "pubCache": "file:///home/mendew/.pub-cache"
 }

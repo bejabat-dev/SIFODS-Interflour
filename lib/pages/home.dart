@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/auth/forgot.dart';
-import 'package:sifods_interflour/menus/checklist_page.dart';
-import 'package:sifods_interflour/menus/input_container.dart';
-import 'package:sifods_interflour/menus/input_product.dart';
-import 'package:sifods_interflour/menus/input_truck.dart';
+import 'package:sifods_interflour/input/input_checklist.dart';
+import 'package:sifods_interflour/input/input_container.dart';
+import 'package:sifods_interflour/input/input_product.dart';
+import 'package:sifods_interflour/input/input_truck.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 import 'package:sifods_interflour/widgets/log_vehicles.dart';
 

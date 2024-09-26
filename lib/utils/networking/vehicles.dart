@@ -46,7 +46,7 @@ class Vehicles {
   Future<void> addContainer(BuildContext context, AddContainer data) async {
     utils.showLoadingDialog(context, 'Saving data');
     try {
-      final res = await dio.post('$baseUrl/add_container', data: data.toMap());
+      final res = await dio.post('$baseUrl/add_container', data: data.toJson());
       if (res.statusCode == 201) {
         if (context.mounted) {
           Navigator.pop(context);
@@ -86,7 +86,7 @@ class Vehicles {
     utils.showLoadingDialog(context, 'Saving data');
     try {
       final res =
-          await dio.post('$baseUrl/checklist/truck', data: model.toMap());
+          await dio.post('$baseUrl/checklist/truck', data: model.toJson());
       if (res.statusCode == 201) {
         if (context.mounted) {
           Navigator.pop(context);
