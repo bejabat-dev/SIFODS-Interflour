@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sifods_interflour/utils/networking/vehicles.dart';
+import 'package:sifods_interflour/networking/vehicles.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 
 class ChecklistUpdate extends StatefulWidget {

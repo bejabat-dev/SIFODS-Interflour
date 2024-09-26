@@ -5,11 +5,26 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sifods_interflour/auth/register.dart';
 import 'package:sifods_interflour/models/add_container.dart';
 import 'package:sifods_interflour/models/add_truck.dart';
+import 'package:sifods_interflour/models/log_model.dart';
 import 'package:sifods_interflour/models/model_vehicle.dart';
+import 'package:sifods_interflour/networking/riverpod/vehiclespod.dart';
+import 'package:sifods_interflour/utils/helper.dart';
 import 'package:sifods_interflour/utils/networking.dart';
 
 class Vehicles {
   final dio = Dio();
+
+  Future<void> addLog(WidgetRef ref, LogModel data) async {
+    try {
+      final res = await dio.post("$baseUrl/logs", data: data.toJson());
+      debugPrint(data.toJson().toString());
+      if (res.statusCode == 201) {
+        ref.refresh(getLogsProvider);
+      }
+    } on Exception catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 
   Future<SharedPreferences> getPrefs() async {
     final prefs = await SharedPreferences.getInstance();
@@ -43,11 +58,19 @@ class Vehicles {
     return res.data;
   }
 
-  Future<void> addContainer(BuildContext context, AddContainer data) async {
+  Future<void> addContainer(
+      BuildContext context, AddContainer data, WidgetRef ref) async {
     utils.showLoadingDialog(context, 'Saving data');
     try {
       final res = await dio.post('$baseUrl/add_container', data: data.toJson());
       if (res.statusCode == 201) {
+        var logData = LogModel(
+            id_user: Helper.user.id!,
+            type: 'container',
+            type_id: 9,
+            value: data.nomor,
+            tanggal: null);
+        await addLog(ref, logData);
         if (context.mounted) {
           Navigator.pop(context);
           Navigator.pop(context);
@@ -67,8 +90,14 @@ class Vehicles {
     try {
       final res = await dio.post('$baseUrl/add_truck', data: data.toJson());
       if (res.statusCode == 201) {
+        var logData = LogModel(
+            id_user: Helper.user.id!,
+            type: 'vehicle',
+            type_id: 9,
+            value: data.nopol,
+            tanggal: null);
+        await addLog(ref, logData);
         if (context.mounted) {
-          //ref.refresh(getlogs);
           Navigator.pop(context);
           Navigator.pop(context);
         }

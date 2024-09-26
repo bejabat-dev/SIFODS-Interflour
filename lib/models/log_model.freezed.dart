@@ -24,7 +24,7 @@ mixin _$LogModel {
   String get type => throw _privateConstructorUsedError;
   int get type_id => throw _privateConstructorUsedError;
   String get value => throw _privateConstructorUsedError;
-  String get tanggal => throw _privateConstructorUsedError;
+  String? get tanggal => throw _privateConstructorUsedError;
 
   /// Serializes this LogModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ abstract class $LogModelCopyWith<$Res> {
       _$LogModelCopyWithImpl<$Res, LogModel>;
   @useResult
   $Res call(
-      {int id_user, String type, int type_id, String value, String tanggal});
+      {int id_user, String type, int type_id, String value, String? tanggal});
 }
 
 /// @nodoc
@@ -64,7 +64,7 @@ class _$LogModelCopyWithImpl<$Res, $Val extends LogModel>
     Object? type = null,
     Object? type_id = null,
     Object? value = null,
-    Object? tanggal = null,
+    Object? tanggal = freezed,
   }) {
     return _then(_value.copyWith(
       id_user: null == id_user
@@ -83,10 +83,10 @@ class _$LogModelCopyWithImpl<$Res, $Val extends LogModel>
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
-      tanggal: null == tanggal
+      tanggal: freezed == tanggal
           ? _value.tanggal
           : tanggal // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -100,7 +100,7 @@ abstract class _$$LogModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id_user, String type, int type_id, String value, String tanggal});
+      {int id_user, String type, int type_id, String value, String? tanggal});
 }
 
 /// @nodoc
@@ -120,7 +120,7 @@ class __$$LogModelImplCopyWithImpl<$Res>
     Object? type = null,
     Object? type_id = null,
     Object? value = null,
-    Object? tanggal = null,
+    Object? tanggal = freezed,
   }) {
     return _then(_$LogModelImpl(
       id_user: null == id_user
@@ -139,10 +139,10 @@ class __$$LogModelImplCopyWithImpl<$Res>
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
-      tanggal: null == tanggal
+      tanggal: freezed == tanggal
           ? _value.tanggal
           : tanggal // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -169,7 +169,7 @@ class _$LogModelImpl implements _LogModel {
   @override
   final String value;
   @override
-  final String tanggal;
+  final String? tanggal;
 
   @override
   String toString() {
@@ -215,7 +215,7 @@ abstract class _LogModel implements LogModel {
       required final String type,
       required final int type_id,
       required final String value,
-      required final String tanggal}) = _$LogModelImpl;
+      required final String? tanggal}) = _$LogModelImpl;
 
   factory _LogModel.fromJson(Map<String, dynamic> json) =
       _$LogModelImpl.fromJson;
@@ -229,7 +229,7 @@ abstract class _LogModel implements LogModel {
   @override
   String get value;
   @override
-  String get tanggal;
+  String? get tanggal;
 
   /// Create a copy of LogModel
   /// with the given fields replaced by the non-null parameter values.

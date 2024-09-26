@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/models/model_vehicle.dart';
 import 'package:sifods_interflour/utils/helper.dart';
-import 'package:sifods_interflour/utils/networking/vehicles.dart';
+import 'package:sifods_interflour/networking/vehicles.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 
 class ChecklistTruck extends ConsumerStatefulWidget {
@@ -46,7 +46,7 @@ class ChecklistTruckState extends ConsumerState<ChecklistTruck> {
 
   ModelVehicle getModelTruck() {
     return ModelVehicle(
-      idUser: Helper.user.id!,
+      id_user: Helper.user.id!,
       nopol: selectedNopol,
       box0: booleans['box0'],
       box1: booleans['box1'],

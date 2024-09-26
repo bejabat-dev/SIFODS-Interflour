@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/models/add_container.dart';
 import 'package:sifods_interflour/utils/helper.dart';
-import 'package:sifods_interflour/utils/networking/vehicles.dart';
+import 'package:sifods_interflour/networking/vehicles.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 
-class InputContainer extends StatefulWidget {
+class InputContainer extends ConsumerStatefulWidget {
   const InputContainer({super.key});
 
   @override
-  State<InputContainer> createState() => _InputContainerState();
+  ConsumerState<InputContainer> createState() => _InputContainerState();
 }
 
-class _InputContainerState extends State<InputContainer> {
+class _InputContainerState extends ConsumerState<InputContainer> {
   final utils = Tools();
   final formKey = GlobalKey<FormState>();
 
@@ -29,7 +30,7 @@ class _InputContainerState extends State<InputContainer> {
   }
 
   void save() async {
-    Vehicles().addContainer(context, getContainer());
+    Vehicles().addContainer(context, getContainer(),ref);
   }
 
   @override

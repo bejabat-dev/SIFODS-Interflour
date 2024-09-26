@@ -6,8 +6,8 @@ import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 import 'package:sifods_interflour/widgets/log_vehicles.dart';
 
-class ChecklistPage extends StatelessWidget {
-  ChecklistPage({super.key});
+class InputChecklist extends StatelessWidget {
+  InputChecklist({super.key});
 
   final List<Map<String, dynamic>> menus = [
     {

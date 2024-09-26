@@ -6,7 +6,7 @@ part 'model_vehicle.freezed.dart';
 @freezed
 class ModelVehicle with _$ModelVehicle {
   const factory ModelVehicle({
-    required int idUser,
+    required int id_user,
     required String? nopol,
     required bool? box0,
     required bool? box1,

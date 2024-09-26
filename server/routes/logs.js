@@ -10,10 +10,21 @@ router.get("/logs", (req, res) => {
       console.error(err);
       return res.status(500).json({ message: "Database failed" });
     }
-    res.status(201).json( result );
+    res.status(201).json(result);
   });
 });
 
-
+router.post("/logs", (req, res) => {
+  const { id_user, type, type_id, tanggal, value } = req.body;
+  const query =
+    "INSERT INTO vehicles (id_user,type,type_id,tanggal,value) VALUES (?,?,?,?,?)";
+  db.query(query, [id_user, type, type_id, tanggal, value], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json("Database error");
+    }
+    res.status(201).json(result);
+  });
+});
 
 module.exports = router;

@@ -12,7 +12,7 @@ _$LogModelImpl _$$LogModelImplFromJson(Map<String, dynamic> json) =>
       type: json['type'] as String,
       type_id: (json['type_id'] as num).toInt(),
       value: json['value'] as String,
-      tanggal: json['tanggal'] as String,
+      tanggal: json['tanggal'] as String?,
     );
 
 Map<String, dynamic> _$$LogModelImplToJson(_$LogModelImpl instance) =>

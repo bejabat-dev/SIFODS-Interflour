@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/auth/forgot.dart';
 import 'package:sifods_interflour/input/input_checklist.dart';
+import 'package:sifods_interflour/input/input_contact.dart';
 import 'package:sifods_interflour/input/input_container.dart';
+import 'package:sifods_interflour/input/input_corporate.dart';
 import 'package:sifods_interflour/input/input_product.dart';
 import 'package:sifods_interflour/input/input_truck.dart';
 import 'package:sifods_interflour/utils/tools.dart';
@@ -28,16 +30,16 @@ class _HomeState extends ConsumerState<Home> {
       'icon': 'assets/truck.png',
       'route': const InputProduct()
     },
-    {'name': 'Checklist', 'icon': 'assets/truck.png', 'route': ChecklistPage()},
+    {'name': 'Checklist', 'icon': 'assets/truck.png', 'route': InputChecklist()},
     {
       'name': 'Corporate',
       'icon': 'assets/truck.png',
-      'route': const InputTruck()
+      'route': const InputCorporate()
     },
     {
       'name': 'Contact',
       'icon': 'assets/truck.png',
-      'route': const InputTruck()
+      'route': const InputContact()
     },
   ];
 
@@ -87,13 +89,13 @@ class _HomeState extends ConsumerState<Home> {
                 )),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+            padding: const EdgeInsets.only(left: 32, right: 32),
             child: GridView.builder(
                 itemCount: menus.length,
                 shrinkWrap: true,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisSpacing: 8,
-                    childAspectRatio: 0.85,
+                    childAspectRatio: 0.9,
                     mainAxisSpacing: 8,
                     crossAxisCount: 4),
                 itemBuilder: (context, i) {

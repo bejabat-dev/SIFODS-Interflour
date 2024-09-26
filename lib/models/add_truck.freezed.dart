@@ -22,15 +22,15 @@ AddTruck _$AddTruckFromJson(Map<String, dynamic> json) {
 mixin _$AddTruck {
   int? get id => throw _privateConstructorUsedError;
   int get id_user => throw _privateConstructorUsedError;
-  String? get nopol => throw _privateConstructorUsedError;
-  String? get nama => throw _privateConstructorUsedError;
-  String? get ekspedisi => throw _privateConstructorUsedError;
-  String? get supir => throw _privateConstructorUsedError;
-  String? get jenis => throw _privateConstructorUsedError;
-  String? get telp => throw _privateConstructorUsedError;
-  String? get volume => throw _privateConstructorUsedError;
-  int? get jumlah => throw _privateConstructorUsedError;
-  String? get status => throw _privateConstructorUsedError;
+  String get nopol => throw _privateConstructorUsedError;
+  String get nama => throw _privateConstructorUsedError;
+  String get ekspedisi => throw _privateConstructorUsedError;
+  String get supir => throw _privateConstructorUsedError;
+  String get jenis => throw _privateConstructorUsedError;
+  String get telp => throw _privateConstructorUsedError;
+  String get volume => throw _privateConstructorUsedError;
+  int get jumlah => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   DateTime? get created => throw _privateConstructorUsedError;
 
   /// Serializes this AddTruck to a JSON map.
@@ -51,15 +51,15 @@ abstract class $AddTruckCopyWith<$Res> {
   $Res call(
       {int? id,
       int id_user,
-      String? nopol,
-      String? nama,
-      String? ekspedisi,
-      String? supir,
-      String? jenis,
-      String? telp,
-      String? volume,
-      int? jumlah,
-      String? status,
+      String nopol,
+      String nama,
+      String ekspedisi,
+      String supir,
+      String jenis,
+      String telp,
+      String volume,
+      int jumlah,
+      String status,
       DateTime? created});
 }
 
@@ -80,15 +80,15 @@ class _$AddTruckCopyWithImpl<$Res, $Val extends AddTruck>
   $Res call({
     Object? id = freezed,
     Object? id_user = null,
-    Object? nopol = freezed,
-    Object? nama = freezed,
-    Object? ekspedisi = freezed,
-    Object? supir = freezed,
-    Object? jenis = freezed,
-    Object? telp = freezed,
-    Object? volume = freezed,
-    Object? jumlah = freezed,
-    Object? status = freezed,
+    Object? nopol = null,
+    Object? nama = null,
+    Object? ekspedisi = null,
+    Object? supir = null,
+    Object? jenis = null,
+    Object? telp = null,
+    Object? volume = null,
+    Object? jumlah = null,
+    Object? status = null,
     Object? created = freezed,
   }) {
     return _then(_value.copyWith(
@@ -100,42 +100,42 @@ class _$AddTruckCopyWithImpl<$Res, $Val extends AddTruck>
           ? _value.id_user
           : id_user // ignore: cast_nullable_to_non_nullable
               as int,
-      nopol: freezed == nopol
+      nopol: null == nopol
           ? _value.nopol
           : nopol // ignore: cast_nullable_to_non_nullable
-              as String?,
-      nama: freezed == nama
+              as String,
+      nama: null == nama
           ? _value.nama
           : nama // ignore: cast_nullable_to_non_nullable
-              as String?,
-      ekspedisi: freezed == ekspedisi
+              as String,
+      ekspedisi: null == ekspedisi
           ? _value.ekspedisi
           : ekspedisi // ignore: cast_nullable_to_non_nullable
-              as String?,
-      supir: freezed == supir
+              as String,
+      supir: null == supir
           ? _value.supir
           : supir // ignore: cast_nullable_to_non_nullable
-              as String?,
-      jenis: freezed == jenis
+              as String,
+      jenis: null == jenis
           ? _value.jenis
           : jenis // ignore: cast_nullable_to_non_nullable
-              as String?,
-      telp: freezed == telp
+              as String,
+      telp: null == telp
           ? _value.telp
           : telp // ignore: cast_nullable_to_non_nullable
-              as String?,
-      volume: freezed == volume
+              as String,
+      volume: null == volume
           ? _value.volume
           : volume // ignore: cast_nullable_to_non_nullable
-              as String?,
-      jumlah: freezed == jumlah
+              as String,
+      jumlah: null == jumlah
           ? _value.jumlah
           : jumlah // ignore: cast_nullable_to_non_nullable
-              as int?,
-      status: freezed == status
+              as int,
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       created: freezed == created
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
@@ -155,15 +155,15 @@ abstract class _$$AddTruckImplCopyWith<$Res>
   $Res call(
       {int? id,
       int id_user,
-      String? nopol,
-      String? nama,
-      String? ekspedisi,
-      String? supir,
-      String? jenis,
-      String? telp,
-      String? volume,
-      int? jumlah,
-      String? status,
+      String nopol,
+      String nama,
+      String ekspedisi,
+      String supir,
+      String jenis,
+      String telp,
+      String volume,
+      int jumlah,
+      String status,
       DateTime? created});
 }
 
@@ -182,15 +182,15 @@ class __$$AddTruckImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? id_user = null,
-    Object? nopol = freezed,
-    Object? nama = freezed,
-    Object? ekspedisi = freezed,
-    Object? supir = freezed,
-    Object? jenis = freezed,
-    Object? telp = freezed,
-    Object? volume = freezed,
-    Object? jumlah = freezed,
-    Object? status = freezed,
+    Object? nopol = null,
+    Object? nama = null,
+    Object? ekspedisi = null,
+    Object? supir = null,
+    Object? jenis = null,
+    Object? telp = null,
+    Object? volume = null,
+    Object? jumlah = null,
+    Object? status = null,
     Object? created = freezed,
   }) {
     return _then(_$AddTruckImpl(
@@ -202,42 +202,42 @@ class __$$AddTruckImplCopyWithImpl<$Res>
           ? _value.id_user
           : id_user // ignore: cast_nullable_to_non_nullable
               as int,
-      nopol: freezed == nopol
+      nopol: null == nopol
           ? _value.nopol
           : nopol // ignore: cast_nullable_to_non_nullable
-              as String?,
-      nama: freezed == nama
+              as String,
+      nama: null == nama
           ? _value.nama
           : nama // ignore: cast_nullable_to_non_nullable
-              as String?,
-      ekspedisi: freezed == ekspedisi
+              as String,
+      ekspedisi: null == ekspedisi
           ? _value.ekspedisi
           : ekspedisi // ignore: cast_nullable_to_non_nullable
-              as String?,
-      supir: freezed == supir
+              as String,
+      supir: null == supir
           ? _value.supir
           : supir // ignore: cast_nullable_to_non_nullable
-              as String?,
-      jenis: freezed == jenis
+              as String,
+      jenis: null == jenis
           ? _value.jenis
           : jenis // ignore: cast_nullable_to_non_nullable
-              as String?,
-      telp: freezed == telp
+              as String,
+      telp: null == telp
           ? _value.telp
           : telp // ignore: cast_nullable_to_non_nullable
-              as String?,
-      volume: freezed == volume
+              as String,
+      volume: null == volume
           ? _value.volume
           : volume // ignore: cast_nullable_to_non_nullable
-              as String?,
-      jumlah: freezed == jumlah
+              as String,
+      jumlah: null == jumlah
           ? _value.jumlah
           : jumlah // ignore: cast_nullable_to_non_nullable
-              as int?,
-      status: freezed == status
+              as int,
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       created: freezed == created
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
@@ -271,23 +271,23 @@ class _$AddTruckImpl implements _AddTruck {
   @override
   final int id_user;
   @override
-  final String? nopol;
+  final String nopol;
   @override
-  final String? nama;
+  final String nama;
   @override
-  final String? ekspedisi;
+  final String ekspedisi;
   @override
-  final String? supir;
+  final String supir;
   @override
-  final String? jenis;
+  final String jenis;
   @override
-  final String? telp;
+  final String telp;
   @override
-  final String? volume;
+  final String volume;
   @override
-  final int? jumlah;
+  final int jumlah;
   @override
-  final String? status;
+  final String status;
   @override
   final DateTime? created;
 
@@ -341,15 +341,15 @@ abstract class _AddTruck implements AddTruck {
   const factory _AddTruck(
       {required final int? id,
       required final int id_user,
-      required final String? nopol,
-      required final String? nama,
-      required final String? ekspedisi,
-      required final String? supir,
-      required final String? jenis,
-      required final String? telp,
-      required final String? volume,
-      required final int? jumlah,
-      required final String? status,
+      required final String nopol,
+      required final String nama,
+      required final String ekspedisi,
+      required final String supir,
+      required final String jenis,
+      required final String telp,
+      required final String volume,
+      required final int jumlah,
+      required final String status,
       required final DateTime? created}) = _$AddTruckImpl;
 
   factory _AddTruck.fromJson(Map<String, dynamic> json) =
@@ -360,23 +360,23 @@ abstract class _AddTruck implements AddTruck {
   @override
   int get id_user;
   @override
-  String? get nopol;
+  String get nopol;
   @override
-  String? get nama;
+  String get nama;
   @override
-  String? get ekspedisi;
+  String get ekspedisi;
   @override
-  String? get supir;
+  String get supir;
   @override
-  String? get jenis;
+  String get jenis;
   @override
-  String? get telp;
+  String get telp;
   @override
-  String? get volume;
+  String get volume;
   @override
-  int? get jumlah;
+  int get jumlah;
   @override
-  String? get status;
+  String get status;
   @override
   DateTime? get created;
 

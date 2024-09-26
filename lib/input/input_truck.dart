@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/models/add_truck.dart';
-import 'package:sifods_interflour/riverpod/userpod.dart';
-import 'package:sifods_interflour/utils/networking/vehicles.dart';
+import 'package:sifods_interflour/networking/riverpod/userpod.dart';
+import 'package:sifods_interflour/networking/vehicles.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 
@@ -43,7 +43,7 @@ class InputTruckState extends ConsumerState<InputTruck> {
         nama: namaKendaraan.text,
         ekspedisi: ekspedisi.text,
         supir: namaSupir.text,
-        jenis: jenisKendaraan!,
+        jenis: jenisKendaraan,
         telp: noTelp.text,
         volume: volumeMuatan.text,
         jumlah: int.parse(jumlahKendaraan.text),
@@ -52,7 +52,7 @@ class InputTruckState extends ConsumerState<InputTruck> {
         created: null);
   }
 
-  String? jenisKendaraan;
+  String jenisKendaraan = "Truk CDD";
 
   void save() async {
     Vehicles().addTruck(context, getTruck(), ref);

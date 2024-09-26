@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/models/log_model.dart';
 import 'package:sifods_interflour/pages/log_details.dart';
-import 'package:sifods_interflour/riverpod/vehiclespod.dart';
+import 'package:sifods_interflour/networking/riverpod/vehiclespod.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 
 class LogSearch extends ConsumerWidget {
@@ -45,7 +45,7 @@ class LogSearch extends ConsumerWidget {
                         Row(
                           children: [
                             Expanded(child: Text('Added ${data.type}')),
-                            Text(Tools().formatDate(data.tanggal)),
+                            Text(Tools().formatDate(data.tanggal!)),
                           ],
                         ),
                         Text(data.value)

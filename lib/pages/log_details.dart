@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/auth/forgot.dart';
 import 'package:sifods_interflour/models/add_container.dart';
 import 'package:sifods_interflour/models/add_truck.dart';
-import 'package:sifods_interflour/riverpod/vehiclespod.dart';
+import 'package:sifods_interflour/networking/riverpod/vehiclespod.dart';
 
 class TruckDetails extends ConsumerWidget {
   const TruckDetails({super.key, required this.id});

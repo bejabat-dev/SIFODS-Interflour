@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/auth/login.dart';
 import 'package:sifods_interflour/pages/edit_profile.dart';
-import 'package:sifods_interflour/riverpod/userpod.dart';
+import 'package:sifods_interflour/networking/riverpod/userpod.dart';
 
 class Profile extends ConsumerWidget {
   const Profile({super.key});

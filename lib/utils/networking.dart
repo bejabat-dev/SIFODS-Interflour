@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sifods_interflour/models/user.dart';
 import 'package:sifods_interflour/pages/dashboard.dart';
-import 'package:sifods_interflour/riverpod/userpod.dart';
+import 'package:sifods_interflour/networking/riverpod/userpod.dart';
 import 'package:sifods_interflour/utils/helper.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 

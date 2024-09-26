@@ -10,7 +10,7 @@ class LogModel with _$LogModel {
       required String type,
       required int type_id,
       required String value,
-      required String tanggal}) = _LogModel;
+      required String? tanggal}) = _LogModel;
 
   factory LogModel.fromJson(Map<String, dynamic> json) =>
       _$LogModelFromJson(json);

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/auth/register.dart';
 import 'package:sifods_interflour/utils/helper.dart';
-import 'package:sifods_interflour/utils/networking/vehicles.dart';
+import 'package:sifods_interflour/networking/vehicles.dart';
 import 'package:sifods_interflour/utils/styles.dart';
 
 class ChecklistContainer extends ConsumerStatefulWidget {
@@ -103,7 +103,7 @@ class _ChecklistContainerState extends ConsumerState<ChecklistContainer> {
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+              child: Column(
                 children: [
                   Row(
                     children: [
@@ -141,13 +141,14 @@ class _ChecklistContainerState extends ConsumerState<ChecklistContainer> {
                   const SizedBox(
                     height: 8,
                   ),
-                  const Text('Nomor container:'),
+                  const SizedBox(
+                      width: double.infinity, child: Text('Nomor container:')),
                   const SizedBox(
                     height: 8,
                   ),
                   container.isNotEmpty
                       ? DropdownButtonFormField<String>(
-                        value: container[0],
+                          value: container[0],
                           iconEnabledColor: Colors.white,
                           selectedItemBuilder: (context) {
                             return container.map<Widget>((String item) {
