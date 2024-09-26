@@ -15,10 +15,10 @@ router.get("/logs", (req, res) => {
 });
 
 router.post("/logs", (req, res) => {
-  const { id_user, type, type_id, tanggal, value } = req.body;
+  const { id_user, type, type_id, value } = req.body;
   const query =
-    "INSERT INTO vehicles (id_user,type,type_id,tanggal,value) VALUES (?,?,?,?,?)";
-  db.query(query, [id_user, type, type_id, tanggal, value], (err, result) => {
+    "INSERT INTO logs (id_user,type,type_id,value) VALUES (?,?,?,?)";
+  db.query(query, [id_user, type, type_id, value], (err, result) => {
     if (err) {
       console.error(err);
       return res.status(500).json("Database error");

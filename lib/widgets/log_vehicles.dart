@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sifods_interflour/auth/splash.dart';
 import 'package:sifods_interflour/models/log_model.dart';
-import 'package:sifods_interflour/pages/log_details.dart';
+import 'package:sifods_interflour/log/log_details.dart';
 import 'package:sifods_interflour/networking/riverpod/vehiclespod.dart';
 import 'package:sifods_interflour/utils/tools.dart';
 
@@ -28,13 +29,8 @@ class LogVehicles extends ConsumerWidget {
                 elevation: 1,
                 child: InkWell(
                   onTap: () {
-                    if (data.type == 'vehicle') {
-                      Tools().Navigate(context, TruckDetails(id: data.type_id));
-                    }
-                    if (data.type == 'container') {
-                      Tools().Navigate(
-                          context, ContainerDetails(id: data.type_id));
-                    }
+                    tools.Navigate(context, 
+                    LogDetails(id: data.type_id, type: data.type));
                   },
                   child: Padding(
                     padding:
