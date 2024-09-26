@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/auth/register.dart';
+import 'package:sifods_interflour/auth/splash.dart';
 
 class LogChecklistContainer extends ConsumerWidget {
   LogChecklistContainer({super.key, required this.id});
@@ -37,7 +38,7 @@ class LogChecklistContainer extends ConsumerWidget {
           children: [
             const IntrinsicHeight(
                 child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              padding: EdgeInsets.fromLTRB(16, 8, 16, 0),
               child: SizedBox(
                 width: double.infinity,
                 child: Column(
@@ -106,7 +107,9 @@ class LogChecklistContainer extends ConsumerWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          tools.showMessage(context, 'PDF saved');
+        },
         child: const Icon(Icons.print),
       ),
     );
