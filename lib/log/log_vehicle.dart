@@ -13,7 +13,13 @@ class LogVehicle extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final AsyncValue<AddTruck> data = ref.watch(getTruckProvider(id));
     return Scaffold(
-      appBar: styles.customAppBar(context, 'Vehicle detail'),
+      appBar: data.when(data: (value) {
+        return styles.customAppBar(context, value.nopol);
+      }, error: (e, s) {
+        return styles.customAppBar(context, 'Error');
+      }, loading: () {
+        return styles.customAppBar(context, 'Loading');
+      }),
       body: data.when(data: (value) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
