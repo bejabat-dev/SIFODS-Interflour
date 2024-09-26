@@ -4,6 +4,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sifods_interflour/models/add_container.dart';
 import 'package:sifods_interflour/models/add_truck.dart';
 import 'package:sifods_interflour/models/log_model.dart';
+import 'package:sifods_interflour/models/model_container.dart';
+import 'package:sifods_interflour/models/model_vehicle.dart';
 import 'package:sifods_interflour/utils/helper.dart';
 import 'package:sifods_interflour/utils/networking.dart';
 
@@ -32,6 +34,36 @@ Future<List<LogModel>> getLogs(GetLogsRef ref) async {
         data.map((truck) => LogModel.fromJson(truck)).toList();
     debugPrint('Trucks parsed: ${trucks.length}');
     allData = trucks;
+    return trucks;
+  } catch (e) {
+    debugPrint('Error fetching vehicle logs: $e');
+    throw Exception('Failed to fetch vehicle logs: $e');
+  }
+}
+
+@riverpod
+Future<ModelContainer> getContainerChecklist(
+    GetContainerChecklistRef ref, int id) async {
+  try {
+    debugPrint('START');
+    final res = await dio.get('$baseUrl/checklist/container', data: {'id': id});
+    debugPrint('Response data: ${res.data}');
+    ModelContainer trucks = ModelContainer.fromJson(res.data);
+    return trucks;
+  } catch (e) {
+    debugPrint('Error fetching vehicle logs: $e');
+    throw Exception('Failed to fetch vehicle logs: $e');
+  }
+}
+
+@riverpod
+Future<ModelVehicle> getVehicleChecklist(
+    GetVehicleChecklistRef ref, int id) async {
+  try {
+    debugPrint('START');
+    final res = await dio.get('$baseUrl/checklist/vehicle', data: {'id': id});
+    debugPrint('Response data: ${res.data}');
+    ModelVehicle trucks = ModelVehicle.fromJson(res.data);
     return trucks;
   } catch (e) {
     debugPrint('Error fetching vehicle logs: $e');

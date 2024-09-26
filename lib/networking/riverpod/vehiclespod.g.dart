@@ -34,7 +34,8 @@ final getLogsProvider = AutoDisposeFutureProvider<List<LogModel>>.internal(
 );
 
 typedef GetLogsRef = AutoDisposeFutureProviderRef<List<LogModel>>;
-String _$getTruckHash() => r'260dce5a604d6132a3495bb624cc2afb3821f8f3';
+String _$getContainerChecklistHash() =>
+    r'50e4b435a66c3bf236fbc2fecd9df9dc301f3995';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -56,6 +57,267 @@ class _SystemHash {
     return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
   }
 }
+
+/// See also [getContainerChecklist].
+@ProviderFor(getContainerChecklist)
+const getContainerChecklistProvider = GetContainerChecklistFamily();
+
+/// See also [getContainerChecklist].
+class GetContainerChecklistFamily extends Family<AsyncValue<ModelContainer>> {
+  /// See also [getContainerChecklist].
+  const GetContainerChecklistFamily();
+
+  /// See also [getContainerChecklist].
+  GetContainerChecklistProvider call(
+    int id,
+  ) {
+    return GetContainerChecklistProvider(
+      id,
+    );
+  }
+
+  @override
+  GetContainerChecklistProvider getProviderOverride(
+    covariant GetContainerChecklistProvider provider,
+  ) {
+    return call(
+      provider.id,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'getContainerChecklistProvider';
+}
+
+/// See also [getContainerChecklist].
+class GetContainerChecklistProvider
+    extends AutoDisposeFutureProvider<ModelContainer> {
+  /// See also [getContainerChecklist].
+  GetContainerChecklistProvider(
+    int id,
+  ) : this._internal(
+          (ref) => getContainerChecklist(
+            ref as GetContainerChecklistRef,
+            id,
+          ),
+          from: getContainerChecklistProvider,
+          name: r'getContainerChecklistProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$getContainerChecklistHash,
+          dependencies: GetContainerChecklistFamily._dependencies,
+          allTransitiveDependencies:
+              GetContainerChecklistFamily._allTransitiveDependencies,
+          id: id,
+        );
+
+  GetContainerChecklistProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
+  final int id;
+
+  @override
+  Override overrideWith(
+    FutureOr<ModelContainer> Function(GetContainerChecklistRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: GetContainerChecklistProvider._internal(
+        (ref) => create(ref as GetContainerChecklistRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<ModelContainer> createElement() {
+    return _GetContainerChecklistProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is GetContainerChecklistProvider && other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin GetContainerChecklistRef on AutoDisposeFutureProviderRef<ModelContainer> {
+  /// The parameter `id` of this provider.
+  int get id;
+}
+
+class _GetContainerChecklistProviderElement
+    extends AutoDisposeFutureProviderElement<ModelContainer>
+    with GetContainerChecklistRef {
+  _GetContainerChecklistProviderElement(super.provider);
+
+  @override
+  int get id => (origin as GetContainerChecklistProvider).id;
+}
+
+String _$getVehicleChecklistHash() =>
+    r'f7893a8ef6753fc4278a8f06d96e276b1cec21c7';
+
+/// See also [getVehicleChecklist].
+@ProviderFor(getVehicleChecklist)
+const getVehicleChecklistProvider = GetVehicleChecklistFamily();
+
+/// See also [getVehicleChecklist].
+class GetVehicleChecklistFamily extends Family<AsyncValue<ModelVehicle>> {
+  /// See also [getVehicleChecklist].
+  const GetVehicleChecklistFamily();
+
+  /// See also [getVehicleChecklist].
+  GetVehicleChecklistProvider call(
+    int id,
+  ) {
+    return GetVehicleChecklistProvider(
+      id,
+    );
+  }
+
+  @override
+  GetVehicleChecklistProvider getProviderOverride(
+    covariant GetVehicleChecklistProvider provider,
+  ) {
+    return call(
+      provider.id,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'getVehicleChecklistProvider';
+}
+
+/// See also [getVehicleChecklist].
+class GetVehicleChecklistProvider
+    extends AutoDisposeFutureProvider<ModelVehicle> {
+  /// See also [getVehicleChecklist].
+  GetVehicleChecklistProvider(
+    int id,
+  ) : this._internal(
+          (ref) => getVehicleChecklist(
+            ref as GetVehicleChecklistRef,
+            id,
+          ),
+          from: getVehicleChecklistProvider,
+          name: r'getVehicleChecklistProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$getVehicleChecklistHash,
+          dependencies: GetVehicleChecklistFamily._dependencies,
+          allTransitiveDependencies:
+              GetVehicleChecklistFamily._allTransitiveDependencies,
+          id: id,
+        );
+
+  GetVehicleChecklistProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
+  final int id;
+
+  @override
+  Override overrideWith(
+    FutureOr<ModelVehicle> Function(GetVehicleChecklistRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: GetVehicleChecklistProvider._internal(
+        (ref) => create(ref as GetVehicleChecklistRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<ModelVehicle> createElement() {
+    return _GetVehicleChecklistProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is GetVehicleChecklistProvider && other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin GetVehicleChecklistRef on AutoDisposeFutureProviderRef<ModelVehicle> {
+  /// The parameter `id` of this provider.
+  int get id;
+}
+
+class _GetVehicleChecklistProviderElement
+    extends AutoDisposeFutureProviderElement<ModelVehicle>
+    with GetVehicleChecklistRef {
+  _GetVehicleChecklistProviderElement(super.provider);
+
+  @override
+  int get id => (origin as GetVehicleChecklistProvider).id;
+}
+
+String _$getTruckHash() => r'260dce5a604d6132a3495bb624cc2afb3821f8f3';
 
 /// See also [getTruck].
 @ProviderFor(getTruck)
