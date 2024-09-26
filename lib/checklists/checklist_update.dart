@@ -180,7 +180,7 @@ class _ChecklistTruckState extends State<ChecklistUpdate> {
               itemCount: checks.length,
               itemBuilder: (context, i) {
                 return Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 0, 0, 8),
+                  padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
                   child: Row(
                     children: [
                       Expanded(child: Text(checks[i])),
