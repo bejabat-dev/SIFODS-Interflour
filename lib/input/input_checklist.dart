@@ -51,12 +51,12 @@ class InputChecklist extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 60, right: 60),
+            padding: const EdgeInsets.only(left: 80, right: 80),
             child: GridView.builder(
                 shrinkWrap: true,
                 itemCount: menus.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 0.87,
+                    childAspectRatio: 0.85,
                     mainAxisSpacing: 8,
                     crossAxisSpacing: 8,
                     crossAxisCount: 3),
@@ -93,7 +93,7 @@ class InputChecklist extends StatelessWidget {
           const SizedBox(
             width: double.infinity,
             child: Padding(
-              padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
+              padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
               child: Text('Log'),
             ),
           ),
