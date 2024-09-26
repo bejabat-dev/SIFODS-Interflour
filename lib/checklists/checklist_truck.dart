@@ -176,7 +176,7 @@ class ChecklistTruckState extends ConsumerState<ChecklistTruck> {
                           },
                         )
                       : nopols.isEmpty
-                          ? const Text('No data')
+                          ? const Text('No data. Please add truck')
                           : indicatorWidget,
                 ),
                 const SizedBox(
@@ -190,7 +190,7 @@ class ChecklistTruckState extends ConsumerState<ChecklistTruck> {
               itemBuilder: (context, i) {
                 var data = checks[i];
                 return Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 8, 0, 8),
+                  padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
                   child: Row(
                     children: [
                       Expanded(child: Text(data)),
@@ -206,7 +206,7 @@ class ChecklistTruckState extends ConsumerState<ChecklistTruck> {
                 );
               }),
           SliverPadding(
-            padding: const EdgeInsets.only(top: 8, bottom: 50),
+            padding: const EdgeInsets.only(top: 16, bottom: 50),
             sliver: SliverToBoxAdapter(
               child: Row(
                 children: [

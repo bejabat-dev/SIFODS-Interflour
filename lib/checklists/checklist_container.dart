@@ -168,7 +168,9 @@ class _ChecklistContainerState extends ConsumerState<ChecklistContainer> {
                             selectedContainer = value!;
                           })
                       : container.isEmpty
-                          ? const Text('No data')
+                          ? const SizedBox(
+                            width: double.infinity,
+                            child:  Text('No data. Please add container'))
                           : const CupertinoActivityIndicator(),
                   const SizedBox(
                     height: 16,
@@ -184,7 +186,7 @@ class _ChecklistContainerState extends ConsumerState<ChecklistContainer> {
                 itemCount: internal.length,
                 itemBuilder: (context, i) {
                   return Padding(
-                    padding: const EdgeInsets.fromLTRB(8, 8, 0, 8),
+                    padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
                     child: Row(
                       children: [
                         Expanded(child: Text(internal[i])),
@@ -211,7 +213,7 @@ class _ChecklistContainerState extends ConsumerState<ChecklistContainer> {
                 itemCount: eksternal.length,
                 itemBuilder: (context, i) {
                   return Padding(
-                    padding: const EdgeInsets.fromLTRB(8, 8, 0, 8),
+                    padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
                     child: Row(
                       children: [
                         Expanded(child: Text(eksternal[i])),
@@ -230,7 +232,7 @@ class _ChecklistContainerState extends ConsumerState<ChecklistContainer> {
               child: Column(
                 children: [
                   const SizedBox(
-                    height: 8,
+                    height: 16,
                   ),
                   TextField(
                     controller: catatan,

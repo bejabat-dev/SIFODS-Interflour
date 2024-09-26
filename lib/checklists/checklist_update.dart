@@ -158,7 +158,7 @@ class _ChecklistTruckState extends State<ChecklistUpdate> {
                         },
                       )
                     : nomor.isEmpty
-                        ? const Text('No data')
+                        ? const Text('No data. Please add checklist container')
                         : const CupertinoActivityIndicator(),
                 const SizedBox(
                   height: 8,
@@ -180,7 +180,7 @@ class _ChecklistTruckState extends State<ChecklistUpdate> {
               itemCount: checks.length,
               itemBuilder: (context, i) {
                 return Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 8, 0, 8),
+                  padding: const EdgeInsets.fromLTRB(8, 0, 0, 8),
                   child: Row(
                     children: [
                       Expanded(child: Text(checks[i])),
@@ -228,7 +228,7 @@ class _ChecklistTruckState extends State<ChecklistUpdate> {
                 }),
           ),
           SliverPadding(
-            padding: const EdgeInsets.only(top: 8),
+            padding: const EdgeInsets.only(top: 16),
             sliver: SliverToBoxAdapter(
               child: Row(
                 children: [
