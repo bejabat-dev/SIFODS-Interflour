@@ -51,7 +51,7 @@ class InputChecklist extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 100, right: 100),
+            padding: const EdgeInsets.only(left: 90, right: 90),
             child: GridView.builder(
                 shrinkWrap: true,
                 itemCount: menus.length,

@@ -32,13 +32,14 @@ class _LogWidgetState extends ConsumerState<Reports> {
       setState(() {
         isSearching = true;
       });
-      searchData = [];
+      searchData.clear();
 
       for (var data in allData) {
         if (data.value.toLowerCase().contains(controller.text.toLowerCase())) {
           searchData.add(data);
         }
       }
+      ref.refresh(getSearchProvider);
     } else {
       setState(() {
         isSearching = false;
