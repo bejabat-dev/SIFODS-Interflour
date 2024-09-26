@@ -182,6 +182,7 @@ class InputTruckState extends ConsumerState<InputTruck> {
                             return styles.coloredText(value, Colors.white);
                           }).toList();
                         },
+                        value: listKendaraan[0],
                         onChanged: (value) {
                           jenisKendaraan = value!;
                         },

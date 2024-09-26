@@ -75,6 +75,7 @@ class _ChecklistTruckState extends State<ChecklistUpdate> {
         child: CustomScrollView(slivers: [
           SliverToBoxAdapter(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
@@ -109,6 +110,10 @@ class _ChecklistTruckState extends State<ChecklistUpdate> {
                     )
                   ],
                 ),
+                const SizedBox(
+                  height: 8,
+                ),
+                const Text('Nomor container:'),
                 const SizedBox(
                   height: 8,
                 ),

@@ -102,7 +102,7 @@ class ChecklistTruckState extends ConsumerState<ChecklistTruck> {
         padding: const EdgeInsets.all(8.0),
         child: CustomScrollView(slivers: [
           SliverToBoxAdapter(
-            child: Column(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
@@ -140,6 +140,9 @@ class ChecklistTruckState extends ConsumerState<ChecklistTruck> {
                 const SizedBox(
                   height: 8,
                 ),
+              const  Text('Nomor Polisi:'), const SizedBox(
+                  height: 8,
+                ),
                 Form(
                   key: formKey,
                   child: nopols.isNotEmpty
@@ -150,6 +153,7 @@ class ChecklistTruckState extends ConsumerState<ChecklistTruck> {
                               return styles.coloredText(item, Colors.white);
                             }).toList();
                           },
+                          value: nopols[0],
                           decoration:
                               styles.dropdownDecoration('No. Polisi', null),
                           items: nopols

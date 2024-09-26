@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sifods_interflour/auth/register.dart';
 import 'package:sifods_interflour/models/add_container.dart';
-import 'package:sifods_interflour/models/add_vehicle.dart';
+import 'package:sifods_interflour/models/add_truck.dart';
 import 'package:sifods_interflour/models/model_vehicle.dart';
 import 'package:sifods_interflour/utils/networking.dart';
 

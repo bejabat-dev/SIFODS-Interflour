@@ -103,7 +103,7 @@ class _ChecklistContainerState extends ConsumerState<ChecklistContainer> {
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
-              child: Column(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
@@ -141,8 +141,13 @@ class _ChecklistContainerState extends ConsumerState<ChecklistContainer> {
                   const SizedBox(
                     height: 8,
                   ),
+                  const Text('Nomor container:'),
+                  const SizedBox(
+                    height: 8,
+                  ),
                   container.isNotEmpty
                       ? DropdownButtonFormField<String>(
+                        value: container[0],
                           iconEnabledColor: Colors.white,
                           selectedItemBuilder: (context) {
                             return container.map<Widget>((String item) {
