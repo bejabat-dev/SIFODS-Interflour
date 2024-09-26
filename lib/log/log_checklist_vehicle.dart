@@ -18,7 +18,7 @@ class LogChecklistVehicle extends ConsumerWidget {
       body: data.when(data: (value) {
         return Text(value.id_user.toString());
       }, error: (e, s) {
-        return const Text('Error');
+        return const Center(child: Text('An error occured'));
       }, loading: () {
         return const Center(
           child: CupertinoActivityIndicator(),

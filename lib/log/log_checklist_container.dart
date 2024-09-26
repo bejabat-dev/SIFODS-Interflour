@@ -41,19 +41,40 @@ class LogChecklistContainer extends ConsumerWidget {
               padding: EdgeInsets.fromLTRB(16, 8, 16, 0),
               child: SizedBox(
                 width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
                   children: [
-                    Text('No. Container: 2115'),
-                    Text('No. Seal: 5456')
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Nama Container'),
+                        Text('No. Container'),
+                        Text('No. Seal')
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text(' : '),
+                        Text(' : '),
+                        Text(' : '),
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Container gue'),
+                        Text('C11596'),
+                        Text('B1578'),
+                      ],
+                    )
                   ],
                 ),
               ),
             )),
             const Text(
-              'Kebersihan internal',
+              'Kebersihan (internal)',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
+         
             ListView.builder(
                 shrinkWrap: true,
                 itemCount: internal.length,
@@ -70,9 +91,9 @@ class LogChecklistContainer extends ConsumerWidget {
                   );
                 }),
             const Text(
-              'Kebersihan eksternal',
+              'Fisik (eksternal)',
               style: TextStyle(fontWeight: FontWeight.bold),
-            ),
+            ),const SizedBox(height: 8,),
             ListView.builder(
                 shrinkWrap: true,
                 itemCount: eksternal.length,

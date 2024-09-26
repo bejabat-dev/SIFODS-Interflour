@@ -13,11 +13,48 @@ class LogContainer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final AsyncValue<AddContainer> data = ref.watch(getContainerProvider(id));
     return Scaffold(
-      appBar: styles.customAppBar(context, 'Container details'),
-      body: data.when(data: (value) {
-        return Text(value.nama);
+      appBar: data.when(data: (value) {
+        return styles.customAppBar(context, value.nomor);
       }, error: (e, s) {
-        return Text(s.toString());
+        return styles.customAppBar(context, 'Error');
+      }, loading: () {
+        return styles.customAppBar(context, 'Loading');
+      }),
+      body: data.when(data: (value) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  styles.mediumText('Nama Container'),
+                  styles.mediumText('No. Container'),
+                  styles.mediumText('No. Seal'),
+                ],
+              ),
+              Column(
+                children: [
+                  styles.mediumText(' : '),
+                  styles.mediumText(' : '),
+                  styles.mediumText(' : '),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  styles.mediumText(value.nama),
+                  styles.mediumText(value.nomor),
+                  styles.mediumText(value.seal),
+                ],
+              )
+            ],
+          ),
+        );
+      }, error: (e, s) {
+        return const Center(
+          child: Text('Error'),
+        );
       }, loading: () {
         return const Center(
           child: CupertinoActivityIndicator(),
