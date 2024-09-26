@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/auth/register.dart';
+import 'package:sifods_interflour/models/model_container.dart';
 import 'package:sifods_interflour/utils/helper.dart';
 import 'package:sifods_interflour/networking/vehicles.dart';
 import 'package:sifods_interflour/utils/styles.dart';
@@ -64,17 +65,18 @@ class _ChecklistContainerState extends ConsumerState<ChecklistContainer> {
     'eks6': false,
   };
 
-  Map<String, dynamic> containerData() {
+  ModelContainer containerData() {
     Map<String, dynamic> data = {};
     data['id_user'] = Helper.user.id!;
     data['nomor'] = selectedContainer;
+    data['catatan'] = catatan.text;
     data.addAll(booleans);
     data.addAll(booleansEksternal);
-    return data;
+    return ModelContainer.fromJson(data);
   }
 
   void save() async {
-    Vehicles().saveChecklistContainer(context, containerData());
+    Vehicles().saveChecklistContainer(context, containerData(), ref);
   }
 
   void load() async {

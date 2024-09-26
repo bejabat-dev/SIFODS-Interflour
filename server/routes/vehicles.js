@@ -85,7 +85,7 @@ router.post("/add_truck", (req, res) => {
         console.error(err);
         return res.status(500).json({ error: "Error" });
       }
-      res.status(201).json(result);
+      res.status(201).json(result.insertId);
     }
   );
 });
@@ -99,7 +99,7 @@ router.post("/add_container", (req, res) => {
       console.error(err);
       return res.status(500).json({ error: "Error" });
     }
-    res.status(201).json({ message: "Success" });
+    res.status(201).json(result.insertId);
   });
 });
 

@@ -20,6 +20,7 @@ ModelVehicle _$ModelVehicleFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ModelVehicle {
+  int? get id => throw _privateConstructorUsedError;
   int get id_user => throw _privateConstructorUsedError;
   String? get nopol => throw _privateConstructorUsedError;
   bool? get box0 => throw _privateConstructorUsedError;
@@ -50,7 +51,8 @@ abstract class $ModelVehicleCopyWith<$Res> {
       _$ModelVehicleCopyWithImpl<$Res, ModelVehicle>;
   @useResult
   $Res call(
-      {int id_user,
+      {int? id,
+      int id_user,
       String? nopol,
       bool? box0,
       bool? box1,
@@ -79,6 +81,7 @@ class _$ModelVehicleCopyWithImpl<$Res, $Val extends ModelVehicle>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? id_user = null,
     Object? nopol = freezed,
     Object? box0 = freezed,
@@ -93,6 +96,10 @@ class _$ModelVehicleCopyWithImpl<$Res, $Val extends ModelVehicle>
     Object? status = freezed,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       id_user: null == id_user
           ? _value.id_user
           : id_user // ignore: cast_nullable_to_non_nullable
@@ -154,7 +161,8 @@ abstract class _$$ModelVehicleImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id_user,
+      {int? id,
+      int id_user,
       String? nopol,
       bool? box0,
       bool? box1,
@@ -181,6 +189,7 @@ class __$$ModelVehicleImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? id_user = null,
     Object? nopol = freezed,
     Object? box0 = freezed,
@@ -195,6 +204,10 @@ class __$$ModelVehicleImplCopyWithImpl<$Res>
     Object? status = freezed,
   }) {
     return _then(_$ModelVehicleImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       id_user: null == id_user
           ? _value.id_user
           : id_user // ignore: cast_nullable_to_non_nullable
@@ -251,7 +264,8 @@ class __$$ModelVehicleImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ModelVehicleImpl implements _ModelVehicle {
   const _$ModelVehicleImpl(
-      {required this.id_user,
+      {required this.id,
+      required this.id_user,
       required this.nopol,
       required this.box0,
       required this.box1,
@@ -267,6 +281,8 @@ class _$ModelVehicleImpl implements _ModelVehicle {
   factory _$ModelVehicleImpl.fromJson(Map<String, dynamic> json) =>
       _$$ModelVehicleImplFromJson(json);
 
+  @override
+  final int? id;
   @override
   final int id_user;
   @override
@@ -294,7 +310,7 @@ class _$ModelVehicleImpl implements _ModelVehicle {
 
   @override
   String toString() {
-    return 'ModelVehicle(id_user: $id_user, nopol: $nopol, box0: $box0, box1: $box1, box2: $box2, box3: $box3, box4: $box4, box5: $box5, box6: $box6, box7: $box7, box8: $box8, status: $status)';
+    return 'ModelVehicle(id: $id, id_user: $id_user, nopol: $nopol, box0: $box0, box1: $box1, box2: $box2, box3: $box3, box4: $box4, box5: $box5, box6: $box6, box7: $box7, box8: $box8, status: $status)';
   }
 
   @override
@@ -302,6 +318,7 @@ class _$ModelVehicleImpl implements _ModelVehicle {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ModelVehicleImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.id_user, id_user) || other.id_user == id_user) &&
             (identical(other.nopol, nopol) || other.nopol == nopol) &&
             (identical(other.box0, box0) || other.box0 == box0) &&
@@ -318,8 +335,8 @@ class _$ModelVehicleImpl implements _ModelVehicle {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id_user, nopol, box0, box1, box2,
-      box3, box4, box5, box6, box7, box8, status);
+  int get hashCode => Object.hash(runtimeType, id, id_user, nopol, box0, box1,
+      box2, box3, box4, box5, box6, box7, box8, status);
 
   /// Create a copy of ModelVehicle
   /// with the given fields replaced by the non-null parameter values.
@@ -339,7 +356,8 @@ class _$ModelVehicleImpl implements _ModelVehicle {
 
 abstract class _ModelVehicle implements ModelVehicle {
   const factory _ModelVehicle(
-      {required final int id_user,
+      {required final int? id,
+      required final int id_user,
       required final String? nopol,
       required final bool? box0,
       required final bool? box1,
@@ -355,6 +373,8 @@ abstract class _ModelVehicle implements ModelVehicle {
   factory _ModelVehicle.fromJson(Map<String, dynamic> json) =
       _$ModelVehicleImpl.fromJson;
 
+  @override
+  int? get id;
   @override
   int get id_user;
   @override

@@ -8,6 +8,7 @@ part of 'model_vehicle.dart';
 
 _$ModelVehicleImpl _$$ModelVehicleImplFromJson(Map<String, dynamic> json) =>
     _$ModelVehicleImpl(
+      id: (json['id'] as num?)?.toInt(),
       id_user: (json['id_user'] as num).toInt(),
       nopol: json['nopol'] as String?,
       box0: json['box0'] as bool?,
@@ -24,6 +25,7 @@ _$ModelVehicleImpl _$$ModelVehicleImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$ModelVehicleImplToJson(_$ModelVehicleImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'id_user': instance.id_user,
       'nopol': instance.nopol,
       'box0': instance.box0,

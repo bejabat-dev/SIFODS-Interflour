@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sifods_interflour/auth/register.dart';
+import 'package:sifods_interflour/models/model_vehicle.dart';
+import 'package:sifods_interflour/networking/riverpod/vehiclespod.dart';
 
 class LogChecklistVehicle extends ConsumerWidget {
   const LogChecklistVehicle({super.key, required this.id});
@@ -7,6 +10,9 @@ class LogChecklistVehicle extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container();
+    final AsyncValue<ModelVehicle> data = ref.watch(getVehicleChecklistProvider(id));
+    return Scaffold(
+      appBar: styles.customAppBar(context, 'Checklist truck'),
+    );
   }
 }

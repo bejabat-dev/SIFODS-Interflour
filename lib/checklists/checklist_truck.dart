@@ -56,12 +56,14 @@ class ChecklistTruckState extends ConsumerState<ChecklistTruck> {
       box5: booleans['box5'],
       box6: booleans['box6'],
       box7: booleans['box7'],
-      box8: booleans['box8'], status: 'new',
+      box8: booleans['box8'],
+      status: 'new',
+      id: null,
     );
   }
 
   void saveTruck() async {
-    await Vehicles().saveChecklistTruck(context, getModelTruck());
+    await Vehicles().saveChecklistTruck(context, getModelTruck(), ref);
   }
 
   Widget indicatorWidget = const Row(
@@ -102,7 +104,8 @@ class ChecklistTruckState extends ConsumerState<ChecklistTruck> {
         padding: const EdgeInsets.all(8.0),
         child: CustomScrollView(slivers: [
           SliverToBoxAdapter(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
@@ -140,7 +143,8 @@ class ChecklistTruckState extends ConsumerState<ChecklistTruck> {
                 const SizedBox(
                   height: 8,
                 ),
-              const  Text('Nomor Polisi:'), const SizedBox(
+                const Text('Nomor Polisi:'),
+                const SizedBox(
                   height: 8,
                 ),
                 Form(

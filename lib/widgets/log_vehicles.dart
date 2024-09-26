@@ -40,7 +40,7 @@ class LogVehicles extends ConsumerWidget {
                       children: [
                         Row(
                           children: [
-                            Expanded(child: Text('Added ${data.type}')),
+                            Expanded(child: Text('Added ${data.type.replaceAll('_', ' ')}')),
                             Text(Tools().formatDate(data.tanggal!)),
                           ],
                         ),

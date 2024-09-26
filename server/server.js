@@ -65,7 +65,7 @@ router.post("/checklist/container", (req, res) => {
         console.error(err);
         return res.status(500).json({ error: err });
       }
-      res.status(201).json({ message: "Success" });
+      res.status(201).json(result.insertId);
     }
   );
 });
@@ -94,7 +94,7 @@ router.post("/checklist/truck", (req, res) => {
         console.error(err);
         return res.status(500).json({ error: "Error" });
       }
-      res.status(201).json({ message: "Success" });
+      res.status(201).json(result.insertId);
     }
   );
 });

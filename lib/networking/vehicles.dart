@@ -6,6 +6,7 @@ import 'package:sifods_interflour/auth/register.dart';
 import 'package:sifods_interflour/models/add_container.dart';
 import 'package:sifods_interflour/models/add_truck.dart';
 import 'package:sifods_interflour/models/log_model.dart';
+import 'package:sifods_interflour/models/model_container.dart';
 import 'package:sifods_interflour/models/model_vehicle.dart';
 import 'package:sifods_interflour/networking/riverpod/vehiclespod.dart';
 import 'package:sifods_interflour/utils/helper.dart';
@@ -67,7 +68,7 @@ class Vehicles {
         var logData = LogModel(
             id_user: Helper.user.id!,
             type: 'container',
-            type_id: 9,
+            type_id: res.data,
             value: data.nomor,
             tanggal: null);
         await addLog(ref, logData);
@@ -93,7 +94,7 @@ class Vehicles {
         var logData = LogModel(
             id_user: Helper.user.id!,
             type: 'vehicle',
-            type_id: 9,
+            type_id: res.data,
             value: data.nopol,
             tanggal: null);
         await addLog(ref, logData);
@@ -111,12 +112,20 @@ class Vehicles {
   }
 
   Future<void> saveChecklistTruck(
-      BuildContext context, ModelVehicle model) async {
+      BuildContext context, ModelVehicle model, WidgetRef ref) async {
     utils.showLoadingDialog(context, 'Saving data');
     try {
       final res =
           await dio.post('$baseUrl/checklist/truck', data: model.toJson());
+      debugPrint(res.data.toString());
       if (res.statusCode == 201) {
+        var data = LogModel(
+            id_user: Helper.user.id!,
+            type: 'checklist_truck',
+            type_id: res.data,
+            value: model.nopol!,
+            tanggal: null);
+        await addLog(ref, data);
         if (context.mounted) {
           Navigator.pop(context);
           Navigator.pop(context);
@@ -131,11 +140,19 @@ class Vehicles {
   }
 
   Future<void> saveChecklistContainer(
-      BuildContext context, dynamic data) async {
+      BuildContext context, ModelContainer data, WidgetRef ref) async {
     utils.showLoadingDialog(context, 'Saving data');
     try {
-      final res = await dio.post('$baseUrl/checklist/container', data: data);
+      final res =
+          await dio.post('$baseUrl/checklist/container', data: data.toJson());
       if (res.statusCode == 201) {
+        var data2 = LogModel(
+            id_user: Helper.user.id!,
+            type: 'checklist_container',
+            type_id: res.data,
+            value: data.nomor,
+            tanggal: null);
+        await addLog(ref, data2);
         if (context.mounted) {
           Navigator.pop(context);
           Navigator.pop(context);

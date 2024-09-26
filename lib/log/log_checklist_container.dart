@@ -9,7 +9,7 @@ class LogChecklistContainer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: styles.customAppBar(context, 'Container details'),
+      appBar: styles.customAppBar(context, 'Checklist container'),
     );
   }
 }
