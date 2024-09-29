@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sifods_interflour/auth/splash.dart';
-
 void main() {
   runApp(const ProviderScope(child: MainApp()));
 }
