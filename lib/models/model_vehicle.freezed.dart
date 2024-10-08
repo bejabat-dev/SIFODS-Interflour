@@ -23,14 +23,23 @@ mixin _$ModelVehicle {
   int? get id => throw _privateConstructorUsedError;
   int get id_user => throw _privateConstructorUsedError;
   String? get nopol => throw _privateConstructorUsedError;
+  @IntToBoolConverter()
   bool? get box0 => throw _privateConstructorUsedError;
+  @IntToBoolConverter()
   bool? get box1 => throw _privateConstructorUsedError;
+  @IntToBoolConverter()
   bool? get box2 => throw _privateConstructorUsedError;
+  @IntToBoolConverter()
   bool? get box3 => throw _privateConstructorUsedError;
+  @IntToBoolConverter()
   bool? get box4 => throw _privateConstructorUsedError;
+  @IntToBoolConverter()
   bool? get box5 => throw _privateConstructorUsedError;
+  @IntToBoolConverter()
   bool? get box6 => throw _privateConstructorUsedError;
+  @IntToBoolConverter()
   bool? get box7 => throw _privateConstructorUsedError;
+  @IntToBoolConverter()
   bool? get box8 => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
 
@@ -54,15 +63,15 @@ abstract class $ModelVehicleCopyWith<$Res> {
       {int? id,
       int id_user,
       String? nopol,
-      bool? box0,
-      bool? box1,
-      bool? box2,
-      bool? box3,
-      bool? box4,
-      bool? box5,
-      bool? box6,
-      bool? box7,
-      bool? box8,
+      @IntToBoolConverter() bool? box0,
+      @IntToBoolConverter() bool? box1,
+      @IntToBoolConverter() bool? box2,
+      @IntToBoolConverter() bool? box3,
+      @IntToBoolConverter() bool? box4,
+      @IntToBoolConverter() bool? box5,
+      @IntToBoolConverter() bool? box6,
+      @IntToBoolConverter() bool? box7,
+      @IntToBoolConverter() bool? box8,
       String? status});
 }
 
@@ -164,15 +173,15 @@ abstract class _$$ModelVehicleImplCopyWith<$Res>
       {int? id,
       int id_user,
       String? nopol,
-      bool? box0,
-      bool? box1,
-      bool? box2,
-      bool? box3,
-      bool? box4,
-      bool? box5,
-      bool? box6,
-      bool? box7,
-      bool? box8,
+      @IntToBoolConverter() bool? box0,
+      @IntToBoolConverter() bool? box1,
+      @IntToBoolConverter() bool? box2,
+      @IntToBoolConverter() bool? box3,
+      @IntToBoolConverter() bool? box4,
+      @IntToBoolConverter() bool? box5,
+      @IntToBoolConverter() bool? box6,
+      @IntToBoolConverter() bool? box7,
+      @IntToBoolConverter() bool? box8,
       String? status});
 }
 
@@ -267,15 +276,15 @@ class _$ModelVehicleImpl implements _ModelVehicle {
       {required this.id,
       required this.id_user,
       required this.nopol,
-      required this.box0,
-      required this.box1,
-      required this.box2,
-      required this.box3,
-      required this.box4,
-      required this.box5,
-      required this.box6,
-      required this.box7,
-      required this.box8,
+      @IntToBoolConverter() required this.box0,
+      @IntToBoolConverter() required this.box1,
+      @IntToBoolConverter() required this.box2,
+      @IntToBoolConverter() required this.box3,
+      @IntToBoolConverter() required this.box4,
+      @IntToBoolConverter() required this.box5,
+      @IntToBoolConverter() required this.box6,
+      @IntToBoolConverter() required this.box7,
+      @IntToBoolConverter() required this.box8,
       required this.status});
 
   factory _$ModelVehicleImpl.fromJson(Map<String, dynamic> json) =>
@@ -288,22 +297,31 @@ class _$ModelVehicleImpl implements _ModelVehicle {
   @override
   final String? nopol;
   @override
+  @IntToBoolConverter()
   final bool? box0;
   @override
+  @IntToBoolConverter()
   final bool? box1;
   @override
+  @IntToBoolConverter()
   final bool? box2;
   @override
+  @IntToBoolConverter()
   final bool? box3;
   @override
+  @IntToBoolConverter()
   final bool? box4;
   @override
+  @IntToBoolConverter()
   final bool? box5;
   @override
+  @IntToBoolConverter()
   final bool? box6;
   @override
+  @IntToBoolConverter()
   final bool? box7;
   @override
+  @IntToBoolConverter()
   final bool? box8;
   @override
   final String? status;
@@ -359,15 +377,15 @@ abstract class _ModelVehicle implements ModelVehicle {
       {required final int? id,
       required final int id_user,
       required final String? nopol,
-      required final bool? box0,
-      required final bool? box1,
-      required final bool? box2,
-      required final bool? box3,
-      required final bool? box4,
-      required final bool? box5,
-      required final bool? box6,
-      required final bool? box7,
-      required final bool? box8,
+      @IntToBoolConverter() required final bool? box0,
+      @IntToBoolConverter() required final bool? box1,
+      @IntToBoolConverter() required final bool? box2,
+      @IntToBoolConverter() required final bool? box3,
+      @IntToBoolConverter() required final bool? box4,
+      @IntToBoolConverter() required final bool? box5,
+      @IntToBoolConverter() required final bool? box6,
+      @IntToBoolConverter() required final bool? box7,
+      @IntToBoolConverter() required final bool? box8,
       required final String? status}) = _$ModelVehicleImpl;
 
   factory _ModelVehicle.fromJson(Map<String, dynamic> json) =
@@ -380,22 +398,31 @@ abstract class _ModelVehicle implements ModelVehicle {
   @override
   String? get nopol;
   @override
+  @IntToBoolConverter()
   bool? get box0;
   @override
+  @IntToBoolConverter()
   bool? get box1;
   @override
+  @IntToBoolConverter()
   bool? get box2;
   @override
+  @IntToBoolConverter()
   bool? get box3;
   @override
+  @IntToBoolConverter()
   bool? get box4;
   @override
+  @IntToBoolConverter()
   bool? get box5;
   @override
+  @IntToBoolConverter()
   bool? get box6;
   @override
+  @IntToBoolConverter()
   bool? get box7;
   @override
+  @IntToBoolConverter()
   bool? get box8;
   @override
   String? get status;

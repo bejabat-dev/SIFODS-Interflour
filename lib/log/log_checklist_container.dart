@@ -69,7 +69,7 @@ class LogChecklistContainer extends ConsumerWidget {
                   ],
                 ),
               ),
-            )),
+            )),const SizedBox(height: 8,),
             const Text(
               'Kebersihan (internal)',
               style: TextStyle(fontWeight: FontWeight.bold),
@@ -81,7 +81,7 @@ class LogChecklistContainer extends ConsumerWidget {
                 itemBuilder: (context, i) {
                   var data = internal[i];
                   return Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                     child: Row(
                       children: [
                         Expanded(child: Text(data)),
@@ -100,7 +100,7 @@ class LogChecklistContainer extends ConsumerWidget {
                 itemBuilder: (context, i) {
                   var data = eksternal[i];
                   return Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                     child: Row(
                       children: [
                         Expanded(child: Text(data)),

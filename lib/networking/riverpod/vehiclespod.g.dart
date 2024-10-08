@@ -20,7 +20,7 @@ final getSearchProvider = AutoDisposeFutureProvider<List<LogModel>>.internal(
 );
 
 typedef GetSearchRef = AutoDisposeFutureProviderRef<List<LogModel>>;
-String _$getLogsHash() => r'ad80eb571e8ed3dc8b2b737fafdbd24f87515731';
+String _$getLogsHash() => r'53f49cc5ef5bd57e80e1da4d8136dfb16525255d';
 
 /// See also [getLogs].
 @ProviderFor(getLogs)

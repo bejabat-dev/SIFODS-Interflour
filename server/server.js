@@ -12,8 +12,6 @@ const router = express.Router();
 
 app.use(express.json());
 
-
-
 router.use(vehicles);
 router.use(logs);
 router.use(auth);

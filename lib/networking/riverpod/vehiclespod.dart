@@ -33,7 +33,6 @@ Future<List<LogModel>> getLogs(GetLogsRef ref) async {
     List<LogModel> trucks =
         data.map((truck) => LogModel.fromJson(truck)).toList();
     debugPrint('Trucks parsed: ${trucks.length}');
-    allData = trucks;
     return trucks;
   } catch (e) {
     debugPrint('Error fetching vehicle logs: $e');
